@@ -1,0 +1,27 @@
+// .position_fr, .age_fr{
+
+// }
+.position_fr, .streetName_fr , .location_fr, .age_fr{
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #898989;
+  max-width: 86px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+span.streetName_fr, .location_fr, .position_fr, .age_fr, .svg-icons.map {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.franchisee-list.status{
+  background: #eeeeee;
+}
+.status_lacks{
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.78);
+}
+.fixed-left-side{
+  position: fixed;
+}

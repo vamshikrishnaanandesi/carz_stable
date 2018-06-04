@@ -1,0 +1,10 @@
+ <div *ngIf="data.file.image_type=='image'" (contextmenu)="onRightClick($event)">
+  <img  src="{{data.file.path}}" class="view-file-img-popup">
+</div>
+<div *ngIf="data.file.image_type=='video'" (contextmenu)="onRightClick($event)">
+  <video src="{{data.file.path}}" class="view-file-img-popup"></video>
+</div>
+<div *ngIf="data.file.image_type=='pdf'" (contextmenu)="onRightClick($event)">
+  <embed [src]='pdfUrl' type="application/pdf" width="100%" height="600px" />
+</div>
+

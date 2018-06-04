@@ -1,0 +1,597 @@
+<div  id="calendar" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <!--id="calendar" class="page-layout simple fullwidth" -->
+
+
+  <!-- HEADER -->
+  <!-- <div class="header p-16 p-sm-24" [ngClass]="viewDate | date:'MMM'"> -->
+
+    <!-- <div class="header-content" fxLayout="column" fxLayoutAlign="space-between"> -->
+
+      <!-- <div class="header-top"  fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column"> -->
+
+        <!-- <div class="logo mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+
+          <mat-icon class="logo-icon" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+
+          <span class="logo-text" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Calendar</span>
+
+        </div> -->
+
+        <!-- TOOLBAR -->
+        <!-- <div class="toolbar" fxLayout="row" fxLayoutAlign="start center">
+
+          <button mat-button class="mat-icon-button" aria-label="Search" matTooltip="Search">
+            <mat-icon>search</mat-icon>
+          </button>
+
+          <button mat-button class="mat-icon-button" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="selectedDay = {date:$event}"
+            aria-label="Today" matTooltip="Today">
+
+            <mat-icon>today</mat-icon>
+          </button>
+
+          <button mat-button class="mat-icon-button" (click)="view='day'" aria-label="Day" matTooltip="Day">
+            <mat-icon>view_day</mat-icon>
+          </button>
+
+          <button mat-button class="mat-icon-button" (click)="view='week'" aria-label="Week" matTooltip="Week">
+            <mat-icon>view_week</mat-icon>
+          </button>
+
+          <button mat-button class="mat-icon-button" (click)="view='month'" aria-label="Month" matTooltip="Month">
+            <mat-icon>view_module</mat-icon>
+          </button>
+        </div> -->
+      <!-- </div> -->
+      <!-- / TOOLBAR -->
+
+
+    <!-- </div> -->
+
+    <!-- ADD EVENT BUTTON -->
+    <!-- <button mat-fab class="add-event-button mat-warn" (click)="addEvent()" aria-label="Add event" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'300ms',scale:'0.2'}}">
+      <mat-icon>add</mat-icon>
+    </button> -->
+    <!-- / ADD EVENT BUTTON -->
+  <!-- </div> -->
+  <!-- / HEADER -->
+
+
+
+
+
+  <div class="settings-main franshisee-main calender_main">
+    <!-- top title component -->
+    <div class="row top-title-component" style="padding-bottom: 0px">
+      <div class="col-sm-6 padding-left-0">
+
+        <div class="main_top_franchisee">
+          <h1 class="franchisee-title">Marketing</h1>
+        </div>
+
+      </div>
+      <div class="col-sm-6 padding-right-0">
+        <div class="text-right">
+
+          <button class="filled-btn margin-left-15" style="width:auto !important;" (click)="clickEvent()" mat-button>
+            <img src="../../../../../assets/images/carz/icons/add.svg" style="left: -4px; top: 0px; position: relative; width: 12px;"
+              class="btn-icons-left" alt=""> Create Campaign</button>
+        </div>
+      </div>
+    </div>
+    <!-- /top title component -->
+
+
+    <!-- tabs for calender and campaign -->
+<div class="col-md-12">
+    <mat-tab-group [disableRipple]="false">
+        <mat-tab label="Calender" >
+            <div class="spacer-xs"></div>
+            <!-- HEADER BOTTOM -->
+            <div class="header-bottom" fxLayout="row" fxLayoutAlign="left left" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'150ms'}}">
+
+               <button mat-button class="mat-icon-button arrow" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="selectedDay = {date:$event}"
+                 aria-label="Previous">
+                 <mat-icon>chevron_left</mat-icon>
+               </button>
+
+               <div class="title dateyear">
+                 {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+               </div>
+
+               <button mat-button class="mat-icon-button arrow" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="selectedDay = {date:$event}"
+                 aria-label="Next">
+                 <mat-icon>chevron_right</mat-icon>
+               </button>
+             </div>
+             <!-- / HEADER BOTTOM -->
+       <!-- CONTENT -->
+       <div class="content" fusePerfectScrollbar *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms',y:'50px'}}">
+         <div [ngSwitch]="view">
+           <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+             (dayClicked)="dayClicked($event.day)" (eventClicked)="editEvent('edit', $event.event, $event.event.meta)" (eventTimesChanged)="eventTimesChanged($event)"
+             (beforeViewRender)="beforeMonthViewRender($event)">
+
+           </mwl-calendar-month-view>
+           <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" (viewDateChange)="selectedDay = {date:$event}" [events]="events"
+             [refresh]="refresh" (dayClicked)="dayClicked($event.day)" (eventClicked)="editEvent('edit', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+           </mwl-calendar-week-view>
+           <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" (viewDateChange)="selectedDay = {date:$event}" [events]="events"
+             [refresh]="refresh" (dayClicked)="dayClicked($event.day)" (eventClicked)="editEvent('edit', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+           </mwl-calendar-day-view>
+         </div>
+
+       </div>
+       <!-- / CONTENT -->
+           </mat-tab>
+           <mat-tab label="Campaigns" >
+
+
+  <!-- all compaigns -->
+  <div class="row padding padding-bottom-0">
+      <div class="col-md-8">
+        <div class="main_top_franchisee">
+          <div class="row padding padding-bottom-0">
+            <div>
+              <p class="franchisee-title">All Campaigns</p>
+            </div>
+            <div class="padding-left">
+              <mat-form-field class="franchisee-search">
+                <input matInput placeholder="Search for">
+                <mat-icon class="from-inside-icon">search</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 padding padding-bottom-0">
+
+        <div class="leads_type pull-right">
+
+          <ul class="list-style-inline">
+            <li>Created by: </li>
+            <li>
+              <mat-form-field class="padding-left">
+
+                  <mat-select placeholder="All" [(ngModel)]="createdbyValue" name="createdbyValue">
+                      <mat-option *ngFor="let CreatedValue of CreatedValues" [value]="CreatedValue.value">
+                        {{CreatedValue.viewValue}}
+                      </mat-option>
+                    </mat-select>
+              </mat-form-field>
+            </li>
+          </ul>
+
+
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <!-- <div class="spacer-sm"></div> -->
+    <section>
+
+      <div class="row padding padding-bottom-0">
+        <div class="col-md-12" >
+          <!-- (click)="editEvent('edit', $event.event, $event.event.meta)" -->
+
+          <div class="campaign-cards-view campaign-cards-blue" *ngFor="let campaign of campaigns">
+            <p class="comapain-title">{{campaign.title}}</p>
+            <p class="comapain-date">{{campaign.start|date: 'dd/MM/yyy'}}</p>
+            <p class="comapain-status">{{campaign.type}}</p>
+            <p class="comapain-budget"> &#x20B9; {{campaign.budget}}</p>
+          </div>
+
+          <!-- <div class="campaign-cards-view campaign-cards-yellow">
+              <p class="comapain-title">Campaign Name</p>
+            <p class="comapain-date">2 January, 2018</p>
+            <p class="comapain-status">Online</p>
+            <p class="comapain-budget"> &#x20B9; 22,550</p>
+          </div>
+
+          <div class="campaign-cards-view campaign-cards-red">
+              <p class="comapain-title">Campaign Name</p>
+            <p class="comapain-date">2 January, 2018</p>
+            <p class="comapain-status">Online</p>
+            <p class="comapain-budget"> &#x20B9; 22,550</p>
+          </div>
+          <div class="campaign-cards-view campaign-cards-blue">
+              <p class="comapain-title">Campaign Name</p>
+              <p class="comapain-date">2 January, 2018</p>
+              <p class="comapain-status">Online</p>
+              <p class="comapain-budget"> &#x20B9; 22,550</p>
+            </div>
+
+          <div class="campaign-cards-view campaign-cards-red">
+              <p class="comapain-title">Campaign Name</p>
+            <p class="comapain-date">2 January, 2018</p>
+            <p class="comapain-status">Online</p>
+            <p class="comapain-budget"> &#x20B9; 22,550</p>
+          </div> -->
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- /all compaigns -->
+
+            </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  </div>
+
+
+
+  <!-- rightside navbar create  -->
+
+  <div class="rightNavbar animated fadeInRight" *ngIf="rightnavstatus">
+    <form #campaignForm="ngForm" name="campaignForm" (ngSubmit)="create_campaign(campaignForm)" novalidate>
+      <mat-icon class="pull-right" (click)="clickEvent()" style="cursor: pointer;">close</mat-icon>
+      <p class="rightNavbar-title">Campaign</p>
+      <div class="spacer-xs"></div>
+      <label for="nav-name">Name</label>
+      <mat-form-field>
+        <input matInput id="nav-name" placeholder="Enter Name" name="title" [(ngModel)]="campaign.title" required>
+        <mat-error *ngIf="campaignForm.hasError('required', 'title')">
+
+          Title is required
+        </mat-error>
+      </mat-form-field>
+      <div class="location-sidebar">
+
+      <label for="nav-location">Location</label>
+      <ng4geo-autocomplete id="location" name="location" [userSettings]="userSettings2" [(ngModel)]="campaign.location" (componentCallback)="autoCompleteCallback($event)"
+        ngDefaultControl mdInput [ngModelOptions]="{standalone: true}"></ng4geo-autocomplete>
+
+      </div>
+      <label for="nav-startdate">Start Date</label>
+      <mat-form-field>
+        <input matInput id="nav-startdate" [matDatepicker]="picker" placeholder="Choose a date" name="start" [(ngModel)]="campaign.start"
+          required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="campaignForm.hasError('required', 'start')">
+
+          Start Date is required
+        </mat-error>
+      </mat-form-field>
+      <label for="nav-enddate">End Date</label>
+      <mat-form-field>
+        <input matInput id="nav-enddate" [matDatepicker]="picker2" placeholder="Choose a date" name="end" [(ngModel)]="campaign.end"
+          required>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="campaignForm.hasError('required', 'end')">
+
+          End Date is required
+        </mat-error>
+      </mat-form-field>
+
+      <label for="nav-type">Type</label>
+      <mat-form-field>
+        <mat-select placeholder="Type" [(value)]="Type" id="nav-type" name="type" [(ngModel)]="campaign.type" required>
+          <mat-option *ngFor="let campaign_typeName of campaign_type" value="{{campaign_typeName.type_mode}}">{{campaign_typeName.type_mode}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="campaignForm.hasError('required', 'type')">
+
+          Campaign Type is required
+        </mat-error>
+      </mat-form-field>
+      <label for="nav-enddate">About</label>
+      <mat-form-field class="about_campaign">
+        <textarea matInput placeholder="Leave a comment" name="notes" [(ngModel)]="campaign.notes"></textarea>
+      </mat-form-field>
+
+      <label for="nav-Colour">Campaign Colour </label>
+      <!-- <mat-form-field>
+        <span style="position:relative; top: 5px; left: 8px; font-size: 14px">{{campaign.campaign_color}}</span>
+        <input matInput id="nav-Colour"  name="campaign_color" [(ngModel)]="campaign.campaign_color" type="color" required>
+        <mat-error *ngIf="campaignForm.hasError('required', 'color')">
+
+          Campaign color is required
+        </mat-error>
+      </mat-form-field> -->
+
+      <mat-form-field>
+          <mat-select placeholder="Choose Colour" [(ngModel)]="campaign.campaign_color" name="campaign_color">
+            <mat-option *ngFor="let SelectedCol of SelectedColors" [value]="SelectedCol.value">
+              {{SelectedCol.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      <label for="nav-Medium">Medium</label>
+      <mat-form-field>
+        <mat-select id="nav-Medium" [(value)]="navtypeselected" multiple>
+          <mat-option>None</mat-option>
+          <mat-option value="Facebook">Facebook</mat-option>
+          <mat-option value="Google">Google</mat-option>
+          <mat-option value="Twitter">Twitter</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <label for="nav-bud">Budget</label>
+      <mat-form-field>
+        <input matInput id="nav-bud" type="number" placeholder="Budget" name="budget" [(ngModel)]="campaign.budget" required>
+        <mat-error *ngIf="campaignForm.hasError('required', 'budget')">
+
+          Campaign Budget is required
+        </mat-error>
+      </mat-form-field>
+      <label for="choose_file_nav" class="chosee-filenav">Choose file</label>
+      <input type="file" id="choose_file_nav" style="display: none;"  (change)="handleFileInput_campaigns_files($event.target.files);readUrl($event);">
+      <br>
+      <img src="http://poppin.imgix.net/products/swatch/swatch_light_gray.jpg?w=280&h=280" style="width:50px;height: 50px;"  alt="">
+      <div>
+      <ul>
+        <li>
+          <img src="../../../../../assets/images/carz/icons/Marketing-File.svg" style="width: 25px;" alt="">
+        </li>
+        <li>
+          <p class="file-name">Facebook_banner.jpg</p>
+          <span class="file-size">12kb</span>
+        </li>
+        <li class="file-download-icon">
+          <img src="../../../../../assets/images/carz/icons/download.svg" style="width: 20px;" alt="">
+        </li>
+      </ul>
+    </div>
+      <div class="text-right">
+        <button class="filled-btn margin-left-15" style="width:auto !important;" mat-button>
+          <img src="../../../../../assets/images/carz/icons/add.svg" style="left: -4px; top: 0px; position: relative; width: 12px;"
+            class="btn-icons-left" alt=""> Create</button>
+      </div>
+    </form>
+    <div class="spacer-md"></div>
+  </div>
+  <!-- /rightside navbar create -->
+
+   <!-- rightside navbar view  -->
+
+  <div class="rightNavbar animated fadeInRight" *ngIf="Viewrightnavstatus">
+    <form #editForm="ngForm" name="editForm" novalidate>
+      <mat-icon class="pull-right" (click)="viewEvent()" style="cursor: pointer;">close</mat-icon>
+
+      <!-- <mat-icon class="pull-right" style="cursor: pointer;" (click)="deleteCampaign(campaign)">delete</mat-icon>
+      <mat-icon class="pull-right" style="cursor: pointer;" (click)="EditclickEvent()">edit</mat-icon> -->
+      <img src="../../../../../assets/images/carz/icons/delete-button.svg" class="pull-right" style="cursor: pointer;width:13px;margin-right: 10px;    margin-top: 5px;" (click)="deleteCampaign(campaign._id)" alt="">
+      <img src="../../../../../assets/images/carz/icons/edit.svg" (click)="EditclickEvent()" class="pull-right" style="cursor: pointer;width:14px;margin-right: 10px;    margin-top: 5px;" alt="">
+
+      <p class="rightNavbar-title">Campaign Details</p>
+      <div class="spacer-xs"></div>
+      <div class="viewcompainDetails padding">
+        <!-- main details -->
+        <div class="viewComponentDetailsTop">
+          <!-- <mat-form-field> -->
+          <p class="title" *ngIf="!isEdit"><span class="vertical-title-line"></span>{{campaign.title}}</p>
+
+          <!-- <input matInput  placeholder="Title" class="title" id="title" name="title" [(ngModel)]="campaign.title"> -->
+          <!-- <mat-error *ngIf="editForm.hasError('required', 'title')">
+
+              Title is required
+            </mat-error>
+        </mat-form-field> -->
+          <p class="location" *ngIf="!isEdit"><img src="../../../../../assets/images/carz/icons/Marketing-GlobeLocation.svg" width="12px" style="margin-right: 10px;" alt=""> {{campaign.location}}</p>
+          <!-- <input matInput *ngIf="isEdit" placeholder="Location" class="location" id="location" name="location" [(ngModel)]="campaign.location"> -->
+
+
+          <p class="date"> <img src="../../../../../assets/images/carz/icons/Marketing-Calendar.svg" width="12px" style="margin-right: 10px;" alt=""> {{campaign.start|date: 'M-d-yyyy'}} - {{campaign.end|date: 'M-d-yyyy'}}</p>
+          <!-- <input matInput *ngIf="isEdit" id="nav-startdate" [matDatepicker]="picker" placeholder="Choose a date" name="start" [(ngModel)]="campaign.start"  >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <input matInput *ngIf="isEdit" id="nav-startdate" [matDatepicker]="picker" placeholder="Choose a date" name="start" [(ngModel)]="campaign.end"  >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker> -->
+        </div>
+        <!-- content -->
+        <div class="viewComponentDetailsContent">
+          <div class="spacer-xs"></div>
+          <p class="about" *ngIf="!isEdit">ABOUT</p>
+          <p class="aboutcontent" *ngIf="!isEdit">{{campaign.notes}}</p>
+          <!-- <input matInput *ngIf="isEdit" placeholder="About" class="about" id="about" name="notes" [(ngModel)]="campaign.notes"> -->
+          <div class="spacer-xs"></div>
+          <p class="type" *ngIf="!isEdit">TYPE -
+            <span class="font-light-view">{{campaign.type}} </span>
+          </p>
+          <!-- <input matInput *ngIf="isEdit" placeholder="Type" class="type" id="type" name="type" [(ngModel)]="campaign.type"> -->
+          <div class="spacer-xs"></div>
+          <p class="budget" *ngIf="!isEdit">BUDGET -
+            <span class="font-light-view">&#x20B9;{{campaign.budget}} </span>
+          </p>
+          <!-- <input matInput *ngIf="isEdit" placeholder="Budget" class="budget" id="budget" name="budget" [(ngModel)]="campaign.budget"> -->
+        </div>
+        <!-- social icons -->
+        <div class="viewComponentDetailsSocial">
+          <div class="spacer-xs"></div>
+
+          <ul>
+            <li>
+              <img src="../../../../../assets/images/carz/icons/facebook.svg" style="width: 35px;" alt="">
+            </li>
+            <li>
+              <img src="../../../../../assets/images/carz/icons/facebook.svg" style="width: 35px;" alt="">
+            </li>
+          </ul>
+
+        </div>
+        <!-- attach file -->
+        <div class="viewComponentDetailsAttach">
+          <div class="spacer-xs"></div>
+          <p class="attach" style="margin-bottom: 10px;">ATTACHMENTS</p>
+          <ul>
+            <li>
+              <img src="../../../../../assets/images/carz/icons/Marketing-File.svg" style="width: 25px;" alt="">
+            </li>
+            <li>
+              <p class="file-name">Facebook_banner.jpg</p>
+              <span class="file-size">12kb</span>
+            </li>
+            <li class="file-download-icon">
+              <img src="../../../../../assets/images/carz/icons/download.svg" style="width: 20px;" alt="">
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <img src="../../../../../assets/images/carz/icons/Marketing-File.svg" style="width: 25px;" alt="">
+            </li>
+            <li>
+              <p class="file-name">Facebook_banner.jpg</p>
+              <span class="file-size">12kb</span>
+            </li>
+            <li class="file-download-icon">
+              <img src="../../../../../assets/images/carz/icons/download.svg" style="width: 20px;" alt="">
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <img src="../../../../../assets/images/carz/icons/Marketing-File.svg" style="width: 25px;" alt="">
+            </li>
+            <li>
+              <p class="file-name">Facebook_banner.jpg</p>
+              <span class="file-size">12kb</span>
+            </li>
+            <li class="file-download-icon">
+              <img src="../../../../../assets/images/carz/icons/download.svg" style="width: 20px;" alt="">
+            </li>
+          </ul>
+          <!-- <div class="pull-right">
+              <label for="campaignfiles"  style="margin-bottom: 0px;">Upload Another</label>
+              <input type="file" style="display:none;" id="campaignfiles" (change)="handleFileInput_campaign($event.target.files)">
+            </div> -->
+
+          <div class="spacer-xs"></div>
+          <!-- divider -->
+          <mat-divider class="file-attach-divider"></mat-divider>
+        </div>
+        <div class="viewComponentDetailscomment">
+          <div class="spacer-xs"></div>
+          <label for="nav-feedback"> Add Feedback</label>
+          <mat-form-field class="about_campaign">
+            <textarea matInput id="nav-feedback" placeholder="Leave a comment" name="feedback" [(ngModel)]="campaign.feedback"></textarea>
+          </mat-form-field>
+          <div class="text-right">
+            <button class="secondary-btn" mat-button (click)="updateCampaign(campaign)">
+              Save</button>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+    <div class="spacer-sm"></div>
+  </div>
+   <!-- /rightside navbar View  -->
+
+
+   <!-- rightside navbar Edit  -->
+
+   <div class="rightNavbar animated fadeInRight" *ngIf="Editrightnavstatus">
+      <form #campaignEditForm="ngForm" name="campaignEditForm" (ngSubmit)="updateCampaign(campaign)" novalidate>
+        <mat-icon class="pull-right" (click)="EditclickEvent()" style="cursor: pointer;">close</mat-icon>
+        <p class="rightNavbar-title">Campaign</p>
+        <div class="spacer-xs"></div>
+        <label for="nav-name">Name</label>
+        <mat-form-field>
+          <input matInput id="nav-name" placeholder="Enter Name" name="title" [(ngModel)]="campaign.title" required>
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'title')">
+
+            Title is required
+          </mat-error>
+        </mat-form-field>
+        <div class="location-sidebar">
+        <label for="nav-location">Location</label>
+        <ng4geo-autocomplete id="location" name="location" [userSettings]="userSettings2" [(ngModel)]="campaign.location" (componentCallback)="autoCompleteCallback($event)"
+          ngDefaultControl mdInput [ngModelOptions]="{standalone: true}"></ng4geo-autocomplete>
+        </div>
+        <label for="nav-startdate">Start Date</label>
+        <mat-form-field>
+          <input matInput id="nav-startdate" [matDatepicker]="picker"  placeholder="Choose a date" name="start" [(ngModel)]="campaign.start"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'start')">
+
+            Start Date is required
+          </mat-error>
+        </mat-form-field>
+        <label for="nav-enddate">End Date</label>
+        <mat-form-field>
+          <input matInput id="nav-enddate" [matDatepicker]="picker2" placeholder="Choose a date" name="end" [(ngModel)]="campaign.end"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'end')">
+
+            End Date is required
+          </mat-error>
+        </mat-form-field>
+
+        <label for="nav-type">Type</label>
+        <mat-form-field>
+          <mat-select placeholder="Type" [(value)]="Type" id="nav-type" name="type" [(ngModel)]="campaign.type" required>
+            <mat-option *ngFor="let campaign_typeName of campaign_type" value="{{campaign_typeName.type_mode}}">{{campaign_typeName.type_mode}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'type')">
+
+            Campaign Type is required
+          </mat-error>
+        </mat-form-field>
+        <label for="nav-enddate">About</label>
+        <mat-form-field class="about_campaign">
+          <textarea matInput placeholder="Leave a comment" name="notes" [(ngModel)]="campaign.notes"></textarea>
+        </mat-form-field>
+
+        <!-- <label for="nav-Colour">Campaign Colour</label>
+        <mat-form-field>
+            <span style="position:relative; top: 5px; left: 8px; font-size: 14px">{{campaign.campaign_color}}</span>
+          <input matInput id="nav-Colour" value="olive" name="color" [(ngModel)]="campaign.campaign_color" type="color" >
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'color')">
+
+            Campaign color is required
+          </mat-error>
+        </mat-form-field> -->
+        <mat-form-field>
+            <mat-select placeholder="Choose Colour" [(ngModel)]="campaign.campaign_color" name="campaign_color">
+              <mat-option *ngFor="let SelectedCol of SelectedColors" [value]="SelectedCol.value">
+                {{SelectedCol.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <label for="nav-Medium">Medium</label>
+        <mat-form-field>
+          <mat-select id="nav-Medium" [(value)]="navtypeselected" multiple>
+            <mat-option>None</mat-option>
+            <mat-option value="Facebook">Facebook</mat-option>
+            <mat-option value="Google">Google</mat-option>
+            <mat-option value="Twitter">Twitter</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <label for="nav-bud">Budget</label>
+        <mat-form-field>
+          <input matInput id="nav-bud" placeholder="Budget" name="budget" [(ngModel)]="campaign.budget" required>
+          <mat-error *ngIf="campaignEditForm.hasError('required', 'budget')">
+
+            Campaign Budget is required
+          </mat-error>
+        </mat-form-field>
+        <label for="choose_file_nav" class="chosee-filenav">Choose file</label>
+        <input type="file" id="choose_file_nav" style="display: none;">
+
+        <div class="text-right">
+          <button class="filled-btn margin-left-15" style="width:auto !important;" mat-button>
+            <img src="../../../../../assets/images/carz/icons/add.svg" style="left: -4px; top: 0px; position: relative; width: 12px;"
+              class="btn-icons-left" alt="" > Save</button>
+        </div>
+      </form>
+      <div class="spacer-md"></div>
+    </div>
+    <!-- /rightside navbar Edit -->
+
+
+</div>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>
+<toaster-container [toasterconfig]="config1"></toaster-container>

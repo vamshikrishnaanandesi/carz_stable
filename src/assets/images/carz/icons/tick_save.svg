@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.191 11.759">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Btn_Large_Save_Tick" data-name="Btn/Large/Save Tick" transform="translate(0 0)">
+    <path id="Path" class="cls-1" d="M34.847,28.373a.807.807,0,0,0-1.13,0l-9.576,9.576-4.788-4.788a.807.807,0,1,0-1.13,1.13l5.353,5.38a.807.807,0,0,0,1.13,0L34.847,29.53a.807.807,0,0,0,0-1.157Z" transform="translate(-17.9 -28.142)"/>
+  </g>
+</svg>

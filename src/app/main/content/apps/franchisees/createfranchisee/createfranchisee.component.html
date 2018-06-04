@@ -1,0 +1,184 @@
+<div class="franshisee-main edit-franchisee-main container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <p class="franchisee-title">Create Franchisee</p>
+            <div class="spacer-sm"></div>
+        </div>
+
+        <div class="col-sm">
+            <img class="svg_icons" routerLink="franchisee/:id"  style="float:right;" src="../../../../../../assets/images/carz/icons/close_gray.svg" alt="">
+          </div>
+
+
+          </div>
+            <!-- <button class="edit-profile-save add_partner"  mat-button (click)="add_partner()">Add Partner</button> -->
+    <form (ngSubmit)="validate(franchiseeForm)" #franchiseeForm="ngForm" novalidate>
+
+
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="form-main-section">
+
+                    <label class="input-custom-label" for="Lead_Source">Lead Source</label>
+                    <mat-form-field>
+                        <input matInput placeholder="Lead Source" id="Lead_Source" name="lead_source" [(ngModel)]="obj.lead_source" [formControl]="source" required> {{lead_source}}
+                        <mat-error *ngIf="source.invalid">{{getErrorSource()}}</mat-error>
+                    </mat-form-field>
+                    <label class="input-custom-label" for="Investment">Investment</label>
+                    <mat-form-field>
+                        <mat-select placeholder="Investment" id="Investment" name="franchisee_investment" [(ngModel)]="obj.franchisee_investment" [formControl]="investment" required>
+                            <mat-option *ngFor="let franchisee_details of investment_type" value="{{franchisee_details.investment_name}}">{{franchisee_details.investment_name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="investment.invalid">{{getErrorInvestment()}}</mat-error>
+                    </mat-form-field>
+
+                    <label class="input-custom-label" for="Franchisee_Model">Franchisee Type</label>
+                    <mat-form-field>
+                        <mat-select placeholder="Franchisee Model" id="Franchisee_Model" name="franchisee_franchise_model" [(ngModel)]="obj.franchisee_franchise_model" [formControl]="model" required>
+                            <mat-option *ngFor="let franchisee_details of franchisee_model" value="{{franchisee_details.franchisee_name}}">{{franchisee_details.franchisee_name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="model.invalid">{{getErrorModel()}}</mat-error>
+                    </mat-form-field>
+
+                    <label class="input-custom-label" for="start_soon">How soon to start</label>
+                    <mat-form-field>
+                        <input matInput placeholder="How soon to start" name="franchisee_how_to_soon_start" [(ngModel)]="obj.franchisee_how_to_soon_start" [formControl]="toStart" required> {{franchisee_how_to_soon_start}}
+                        <mat-error *ngIf="toStart.invalid">{{getErrorToStart()}}</mat-error>
+                    </mat-form-field>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="input-custom-label" for="Set_date">Date</label>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" id="Set_date" [(ngModel)]="obj.franchisee_preferred_data" placeholder="Set date" name="franchisee_preferred_data" [formControl]="date" required> {{franchisee_preferred_date}}
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="date.invalid">{{getErrorDate()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="input-custom-label" for="Time">Time</label>
+                            <mat-form-field>
+                                <input matInput placeholder="Time" id="Time" name="franchisee_preferred_time" [(ngModel)]="obj.franchisee_preferred_time" [formControl]="time" required> {{franchisee_preferred_time}}
+                                <mat-error *ngIf="time.invalid">{{getErrorTime()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="form-main-section">
+
+                  <div>
+                    <label class="input-custom-label" for="Address">Address</label>
+                    <ng4geo-autocomplete  id="address" name="address" let i = index  [(ngModel)]="obj.franchisee_address" (componentCallback)="autoCompleteCallback1($event,i)" ngDefaultControl mdInput ></ng4geo-autocomplete>
+                    <div class="clearfix"></div>
+                    </div>
+
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <label class="input-custom-label" for="City">City</label>
+                          <mat-form-field>
+                              <input matInput placeholder="Location" id="City" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" (componentCallback)="autoCompleteCallback1($event)"  [(ngModel)]="obj.franchisee_city" name="franchisee_city" [formControl]="city" required> {{franchisee_city}}
+                              <mat-error *ngIf="city.invalid">{{getErrorCity()}}</mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-sm-6">
+                          <label class="input-custom-label" for="State">State</label>
+                          <mat-form-field>
+                              <input matInput placeholder="State" id="State" [(ngModel)]="obj.franchisee_state" name="franchisee_state" [formControl]="state" required> {{franchisee_state}}
+                              <mat-error *ngIf="state.invalid">{{getErrorState()}}</mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+
+                  <label class="input-custom-label" for="Country">Country</label>
+                  <mat-form-field>
+                      <input matInput placeholder="Country" id="Country" required>
+                  </mat-form-field>
+
+                  <label class="input-custom-label" for="franchisee_pincode">Franchisee Pincode</label>
+                  <mat-form-field>
+                      <input matInput placeholder="Pincode" id="franchisee_pincode" required>
+                  </mat-form-field>
+
+                  <label class="input-custom-label" for="franchisee_remarks">Remarks</label>
+                  <mat-form-field>
+                      <input matInput id="franchisee_remarks" required>
+                  </mat-form-field>
+
+
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+
+                <div class="vertical-line-btn-form"></div>
+                <div class="personal_infor_main">
+                <label class="input-custom-label" for="Name">Name</label>
+                <mat-form-field>
+                    <input matInput placeholder="Name" id="Name" floatPlaceholder="false" [(ngModel)]="obj.franchisee_name" name="franchisee_name" [formControl]="name" required> {{franchisee_name}}
+                    <mat-error *ngIf="name.invalid">{{getErrorName()}}</mat-error>
+                </mat-form-field>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <label class="input-custom-label" for="Age">Age</label>
+                        <mat-form-field>
+                            <input matInput placeholder="Age" id="Age" name="lead_age" [(ngModel)]="obj.lead_age" [formControl]="age" required> {{lead_age}}
+                            <mat-error *ngIf="age.invalid">{{getErrorAge()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="input-custom-label" for="Number">Number</label>
+                        <mat-form-field>
+                            <input matInput placeholder="Number" id="Number" name="franchisee_mobile_number" [(ngModel)]="obj.franchisee_mobile_number" [formControl]="mobile" required> {{franchisee_mobile_number}}
+                            <mat-error *ngIf="mobile.invalid">{{getErrorMobile()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+
+                <label class="input-custom-label" for="Occupation">Occupation</label>
+                <mat-form-field>
+                    <input matInput placeholder="Occupation" id="Occupation" [(ngModel)]="obj.franchisee_occupation" name="franchisee_occupation" [formControl]="occupation" required> {{franchisee_occupation}}
+                    <mat-error *ngIf="occupation.invalid">{{getErrorOccupation()}}</mat-error>
+                </mat-form-field>
+                <label class="input-custom-label" for="Email">Email</label>
+                <mat-form-field>
+                    <input matInput placeholder="Email" id="Email" [(ngModel)]="obj.franchisee_email" name="franchisee_email" [formControl]="email" required> {{franchisee_email}}
+                    <mat-error *ngIf="email.invalid">{{getErrorEmail()}}</mat-error>
+                </mat-form-field>
+                <label class="input-custom-label" for="Businesstype">Business Type</label>
+                <mat-form-field>
+                    <mat-select placeholder="Business Type" id="Businesstype" name="franchisee_investment" required>
+                        <mat-option>A</mat-option>
+                        <mat-option>B</mat-option>
+                        <mat-option>C</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+</div>
+
+                <!-- <label class="input-custom-label" for="Remarks">Remarks</label>
+                <mat-form-field class="remarks">
+                    <textarea matInput placeholder="Remarks" id="Remarks" rows="16" name="franchisee_remarks" [(ngModel)]="obj.franchisee_remarks" [formControl]="remark" required></textarea>
+                    {{franchisee_remarks}}
+                    <mat-error *ngIf="remark.invalid">{{getErrorRemark()}}</mat-error>
+                </mat-form-field> -->
+
+            </div>
+            <!-- <ng4geo-autocomplete [userSettings]="userSettings2"  (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete> -->
+            <div class="col-md-2 col-lg-2 col-sm-6 col-xs-12">
+                <p class="edit-img-title">Display image</p>
+                <img src="../../assets/images/logos/fallout.png" class="rounded-0 profile-img" alt="">
+                <div class="spacer-sm "></div>
+                <button class="edit-profile-save" type="submit" mat-button [disabled]="franchiseeForm.invalid">Create</button>
+            </div>
+        </div>
+    </form>

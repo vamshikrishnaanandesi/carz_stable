@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.018 72.018">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f70;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #f70;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-width: 0.4px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Onboarding_-_revenue" data-name="Onboarding - revenue" transform="translate(-1346 -582.491)">
+    <circle id="Ellipse_467" data-name="Ellipse 467" class="cls-1" cx="30.674" cy="30.674" r="30.674" transform="translate(1351.824 587.826)"/>
+    <g id="Ellipse_468" data-name="Ellipse 468" class="cls-2" transform="translate(1346 582.491)">
+      <circle class="cls-4" cx="36.009" cy="36.009" r="36.009"/>
+      <circle class="cls-5" cx="36.009" cy="36.009" r="35.009"/>
+    </g>
+    <path id="Path_225" data-name="Path 225" class="cls-3" d="M25.585,23.511H2.489V.415a.415.415,0,0,0-.83,0v3.5H.415a.415.415,0,0,0,0,.83H1.66V7.837H.415a.415.415,0,1,0,0,.83H1.66v3.089H.415a.415.415,0,1,0,0,.83H1.66v3.089H.415a.415.415,0,0,0,0,.83H1.66v3.089H.415a.415.415,0,0,0,0,.83H1.66v3.5a.415.415,0,0,0,.415.415H8.206v1.245a.415.415,0,1,0,.83,0V24.34h9.589v1.245a.415.415,0,1,0,.83,0V24.34h6.131a.415.415,0,1,0,0-.83Z" transform="translate(1371 606)"/>
+    <path id="Path_226" data-name="Path 226" class="cls-3" d="M70.415,223.426a.415.415,0,0,0,.415-.415V213.33h3.5v9.681a.415.415,0,0,0,.83,0v-5.762h3.273v5.762a.415.415,0,0,0,.83,0v-6.177a.415.415,0,0,0-.415-.415H75.163v-3.5a.415.415,0,0,0-.415-.415H70.415a.415.415,0,0,0-.415.415v10.1A.415.415,0,0,0,70.415,223.426Z" transform="translate(1304.872 405.255)"/>
+    <path id="Path_227" data-name="Path 227" class="cls-3" d="M262.915,89.6a.415.415,0,0,0,.415-.415V71.663H266.6V89.181a.415.415,0,1,0,.83,0v-13.6h3.5v13.6a.415.415,0,0,0,.83,0V75.166a.415.415,0,0,0-.415-.415h-3.918v-3.5a.415.415,0,0,0-.415-.415h-4.1a.415.415,0,0,0-.415.415V89.181A.415.415,0,0,0,262.915,89.6Z" transform="translate(1123.021 539.085)"/>
+  </g>
+</svg>

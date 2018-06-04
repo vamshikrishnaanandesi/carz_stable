@@ -1,0 +1,899 @@
+<!--edited by Swamy 05/04/2018
+    - On Clicking of Master franchisee page openable
+-->
+
+<!-- <div class="spacer-xs"></div> -->
+
+<div class="row top-title-component fr-list-top" [ngClass]="{'library-fr-all-list': route_name == 'library-main'}" *ngIf="franchisees_list.length > 0">
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="main_top_franchisee">
+        <ul class="list-style-inline">
+          <li>
+            <h1 class="franchisee-title">{{constantValue.apps_franchisee_franchiseeList_main_title_en}}</h1>
+          </li>
+          <li>
+            <mat-form-field class="franchisee-search">
+              <input matInput placeholder="{{constantValue.apps_franchisee_franchiseeList_search_placeholder_en}}" [(ngModel)]="search_franchisee">
+              <mat-icon class="from-inside-icon">search</mat-icon>
+            </mat-form-field>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="text-right">
+      <span *ngIf="route_name == 'franchisee-list'" class="empty-btn imports-leads" [matMenuTriggerFor]="ImportLeads"> Import Leads
+        <mat-icon class="import_arrow_caret">arrow_drop_down</mat-icon>
+      </span>
+      <input type='file' (change)='convertFile($event)' style="display:none;" id='importleads'>
+      <button *ngIf="route_name == 'franchisee-list'" class="filled-btn Createfranchisee" mat-button [routerLink]="['/apps/crm/create-franchisee/normal/franchisee']">
+        <img src="../../../../../assets/images/carz/icons/add_new_franchisee.svg" class="btn-icons-left" alt=""> {{constantValue.apps_franchisee_franchiseeList_create_btn_en}}</button>
+      <!-- to remove view all button in library all franchisees starts here-->
+      <div *ngIf="this.route_name != 'library-main'">
+        <button *ngIf="route_name == 'library-main' || route_name == 'common-folder'" class="filled-btn franchisee view-all" mat-button
+          [routerLink]="['/apps/franchisees/franchisee-list']">{{constantValue.apps_franchisee_franchiseeList_viewAll_btn_en}}</button>
+      </div>
+      <!-- ends here -->
+      <mat-menu #ImportLeads="matMenu">
+        <button mat-menu-item>
+          <a href="https://celebappfiles.s3.ap-south-1.amazonaws.com/1524539245431.frns.csv" style="color:rgba(0, 0, 0, 0.87);" target="_new"
+            download>
+            <span>Download Sample</span>
+          </a>
+        </button>
+
+        <button mat-menu-item>
+          <label for="importleads">
+            <span>Upload Here</span>
+          </label>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="master-normal-drpdwn" [ngClass]="{'normal_master_library': route_name == 'library-main'}" *ngIf="route_name == 'franchisee-list' || route_name == 'library-main'">
+    <mat-form-field>
+      <mat-select [(ngModel)]="franchiseeFilter" placeholder="All Franchisees">
+
+        <mat-option value="All">All Franchisee</mat-option>
+        <mat-option value="Master">Master Franchisee</mat-option>
+        <mat-option value="Normal">Normal Franchisee</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+    <!-- <div class="gridviewlist-main">
+          <img src="../../../../../assets/images/carz/icons/gridView.svg" class="gridListview" alt="">
+
+        </div> -->
+
+
+    <div class="gridviewlist-main" [hidden]="route_name == 'library-main'">
+      <img src="../../../../../assets/images/carz/icons/listView.svg" (click)="listviewshow();" *ngIf="gridviewshow1" class="gridListview"
+        alt="">
+      <img src="../../../../../assets/images/carz/icons/gridView.svg" (click)="gridviewshow();" *ngIf="listviewshow1" class="gridListview"
+        alt="">
+      <!-- <img src="../../../../../assets/images/carz/icons/listView.svg" class="gridListview" alt=""> -->
+    </div>
+  </div>
+</div>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>
+<!-- <div class="spacer-xs"></div> -->
+<!-- <div class="row franchisee_main_list">
+
+      <div class="  franchisees-list-main" *ngFor="let franchisee of franchisees_list |filter: franchisee; let i=index">
+        <div class="row franchisees-list" (click)="navigate(franchisee._id)" *ngIf="i<franchisee_number">
+
+            <div class="pull-left fl-main-dp">
+              <img src="../../assets/images/logos/fallout.png" class="rounded-circle franchisee-dp" alt="">
+            </div>
+            <div class="">
+              <h1 class="body-txt-title" title="franchisee_name">{{franchisee.franchisee_name}}</h1>
+                <p class="sub-heading-address body-subtitle">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt="">
+                  <span class="body-sub-title-text"> {{franchisee.franchisee_address}}</span>
+                </p>
+                <p class="city-name body-subtitle">
+                  <img src="../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt="">
+                  <span class="body-sub-title-text"> {{franchisee.franchisee_city}}</span>
+                </p>
+                <span class="franchisee-list status body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+
+            </div>
+        </div>
+      </div>
+    </div> -->
+
+<div class="franchisee-list-second-component main-fr-list">
+
+  <div class=" row " *ngIf="franchisees_list.length == 0 && page_loaded == true">
+
+    <div class="empty-state-main">
+      <img src="../../../../../assets/images/carz/icons/main_intial.svg" width="60px" alt="">
+      <p class="add-new-leads">ADD NEW LEADS</p>
+      <p class="add-new-lead-sub">Start creating profiles for potential Franchisees, <br>to begin their CRM Setup</p>
+      <button class="filled-btn Createfranchisee intial" [routerLink]="['/apps/crm/create-franchisee/normal/franchisee']" mat-button>
+        <img src="../../../../../assets/images/carz/icons/circle_plus_white.svg" width="25px" class="plus_icons" alt=""> Create New</button>
+    </div>
+
+  </div>
+
+  <div *ngIf="this.route_name == 'franchisee-list'">
+    <mat-tab-group *ngIf="franchisees_list.length > 0">
+      <mat-tab class="md-no-animation" label="All Leads ({{franchisees_list.length}})">
+        <div class="spacer-xs"></div>
+        <div class="row">
+
+          <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list | filter:search_franchisee | filter:franchiseeFilter |filter:leadtype; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+
+                  <p class="delete_fr_icon">
+                <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name || franchisee.partner_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">
+                    <span *ngIf="franchisee.partners_list > 0">{{franchisee.partners_list}}</span>
+                    <span *ngIf="!franchisee.partners_list">1</span>
+                  </span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                  <span *ngIf="franchisee.franchisee_franchise_type == 'Master'">,
+                    <span *ngIf="franchisee.sub_franchisee_count > 0 ">{{franchisee.sub_franchisee_count}}</span> 
+                    <span *ngIf="!franchisee.sub_franchisee_count ">0</span>
+                    Franchisees</span>
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list |filter: search_franchisee; let i=index" (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+
+        </div>
+      </mat-tab>
+      <!--unassigned-->
+      <mat-tab class="md-no-animation" label="Unassigned ({{unassigned.length}})">{{franchisees_list.lead_type}}
+        <div class="spacer-xs"></div>
+        <div class="spacer-xs"></div>
+        <div class="text-center noleads_stages" *ngIf="unassigned.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO Unassigned leads</p>
+              </div>
+
+        <div class="row"  *ngIf="unassigned.length > 0  && page_loaded == true">
+
+
+          <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter |filter:'Unassigned'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list |filter: search_franchisee | filter:franchiseeFilter |filter:'Unassigned'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+
+        </div>
+
+      </mat-tab>
+      <!--Cold Leads-->
+      <mat-tab class="md-no-animation" label="Cold Leads ({{cold_leads.length}})">
+        <div class="spacer-xs"></div>
+        <div class="spacer-xs"></div>
+
+        <div class="text-center noleads_stages" *ngIf="cold_leads.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO Cold leads</p>
+              </div>
+
+        <div class="row" *ngIf="cold_leads.length > 0 && page_loaded == true">
+
+
+          <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter |filter:'Cold'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list |filter: search_franchisee | filter:franchiseeFilter |filter:'Cold'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+
+        </div>
+      </mat-tab>
+      <!--Warm Leads-->
+      <mat-tab class="md-no-animation" label="Warm Leads ({{warm_leads.length}})">
+        <div class="spacer-xs"></div>
+        <!-- <p *ngIf="!lead_type=='Cool'"> No cool leads</p> -->
+
+        <div class="text-center noleads_stages" *ngIf="warm_leads.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO Warm leads</p>
+              </div>
+
+        <div class="row" *ngIf="warm_leads.length > 0 && page_loaded == true">
+
+          <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter | filter:'Warm'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" *ngIf="franchisees_list.length > 0" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list | filter: search_franchisee | filter:franchiseeFilter | filter:'Warm'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+
+        </div>
+
+      </mat-tab>
+      <!--Hot Leads-->
+      <mat-tab class="md-no-animation" label="Hot Leads ({{hot_leads.length}})">
+        <div class="spacer-xs"></div>
+        <!-- <p *ngIf="!lead_type=='Cool'"> No cool leads</p> -->
+        <div class="text-center noleads_stages" *ngIf="hot_leads.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO Hot leads</p>
+              </div>
+
+
+        <div class="row" *ngIf="hot_leads.length > 0 && page_loaded == true">
+                  <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter | filter:'Hot'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" *ngIf="franchisees_list.length > 0" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list | filter: search_franchisee | filter:franchiseeFilter | filter:'Hot'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+      </mat-tab>
+      <!--On Hold Leads-->
+      <mat-tab class="md-no-animation" label="On Hold ({{onhold.length}})">
+        <div class="spacer-xs"></div>
+        <!-- <p *ngIf="!lead_type=='Cool'"> No cool leads</p> -->
+        <div class="text-center noleads_stages" *ngIf="onhold.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO On Hold leads</p>
+              </div>
+
+
+        <div class="row" *ngIf="onhold.length > 0 && page_loaded == true">
+            <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter | filter:'On Hold'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" *ngIf="franchisees_list.length > 0" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list | filter: search_franchisee | filter:franchiseeFilter | filter:'On Hold'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+      </mat-tab>
+      <!--Franchisee-->
+      <mat-tab class="md-no-animation" label="Franchisees ({{franchisees.length}})">
+        <div class="spacer-xs"></div>
+        <!-- <p *ngIf="!lead_type=='Cool'"> No cool leads</p> -->
+
+        <div class="text-center noleads_stages" *ngIf="franchisees.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO franchisees leads</p>
+              </div>
+        <div class="row" *ngIf="franchisees.length > 0 && page_loaded == true">
+                   <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter | filter:'Franchisees'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" *ngIf="franchisees_list.length > 0" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list | filter: search_franchisee | filter:franchiseeFilter | filter:'Franchisees'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+      </mat-tab>
+      <!--Rejected-->
+      <mat-tab class="md-no-animation" label="Rejected ({{rejected.length}})">
+        <div class="spacer-xs"></div>
+        <!-- <p *ngIf="!lead_type=='Cool'"> No cool leads</p> -->
+
+        <div class="text-center noleads_stages" *ngIf="rejected.length == 0 && page_loaded == true">
+            <div class="spacer-sm"></div>
+             <div class="spacer-md"></div>
+            <p class="text-center no-files-main-head">NO rejected leads</p>
+              </div>
+
+        <div class="row" *ngIf="rejected.length > 0 && page_loaded == true">
+
+          <div class="row" *ngIf="gridviewshow1">
+            <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter | filter:'Rejected'; let i=index">
+              <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+                 <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+                <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+                <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+                <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+                  <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                  <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span>
+                </p>
+                <p>
+                  <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                </p>
+                <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <span class="partner-count">{{franchisee.partners_list}}</span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+                </p>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="width:100%;" class="row" *ngIf="listviewshow1">
+            <table class="table table-hovered table-stripped franchisee-list-view" *ngIf="franchisees_list.length > 0" width="100%">
+              <thead>
+                <tr>
+                  <th class="serialNo">S.NO</th>
+                  <th>NAME </th>
+                  <th>LOCATION </th>
+                  <th>PINCODE</th>
+                  <th>MODEL</th>
+                  <th>TYPE</th>
+                  <th>STAGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let franchisee of franchisees_list | filter: search_franchisee | filter:franchiseeFilter | filter:'Rejected'; let i=index"
+                  (click)="navigate(franchisee)">
+                  <td class="serialNo">{{i+1}}</td>
+                  <td>{{franchisee.franchisee_name}}</td>
+                  <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+                  <td>{{franchisee.franchisee_pincode}}</td>
+                  <td>{{franchisee.franchisee_franchise_model}}</td>
+                  <td>{{franchisee.franchisee_franchise_type}}</td>
+                  <td>
+                    <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                      <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                    </ul>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div *ngIf="this.route_name == 'library-main'">
+    <div class="spacer-xs"></div>
+    <div class="row">
+
+      <div class="row" *ngIf="gridviewshow1">
+        <div *ngFor="let franchisee of franchisees_list |filter:search_franchisee | filter:franchiseeFilter |filter:leadtype; let i=index">
+          <div class="card_main" (click)="navigate(franchisee)" *ngIf="i<franchisee_number">
+             <p class="delete_fr_icon">
+                                         <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+                    </p>
+            <!-- <mat-icon *ngIf="franchisee.franchisee_franchise_type == 'Master'">home</mat-icon> -->
+            <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+            <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+            <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+            <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+            <p title="{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}">
+              <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+              <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+              </span>
+            </p>
+            <p>
+              <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+            </p>
+            <p class="partners" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+              <span class="partner-count">
+                <span *ngIf="franchisee.partners_list > 0">{{franchisee.partners_list}}</span>
+                <span *ngIf="!franchisee.partners_list">1</span>
+              </span> {{constantValue.apps_franchisee_franchiseeList_cards_partners_en}}
+              <span *ngIf="franchisee.franchisee_franchise_type == 'Master'">,
+                <span *ngIf="franchisee.franchisee_franchise_type.length ">{{franchisee.franchisee_franchise_type.length}} </span> Franchisees</span>
+            </p>
+            <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;" class="row" *ngIf="listviewshow1">
+        <table class="table table-hovered table-stripped franchisee-list-view" width="100%">
+          <thead>
+            <tr>
+              <th class="serialNo">S.NO</th>
+              <th>NAME </th>
+              <th>LOCATION </th>
+              <th>PINCODE</th>
+              <th>MODEL</th>
+              <th>TYPE</th>
+              <th>STAGE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let franchisee of franchisees_list |filter: search_franchisee; let i=index" (click)="navigate(franchisee)">
+              <td class="serialNo">{{i+1}}</td>
+              <td>{{franchisee.franchisee_name}}</td>
+              <td>{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}</td>
+              <td>{{franchisee.franchisee_pincode}}</td>
+              <td>{{franchisee.franchisee_franchise_model}}</td>
+              <td>{{franchisee.franchisee_franchise_type}}</td>
+              <td>
+                <ul class="stages_progress" [hidden]="route_name == 'library-main' || route_name == 'common-folder'">
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                  <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+                </ul>
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <!-- </div> -->
+
+    </div>
+  </div>
+
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>

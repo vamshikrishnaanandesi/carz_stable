@@ -1,0 +1,433 @@
+<!--Edited by Swamy date : 4/5/2018
+  4/5/2018 : Changed Franchisee Type celection to differetiate if creating franchisee is master or normal
+-->
+
+<div class="container-fluid main_edit_top">
+  <form #franchiseeForm="ngForm" name="franchiseeForm" (ngSubmit)="create_franchisee(franchiseeForm)" novalidate>
+    <div class="edit-franchisee-main edit_new ">
+      <div class="spacer-xs"></div>
+      <div class="row">
+        <div class="col-sm">
+          <p class="franchisee-title">{{constantValue.apps_crm_createFranchisee_main_title_en}}</p>
+          <div class="spacer-xs"></div>
+        </div>
+        <div class="pull-right">
+          <div class="right-side-btns">
+
+            <button class="empty-btn" (click)="cancel()">{{constantValue.apps_crm_createFranchisee_cancel_btn_en}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-2 col-md-3">
+          <div class="franchisee-sub-title">{{constantValue.apps_crm_createFranchisee_sub_title_en}}</div>
+        </div>
+        <div class="col-xs-10 col-md-9">
+          <div class="border-right-franchisee-create-eidt"></div>
+        </div>
+      </div>
+      <!--
+        <div class="sub_title_border">
+          <div class="franchisee-sub-title">{{constantValue.apps_crm_createFranchisee_sub_title_en}}</div>
+          <div class="border-right-franchisee-create-eidt"></div>
+        </div> -->
+
+      <div class="franchisee-information-main">
+        <div class="spacer-xs"></div>
+
+        <div class="form-main-section row1">
+          <div class="frnachisee_name">
+            <label class="input-custom-label" for="Franchisee_name">{{constantValue.apps_crm_createFranchisee_input_franchisee_name}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_franchisee_name}}" id="Franchisee_name" name="franchisee_name"
+                [(ngModel)]="createNew.franchisee_name" required>
+
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_name')">
+
+                Franchisee name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="address_field">
+            <label class="input-custom-label" for="Address">{{constantValue.apps_crm_createFranchisee_input_address}}</label>
+
+            <ng4geo-autocomplete id="Address" [userSettings]="userSettings2" placeholder="Location" name="franchisee_address" [(ngModel)]="createNew.franchisee_address"
+              (componentCallback)="autoCompleteCallback1($event)" ngDefaultControl mdInput required></ng4geo-autocomplete>
+          </div>
+          <div class="city">
+            <label class="input-custom-label" for="City">{{constantValue.apps_crm_createFranchisee_input_City}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_City}}" id="State" [(ngModel)]="createNew.franchisee_city"
+                name="franchisee_city" [disabled]="createNew.franchisee_city" required>
+
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_city')">
+
+                City is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="state">
+            <label class="input-custom-label" for="State">{{constantValue.apps_crm_createFranchisee_input_State}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_State}}" id="State" [(ngModel)]="createNew.franchisee_state"
+                name="franchisee_state" [disabled]="createNew.franchisee_state" required>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_state')">
+
+                State is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="franchisee_pincode">
+            <label class="input-custom-label" for="Franchisee_pin">{{constantValue.apps_crm_createFranchisee_input_FranchiseePincode}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_FranchiseePincode}}" id="Franchisee_pin" [(ngModel)]="createNew.franchisee_pincode"
+                floatPlaceholder="false" name="franchisee_pincode" required (blur)="validate_Franchisee_Pincode(createNew.franchisee_pincode,i)">
+              <!-- <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_pincode')">
+
+                      Pincode is required
+                    </mat-error> -->
+              <mat-error *ngIf="pincode.invalid">{{getErrorPincode()}}</mat-error>
+              <span class="error-msg pincodevali">{{pincode_error}}</span>
+            </mat-form-field>
+          </div>
+          <div class="country">
+
+            <label class="input-custom-label" for="Franchisee_country">{{constantValue.apps_crm_createFranchisee_input_Country}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Country}}" id="franchisee_country" [(ngModel)]="createNew.franchisee_country"
+                floatPlaceholder="false" name="franchisee_country" [disabled]="createNew.franchisee_country" required>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_country')">
+
+                Country is required
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+
+        </div>
+        <div class="form-main-section row2">
+
+          <div class="leadsource_row2">
+            <label class="input-custom-label" for="Lead_Source">{{constantValue.apps_crm_createFranchisee_input_leadsource}}</label>
+            <!-- <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_leadsource}}" id="Lead_Source" name="lead_source"
+                      [(ngModel)]="createNew.lead_source"  required>
+
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'lead_source')">
+
+                      Source is required
+                    </mat-error>
+                  </mat-form-field> -->
+
+            <mat-form-field>
+              <mat-select placeholder="{{constantValue.apps_crm_createFranchisee_input_leadsource}}" id="Lead_Source" [(ngModel)]="createNew.lead_source"
+                name="lead_source" *ngIf="createNew != null" required>
+                <mat-option value="Walk-ins">Walk-ins</mat-option>
+                <mat-option value="Websites">Websites</mat-option>
+                <mat-option value="Social Media">Social Media</mat-option>
+                <mat-option value="Classifieds">Classifieds</mat-option>
+                <mat-option value="Existing Franchisees">Existing Franchisees</mat-option>
+                <mat-option value="Existing Vendors">Existing Vendors</mat-option>
+                <mat-option value="Customer Referrals">Customer Referrals</mat-option>
+                <mat-option value="Channel Partners">Channel Partners</mat-option>
+                <mat-option value="Lead Partners">Lead Partners</mat-option>
+                <mat-option value="Online Website">Online Website</mat-option>
+              </mat-select>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'lead_source')">
+                Lead Source is required
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="franchisee_type_row2">
+            <label class="input-custom-label" for="Franchisee_Model">{{constantValue.apps_crm_createFranchisee_input_franchiseeType}}</label>
+            <mat-form-field>
+              <mat-select placeholder="Franchisee Type" [disabled]="creating_franchisee_type == 'master'" id="Franchisee_Type" name="franchisee_franchise_type"
+                [(ngModel)]="createNew.franchisee_franchise_type" required>
+                <mat-option *ngFor="let franchisee_details of franchisee_type" value="{{franchisee_details.franchisee_typename}}">{{franchisee_details.franchisee_typename}}</mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_franchise_type')">
+                Franchisee Type is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="model_type_row2">
+            <label class="input-custom-label" for="Franchisee_Model">{{constantValue.apps_crm_createFranchisee_input_modelType}}</label>
+            <mat-form-field>
+              <mat-select placeholder="{{constantValue.apps_crm_createFranchisee_input_franchiseeType}}" id="Franchisee_Model" name="franchisee_franchise_model"
+                [(ngModel)]="createNew.franchisee_franchise_model" required>
+                <mat-option *ngFor="let franchisee_details of franchisee_model" value="{{franchisee_details.franchisee_name}}">{{franchisee_details.franchisee_name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_franchise_model')">
+
+                Model type is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="preferred_date_row2">
+            <label class="input-custom-label" title="Preferred date" for="Set_date">{{constantValue.apps_crm_createFranchisee_input_Date}}</label>
+
+            <mat-form-field>
+              <mat-select [(value)]="monthSelected">
+                <mat-option>None</mat-option>
+                <mat-option value="1month">   1 month</mat-option>
+                <mat-option value="3months">3 months</mat-option>
+                <mat-option value="6months">6 months</mat-option>
+                <mat-option value="1year">1 year</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-form-field>
+              <input matInput [matDatepicker]="picker" id="Set_date" [(ngModel)]="createNew.franchisee_preferred_date" placeholder="{{constantValue.apps_crm_createFranchisee_input_Date}}"
+                name="franchisee_preferred_date" required> {{franchisee_preferred_date}}
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_preferred_date')">
+
+                Date is required
+              </mat-error>
+            </mat-form-field> -->
+          </div>
+          <!-- <div class="set_time_row2">
+                  <label class="input-custom-label" title="Preferred Time" for="Time">{{constantValue.apps_crm_createFranchisee_input_Time}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Time}}" id="Time" type="time" name="franchisee_preferred_time"
+                      [(ngModel)]="createNew.franchisee_preferred_time" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_preferred_time')">
+
+                      Time is required
+                    </mat-error>
+                  </mat-form-field>
+                </div> -->
+          <div class="franchisee_email">
+            <label class="input-custom-label" for="Franchisee_email">{{constantValue.apps_crm_createFranchisee_input_Email}}</label>
+            <mat-form-field>
+              <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Email}}" id="Franchisee_email" name="franchisee_email"
+                [(ngModel)]="createNew.franchisee_email" required (blur)="validate_Franchisee(createNew.franchisee_email)">
+
+              <!-- <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_email')">
+
+                        Franchisee email is required
+                      </mat-error> -->
+              <mat-error>{{getErrorEmail()}}</mat-error>
+              <span class="error-msg pincodevali">{{email_error}}</span>
+            </mat-form-field>
+          </div>
+          <div class="investment_row2">
+            <label class="input-custom-label" for="Investment">{{constantValue.apps_crm_createFranchisee_input_investment}}</label>
+            <mat-form-field>
+              <mat-select placeholder="{{constantValue.apps_crm_createFranchisee_input_investment}}" id="Investment" name="franchisee_investment"
+                [(ngModel)]="createNew.franchisee_investment" required>
+                <mat-option *ngFor="let franchisee_details of investment_type" value="{{franchisee_details.investment_name}}">{{franchisee_details.investment_name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_investment')">
+
+                Investment Type is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <!-- </form> -->
+
+    <!--Partner Franchisee Starts-->
+    <div class="spacer-sm"></div>
+    <div class="row">
+      <div class="col-xs-2 col-md-3">
+        <div class="franchisee-sub-title">{{constantValue.apps_crm_createFranchisee_sub_partner_info}}</div>
+      </div>
+      <div class="col-xs-10 col-md-9">
+        <div class="border-right-franchisee-create-eidt partner"></div>
+      </div>
+    </div>
+    <!-- <div class="sub_title_border partner">
+
+
+      </div> -->
+    <div class="spacer-xs"></div>
+    <div class="partner-information-main">
+      <!-- <button class="edit-profile-save add_partner" mat-button (click)="add_partner($event)" [hidden]="list.length == 3">{{constantValue.apps_crm_createFranchisee_addPartner_btn_en}}</button> -->
+      <mat-tab-group [(selectedIndex)]="tabIndex" (selectedIndexChange)="onSelectedIndexChange($event)">
+        <mat-tab label="{{partnerobject.franchisee_name}}" *ngFor="let partnerobject of list;let i=index;">
+          <div class="spacer-xs"></div>
+          <div class="row">
+            <div class="partner_main_two col-md-10">
+              <div class="form-main-section row1">
+                <div class="partner-fullName">
+                  <label class="input-custom-label" for="partner_Name">{{constantValue.apps_crm_createFranchisee_input_Name}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="Name" id="partner_Name" floatPlaceholder="false" [(ngModel)]="createNew.franchisee_name" name="franchisee_name"
+                      required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_name')">
+
+                      Full Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-occupation">
+                  <label class="input-custom-label" for="partner_Occupation">{{constantValue.apps_crm_createFranchisee_input_Occupation}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Occupation}}" id="partner_Occupation" [(ngModel)]="createNew.partner_occupation"
+                      name="partner_occupation" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_occupation')">
+
+                      Occupation is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-email">
+                  <label class="input-custom-label" for="partner_Email">{{constantValue.apps_crm_createFranchisee_input_Email}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Email}}" id="partner_Email" [(ngModel)]="createNew.franchisee_email"
+                      name="franchisee_email" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_email')">
+
+                      Email is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-phone_number">
+                  <label class="input-custom-label" for="partner_Number">{{constantValue.apps_crm_createFranchisee_input_Number}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Number}}" id="partner_Number" name="partner_mobile_number"
+                      [(ngModel)]="createNew.partner_mobile_number" maxlength="13" required>
+                    <!-- <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_mobile_number')">
+
+                      Number is required
+                    </mat-error> -->
+                    <mat-error *ngIf="number.invalid">{{getErrorNumber()}}</mat-error>
+                    <span class="pincodevali">{{number_error}}</span>
+                  </mat-form-field>
+                </div>
+                <div class="partner-age">
+                  <label class="input-custom-label" for="partner_Age">{{constantValue.apps_crm_createFranchisee_input_Age}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Age}}" id="partner_Age" name="partner_age" [(ngModel)]="createNew.partner_age"
+                      required maxlength="2">{{partner_age}}
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_age')">
+
+                      Age is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+
+
+              </div>
+              <!-- row2 -->
+              <div class="form-main-section row2">
+                <div class="partner-address_field">
+                  <label class="input-custom-label" for="partner_address">{{constantValue.apps_crm_createFranchisee_input_address}}</label>
+
+
+                  <ng4geo-autocomplete id="partner_address" [userSettings]="userSettings2" name="partner_address" [(ngModel)]="partner_address"
+                    (componentCallback)="autoCompleteCallback($event,i)" ngDefaultControl mdInput required></ng4geo-autocomplete>
+
+                </div>
+                <div class="partner-city">
+                  <label class="input-custom-label" for="partner_City">{{constantValue.apps_crm_createFranchisee_input_City}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_City}}" id="partner_City" [(ngModel)]="partner_city"
+                      name="partner_city" [disabled]="!partner_city" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_city')">
+
+                      City is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-state">
+                  <label class="input-custom-label" for="partner_State">{{constantValue.apps_crm_createFranchisee_input_State}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_State}}" id="partner_State" [(ngModel)]="partner_state"
+                      name="partner_state" [disabled]="!partner_state" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_state')">
+
+                      State is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-franchisee_pincode">
+                  <label class="input-custom-label" for="partner_pincode">{{constantValue.apps_crm_createFranchisee_input_FranchiseePincode}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_FranchiseePincode}}" id="partner_pincode" [(ngModel)]="partner_pincode"
+                      floatPlaceholder="false" name="partner_pincode" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_pincode')">
+
+                      Pincode is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="partner-country">
+
+                  <label class="input-custom-label" for="partner_country">{{constantValue.apps_crm_createFranchisee_input_Country}}</label>
+                  <mat-form-field>
+                    <input matInput placeholder="{{constantValue.apps_crm_createFranchisee_input_Country}}" id="partner_country" [(ngModel)]="partner_country"
+                      floatPlaceholder="false" name="partner_country" [disabled]="partner_country" required>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'partner_country')">
+
+                      Country is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <br>
+                <div class="partner-bussiness_type">
+
+                  <label class="input-custom-label" for="bussiness_type_id">Business Type</label>
+                  <mat-form-field>
+                    <mat-select placeholder="Choose Business Type" id="bussiness_type_id" name="bussiness_type_id" [(ngModel)]="createNew.bussiness_type_id"
+                      (ngModelChange)="getBusinessType($event)" required>
+                      <mat-option *ngFor="let bussiness_type of bussiness_types_list" value="{{bussiness_type._id}}">{{bussiness_type.type_name}}</mat-option>
+
+                    </mat-select>
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'bussiness_type_id')">
+
+                      Business Type is required
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <p class="edit-img-title">{{constantValue.apps_crm_createFranchisee_DisplayImage_en}} </p>
+              <div class="pp-main">
+                <label for="file">
+                  <img src="../../../../../../assets/images/carz/icons/edit.svg" class="cf-edit-pp" alt=""> </label>
+                <input type="file" class="upload_file cf" id="file" (change)="handleFileInput($event.target.files);readUrl($event);">
+                <img src="../../assets/images/logos/fallout.png" class="rounded-0 profile-img" alt="" *ngIf="!url">
+                <img [src]="url" class="rounded-0 profile-img" alt="" *ngIf="url">
+                <div class="spacer-sm "></div>
+              </div>
+              <!-- <div class="text-center">
+
+                <button class="secondary-btn" *ngIf="partnerobject._id" type="submit" (click)="edit_partner(partnerobject)" mat-button> Save </button>
+              </div> -->
+              <!-- <mat-icon>check </mat-icon>  -->
+              <!-- <button class="edit-profile-save create-edit" *ngIf="partnerobject._id" type="submit" mat-button (click)="edit_partner(partnerobject)">SAVE</button> -->
+              <!-- </div> -->
+              <div class="text-left">
+
+                <button class="secondary-btn md-btn" type="submit" mat-button>
+                  <img src="../../../../../../assets/images/carz/icons/add.svg" style="left: -9px;top: 0px; position: relative;width: 12px;"
+                    class="btn-icons-left" alt=""> Create </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- </div> -->
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </form>
+</div>
+
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>
+<toaster-container [toasterconfig]="config1"></toaster-container>

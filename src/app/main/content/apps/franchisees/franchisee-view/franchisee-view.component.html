@@ -1,0 +1,133 @@
+
+
+<div class="franshisee-main container-fluid">
+  <section>
+    <div class="main-folder-section franchisee-list-second-component franchisee-view-file ">
+      <app-common-drive></app-common-drive>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </section>
+
+  <!--FRNACHISEES LIST STARTS FROM HERE-->
+  <div class="spacer-sm"></div>
+      <div class="clearfix"></div>
+
+<div  style="margin-left: 35px;margin-right: 35px;">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm">
+          <h1 class="franchisee-title">All Files</h1>
+        </div>
+        <div class="col-sm">
+          <mat-form-field class="franchisee-search">
+            <input matInput placeholder="Search for" [(ngModel)]="franchisee">
+              <mat-icon class="from-inside-icon">search</mat-icon>
+            </mat-form-field>
+            <!-- <mat-icon>favorite</mat-icon> -->
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="text-right">
+          <!-- <button  class="filled-btn franchisee" mat-button > Create Franchisee </button> -->
+             <!-- <svg  class="svg-icons delete_btn" (click)="delete_selected()"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8182.05 -12518.05 32.1 32.1">
+              <defs>
+                 <style>
+                    .cls-1 {
+                    opacity: 0.55;
+                    }
+                 </style>
+              </defs>
+              <image  id="delete-button" class="cls-1" width="32.1" height="32.1" transform="translate(-8182.05 -12518.05)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR8UHAEoHRg3AAAC3ElEQVRo3u2Zz0uUQRzGP6trpoQSgaKCXsw8JFn+QCRFKQM9GmHeQhC6ePBi/4LbRfAHdOrknrp4lCy8iN5qwwi2JHVduiwqtmLW5k6HZu39Me/uvu++bxG8zxz25Zn5fp/nnRnmnZ0J4BS3eEArrUCECC944ziTA1QwxxlCU86Yo+JvydcQ04lnSowa+8kCtiOCrHIbAMEq74Ab9Ms8a/Tz0+v3D8n3jdB2zrURkWzIa/li9hEItqnS8VVsIxDsU+ytgV75piOmmhFZ02svYdCCD9BICxdM/H0A0pTx0FBzkTRFwAS1pqgfbLKFyNdUNWEOlfO8kHJImOp85IdJuC6eKQmGc8l3kPJMXiBI0WEcay3KeMs1AFZ4xiYpexPKEiW08JgBAKLc5JtVwzHpc94lYT3mZfYx6yYLcqTKPTFQLmfXgpYs0jX5vbatc+KJgRPWNSpKA5UAfPVE/k/mSmsDnwBo98xAu0ZFaSACQLNplXMHIzRrVJSo4xSB4Jhxy0XaGYKMc4xAcEqdtsK4HwgxJZ++s+Xatz1II6Xy+SlPsjUtIuzpShg2DLoCxUxw4In4ARPm3YJ6SzbASwBese/CAFzhLgD3WMk3pE967nJBHrpktj5VZc4R8Rq+Ad+Ab8A3YMfAIBvM6CIaWGKJBl2+GTYYLNSWaikOsItAMKThZhEIZjXMEALBru4b49JSXEo9AE0arsmCqT//+ufEfzUHfAO+Ad+Ab8A34BvwDfgG/rGBFEcAJDRcwoI5KvSQV30+MEmSNd0paic77NCpYcpZI8mkLi7rplSNHhnSbeBLFD1o7kNjq26ZrUclpR6CqPy9auDNHZsmbeKMrTJZothAHIFg2U6IJZYRCOL2ghZlt00XeGAZZFpmWlQ3sLq4rOU9lwH4yGtiDuXruSP/qhxynS/2gkddPSMcdeJ/gD1XxPfkZY0S2e45P/OcY5JccnwvHmeVRR7xwbrJLz7O/MGO4G1VAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTMxVDIwOjI4OjAxKzAxOjAwXTRiywAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0zMVQyMDoyODowMSswMTowMCxp2ncAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"
+                 />
+           </svg> -->
+          <button  class="filled-btn franchisee" mat-button [routerLink]="['/apps/library/franchisee-folder/'+franchisee_Id]">View All</button>
+        </div>
+      </div>
+    </div>
+
+    <div >
+
+<p class="common_drive_diff " style="margin-left:0px;">Folders</p>
+<!-- <mat-grid-list cols="7"   rowHeight="2:0.8">
+
+   <mat-grid-tile  *ngFor="let folders of folder | filter:franchisee; let i = index">
+
+      <label for="foldernames" *ngIf="i<4" [routerLink]="['/apps/library/franchisee-sub-folder' + '/' + franchisee_Id + '/' + folders._id]">
+         <div class="folder-wise"  >
+            <ul class="list-inline">
+               <li><img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt=""></li>
+               <li  title="">{{folders.folder_name}}</li>
+
+            </ul>
+         </div>
+      </label>
+   </mat-grid-tile>
+
+</mat-grid-list> -->
+<div class="row franchisee_libray">
+
+    <div  *ngFor="let folders of folder | filter:franchisee; let i = index">
+        <!-- <input type="checkbox" id="foldernames{{i}}" [(ngModel)]="folders.flag" class="checkboxHide" (click)="select_folders(folders, folders.flag,i)"> -->
+        <label  for="foldernames" *ngIf="i<4" [routerLink]="['/apps/library/franchisee-sub-folder' + '/' + franchisee_Id + '/' + folders._id]">
+           <div class="folder-wise_check"   (dblclick)="navigate(folders._id)">
+              <ul class="list-inline">
+                  <li><img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt=""></li>
+               <li class="folder_title" title="{{folders.folder_name}}"> {{folders.folder_name}}</li>
+              </ul>
+           </div>
+        </label>
+     </div>
+
+</div>
+
+    </div>
+
+<div  style="clear:both;">
+<div class="clearfix"></div>
+<p class="common_drive_diff" style="margin-left:0px;">Files</p>
+
+
+
+
+
+
+
+<div style="float:left;" *ngFor='let file of files_list | filter:franchisee;let i=index'>
+   <input type="checkbox" id="allfilenames{{i}}"  [(ngModel)]="file.flag" class="checkboxHide">
+   <label for="allfilenames{{i}}">
+   <div class="folder-wise_check files_main">
+    <ul class="list-inline">
+        <li *ngIf="file.image_type=='pdf'"> <img src="../../../../../assets/images/carz/icons/pdf.svg" class="files-icons" alt=""   ></li>
+          <li *ngIf="file.image_type=='image'" > <img src="../../../../../assets/images/carz/icons/img.svg" class="files-icons" alt="" ></li>
+          <li *ngIf="file.image_type=='docs'" >   <img src="../../../../../assets/images/carz/icons/file.svg" class="files-icons" alt=""  ></li>
+        <li class="folder_title" title="{{file.file_name}}">{{file.file_name}}</li>
+
+      </ul>
+</div>
+</label>
+
+   <!-- <label for="filenames{{i}}">
+      <div class="files_main folderfiletype" >
+         <img src="../../../../../assets/images/carz/icons/pdf.svg" alt=""   >
+
+         <h5 class="file-below-title" title="{{file.file_name}}">{{file.file_name}}</h5>
+         <div class="pull-right view-icons animated   fadeIn">
+
+         </div>
+      </div>
+   </label> -->
+   <div class="clearfix"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+

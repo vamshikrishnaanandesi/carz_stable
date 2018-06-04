@@ -1,0 +1,160 @@
+<div class="franshisee-main container-fluid">
+    <div class="spacer-xs"></div>
+    <div class="row">
+
+          <div>
+            <h1 class="franchisee-title">Master Franchisee</h1>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field class="franchisee-search">
+              <input matInput placeholder="Search for" [(ngModel)]="crm_franchisee">
+              <mat-icon class="from-inside-icon">search</mat-icon>
+            </mat-form-field>
+          </div>
+
+    </div>
+
+    <section class="test">
+
+
+      <div class="float-right tab-right-actions" >
+        <ul class="list-inline" >
+          <li>
+            <button class="filled-btn franchisee" mat-button [routerLink]="['/apps/crm/master-franchisee']"> Add New </button>
+          </li>
+          <!-- <li>
+            <img src="../../../../../assets/images/carz/icons/upload-up.svg" class="svg_icons filter-icons" alt="">
+          </li>
+          <li>
+            <img src="../../../../../assets/images/carz/icons/filter.png" class="svg_icons filter-icons" alt="">
+          </li>
+          <li>
+            <img src="../../../../../assets/images/carz/icons/grid_view.svg" class="svg_icons filter-icons" alt="">
+          </li> -->
+        </ul>
+
+      </div>
+
+
+
+      <mat-tab-group>
+
+  <div class="bg-tab-body">
+        <mat-tab label="All Leads">
+          <div class="spacer-xs"></div>
+
+  <!-- <p class="leads_count"> 289 Leads </p> -->
+
+          <!-- <table class="table table-hover crm-franchisee-list-table">
+            <thead>
+              <tr>
+                <th width="20px"> <mat-checkbox></mat-checkbox>  </th>
+                <th width="100px" >NAME</th>
+                <th width="100px" >SOURCE </th>
+                <th width="90px" >CITY</th>
+                <th width="90px" >STATE</th>
+                <th width="150px" >FRANCHISEE MODEL</th>
+                <th width="100px" >LEAD STATUS  </th>
+                <th width="90px" >CREATED ON </th>
+
+              </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let franchisee of franchisees_list " >
+                    <td > <mat-checkbox></mat-checkbox>  </td>
+                    <td *ngIf="franchisee != null" [routerLink]="['/apps/crm/franchisee-setup/' + franchisee._id + '/discussion']">{{franchisee.franchisee_name}}</td>
+                    <td class="select-option"><mat-form-field>
+                        <mat-select placeholder="Channel Partners">
+                          <mat-option >Option 1</mat-option>
+                          <mat-option>Option 2</mat-option>
+                          <mat-option >Option 3</mat-option>
+                        </mat-select>
+                      </mat-form-field> </td>
+                    <td >{{franchisee.franchisee_city}}</td>
+                    <td >{{franchisee.franchisee_state}}</td>
+                    <td >{{franchisee.franchisee_franchise_model}}
+
+                      </td>
+                    <td class="select-option" ><mat-form-field>
+                        <mat-select placeholder="Hot">
+                          <mat-option >Hot</mat-option>
+                          <mat-option >Warm</mat-option>
+                          <mat-option>Cool</mat-option>
+                        </mat-select>
+                      </mat-form-field> </td>
+                    <td >CREATED ON </td>
+
+                </tr>
+
+            </tbody>
+          </table> -->
+
+
+                 <!-- <div class=" row crm_franchisee_list" >
+                  <div  class="franchisees-list-main" *ngFor="let franchisee of franchisees_list;let i=index;" [routerLink]="['/apps/crm/franchisee-setup/' + franchisee._id + '/discussion']">
+                <div class="row franchisees-list">
+
+                    <div class="pull-left fl-main-dp">
+                      <img src="../../assets/images/logos/fallout.png" class="rounded-circle franchisee-dp" alt="">
+                    </div>
+                    <div class="">
+                      <h1 class="body-txt-title"  title="franchisee_name" *ngIf="franchisee != null">{{franchisee.franchisee_name}}</h1>
+                        <p class="sub-heading-address body-subtitle">
+                          <img src="../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt="">
+                          <span class="body-sub-title-text">{{franchisee.franchisee_city}}</span>
+                        </p>
+                        <p class="city-name body-subtitle">
+                          <img src="../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt="">
+                          <span class="body-sub-title-text">{{franchisee.franchisee_state}}</span>
+                        </p>
+                        <span class="franchisee-list status body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+
+              </div>
+            </div>
+  </div>
+          </div>  -->
+          <div class="empty-state" *ngIf="franchisees_list.length == 0">
+                <p>Not yet created any Franchisee</p>
+                  <a [routerLink]="['/apps/crm/create-franchisee/master']"> Create New</a>
+          </div>
+          <div class="row" *ngIf="franchisees_list.length > 0">
+              <div class="card_main" *ngFor="let franchisee of franchisees_list | filter: crm_franchisee;let i=index;" [routerLink]="['/apps/crm/master-franchisee-view/' + franchisee._id ]">
+
+                <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="">
+                <p class="cards_title"  title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                <p> <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt=""> <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                  </span> </p>
+                 <p> <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span></p>
+                 <p class="partners">
+                   <span class="partner-count">3</span> Partners
+                 </p>
+                 <ul class="stages_progress">
+                   <li class="active-stage"></li>
+                   <li class="active-stage"></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                 </ul>
+
+              </div>
+              </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Hot Leads">Content 2</mat-tab>
+        <mat-tab label="Warm Leads">Content 2</mat-tab>
+        <mat-tab label="Cold Leads">Content 2</mat-tab>
+
+      </div>
+
+
+      </mat-tab-group>
+
+
+    </section>
+ <ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>
+
+
+  </div>

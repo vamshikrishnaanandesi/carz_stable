@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.283 15.283">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #81d184;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="tick_-_checklist_card_" data-name="tick - checklist card " transform="translate(0 0)">
+    <path id="Path_392" data-name="Path 392" class="cls-1" d="M-12925.5-10630.812l2.253,2.274,4.809-5.437" transform="translate(12930.015 10638.854)"/>
+    <g id="Ellipse_355" data-name="Ellipse 355" class="cls-1" transform="translate(0 0)">
+      <circle class="cls-2" cx="7.641" cy="7.641" r="7.641"/>
+      <circle class="cls-3" cx="7.641" cy="7.641" r="6.891"/>
+    </g>
+  </g>
+</svg>

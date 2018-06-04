@@ -1,0 +1,238 @@
+<div class="settings-main">
+  <!-- top title component -->
+  <div class="row top-title-component">
+    <div class="col-sm-6">
+
+      <div class="main_top_franchisee">
+        <h1 class="franchisee-title">Settings</h1>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="text-right">
+        <button class="empty-btn" mat-button (click)="cancelsettings()">Cancel</button>
+
+        <button class="filled-btn margin-left-15" mat-button>  <img src="../../../../../../assets/images/carz/icons/tick_save.svg" style="left: 22px;top: 14px;position: absolute;" class="btn-icons-left" alt=""> Save</button>
+      </div>
+    </div>
+  </div>
+  <!-- left side component -->
+
+  <div class="main-CRM-setup">
+
+    <div class="row settings-main-row">
+
+      <div class="franchisee-profile settings">
+        <mat-list>
+          <!-- <mat-list-item>Discussion</mat-list-item> -->
+          <mat-accordion class="discussion_accordian">
+            <mat-expansion-panel [expanded]="discussion === 0" (opened)="setdiscussion(0)" hideToggle="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title> <span class="Orange_dot"></span>  <strong> CRM </strong></mat-panel-title>
+                <!-- <mat-panel-description>
+                          Discussion
+                      </mat-panel-description> -->
+              </mat-expansion-panel-header>
+              <mat-list-item>
+                <strong> Discussion </strong>
+              </mat-list-item>
+              <mat-list-item>KYC Upload</mat-list-item>
+              <mat-list-item>Assessment</mat-list-item>
+              <mat-list-item (click)="navigateSetup();">Setup</mat-list-item>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <!-- <mat-divider></mat-divider>
+              <mat-list-item>Library</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Assessment</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Marketing</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Feed</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Revenue & Sales</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Audit Management</mat-list-item> -->
+        </mat-list>
+      </div>
+      <div class="profile-right-main" #target>
+
+        <p class="setting-right-top-title">Application Form</p>
+        <!-- <div class="">
+          <div class="col-xs-12">
+            <p class="addtaskEmpty"> + Add a task</p>
+          </div>
+          <div class="spacer-sm"></div>
+        </div> -->
+        <div class="setting-right-gray-box-main">
+          <!-- <form #applicationForm="ngForm" name="applicationForm"  novalidate> -->
+            <form #applicationForm="ngForm" name="applicationForm" (ngSubmit)="create_edit_question(isRequire, applicationForm)" novalidate>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="addanitem">
+                <mat-form-field>
+                  <input matInput placeholder="Add an item" name="question_EN" [(ngModel)]="question_EN"
+                   required>
+                  <mat-error *ngIf="applicationForm.hasError('required', 'question_EN') ">
+
+                      Question is required
+                    </mat-error>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="col-md-3">
+
+              <div class="dropdown-setting-right">
+
+                <mat-form-field>
+                  <mat-select name="question_type" name="question_type" [(ngModel)]="question_type" required>
+                    <mat-option [value]="ques.value" *ngFor="let ques of question_types" (click)="change_option(ques.question_type)">{{ques.question_type}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="multiple-option-radio-btn" *ngIf="question_type == 'Multiple Choice'">
+            <!-- <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+        <mat-radio-button class="example-radio-button" *ngFor="let opt of options" [value]="opt.option">
+          {{opt.option}}
+        </mat-radio-button>
+        <mat-radio-button >
+        <span class="add-options" >+ Add Option</span> </mat-radio-button>
+      </mat-radio-group> -->
+            <table>
+              <tr *ngFor="let opt of ques_options; trackBy: customTrackBy">
+                <td class="setting-ques-mul-opt">
+                  <input type="text" matInput name="option" [(ngModel)]="opt.option" (ngModelChange)="valueChange($event)"  [ngModelOptions]="{standalone: true}">
+                </td>
+
+              </tr>
+              <tr>
+                <td>
+                  <span class="add-options" (click)="add_more(applicationForm);">+ Add Option</span>
+                </td>
+
+                <td>   <div class="spacer-xs"></div></td>
+
+
+              </tr>
+
+            </table>
+
+          </div>
+          <mat-divider></mat-divider>
+
+          <div class="spacer-xs"></div>
+
+          <div class="right-gray-box-bottom">
+            <div class="col-xs-12">
+
+              <div class="pull-left">
+                <p class="required-button">Required
+                  <span class="required-btn-toggle">
+                    <mat-slide-toggle name="isRequire" [(ngModel)]="isRequire"></mat-slide-toggle>
+                  </span>
+                </p>
+
+              </div>
+              <div class="pull-right">
+                <button *ngIf="!is_edit" class="secondary-btn settings-right-add-btn"    mat-button> <span class="add-question">+</span> Add</button>
+                <button *ngIf="is_edit" class="secondary-btn settings-right-add-btn" mat-button> <span class="add-question">+</span> Save</button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+          </div>
+
+        </form>
+        </div>
+        <div class="spacer-xs"></div>
+
+        <div [sortablejs]="question_list">
+          <div class="que-settings-below-shown-main" *ngFor="let ques of question_list;let i=index;"  (change)="test()" >
+
+            <div class="col-xs-10"  (click)="test()">
+              <p class="que-settings-below-shown pull-left" >
+                  <img src="../../../../../../assets/images/carz/icons/draggable.svg" class="draggable-icon" width="13px" alt=""  >     <span>{{i+1}}) </span>
+                <span>{{ques.question_EN}}</span>
+              </p>
+            </div>
+            <div class="col-xs-2">
+              <p class="pull-right">
+                <img src="../../../../../../assets/images/carz/icons/edit.svg" (click)="edit_selected(ques);scroll(target);" width="15px" class="edit-activity"
+                  alt="">
+                <img src="../../../../../../assets/images/carz/icons/delete-button.png" (click)="delete_question(ques._id, applicationForm)" width="15px"
+                  class="delete-activity" alt="">
+              </p>
+            </div>
+
+            <div class="clearfix"></div>
+            <!-- multiple -->
+            <div class="app-form-radio que-settings-below-shown-form" *ngIf="ques.question_type =='Multiple Choice'">
+
+                <mat-radio-group>
+                  <mat-radio-button *ngFor="let opt of ques.options" class="multiple_question_rad" [value]="opt.option">{{opt.option}}</mat-radio-button>
+                  <div class="spacer-xs"></div>
+                </mat-radio-group>
+              </div>
+              <!-- /multiple -->
+              <!-- short answer -->
+          <div class="que-settings-below-shown-form" *ngIf="ques.question_type =='Short Answer'" >
+              <mat-form-field>
+                <input matInput placeholder="Short Answer" disabled>
+              </mat-form-field>
+            </div>
+            <!-- /short answer -->
+            <div class="que-settings-below-shown-form" *ngIf="ques.question_type =='Long Answer'" >
+              <mat-form-field>
+                           <textarea matInput placeholder="Long Answer" disabled></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="que-settings-below-shown-form" *ngIf="ques.question_type =='File Upload'" >
+                <div class="border-file-tags">
+
+                    <div class="gray-color-file-upload">
+
+                      <label for="ch-file-tags{{i}}" class="choose-label">Choose File</label>
+                      <input type="file" class="chosee-tags-file" id="ch-file-tags{{i}}" disabled>
+                    </div>
+
+                  </div>
+              </div>
+
+
+
+            <!-- <div class="app-form-radio"  *ngIf="question.question_type =='Multiple Choice'">
+
+                <mat-radio-group  [(ngModel)]="question.answer">
+                    <mat-radio-button *ngFor="let opt of question.options" class="multiple_question_rad" [value]="opt.option">{{opt.option}}</mat-radio-button>
+                    <br>
+                  </mat-radio-group>
+            </div> -->
+
+
+            <mat-divider class="setting-app-divider"></mat-divider>
+            <div class="spacer-xs"></div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <div *ngFor="let ques of question_list;let i=index;">
+              <span>{{ques.question_EN}}</span>      <span (click)="edit_selected(ques)">Edit</span> <span (click)="delete_question(ques._id)">Delete</span>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

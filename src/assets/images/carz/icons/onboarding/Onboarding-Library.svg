@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.018 72.018">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f70;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #f70;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-width: 0.7px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Onboarding_-_Library" data-name="Onboarding - Library" transform="translate(-1219 -452.491)">
+    <circle id="Ellipse_467" data-name="Ellipse 467" class="cls-1" cx="30.674" cy="30.674" r="30.674" transform="translate(1224.824 457.826)"/>
+    <g id="Ellipse_468" data-name="Ellipse 468" class="cls-2" transform="translate(1219 452.491)">
+      <circle class="cls-4" cx="36.009" cy="36.009" r="36.009"/>
+      <circle class="cls-5" cx="36.009" cy="36.009" r="35.009"/>
+    </g>
+    <path id="folder" class="cls-3" d="M25.735,11.985H24.173V9.444A1.171,1.171,0,0,0,22.95,8.337H11.869L9.631,5.5H1.223A1.171,1.171,0,0,0,0,6.607V24.314H0a.968.968,0,0,0,.234.638,1.185,1.185,0,0,0,.912.408H21.185a1.128,1.128,0,0,0,1.1-.735l4.578-11.364v-.072A1.128,1.128,0,0,0,25.735,11.985ZM.9,6.607a.314.314,0,0,1,.328-.3H9.17l2.238,2.837H22.95a.313.313,0,0,1,.328.3v2.54H5.7A1.237,1.237,0,0,0,5.508,12a1.1,1.1,0,0,0-.906.72L.9,21.874ZM21.429,24.38a.251.251,0,0,1-.244.169H1.148a.255.255,0,0,1-.2-.09.206.206,0,0,1-.055-.165L5.455,12.964A.251.251,0,0,1,5.7,12.8H25.735c.17,0,.214.221.225.332Z" transform="translate(1243.123 472.845)"/>
+  </g>
+</svg>

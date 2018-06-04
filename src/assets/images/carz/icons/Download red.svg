@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.356 15.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ee3638;
+        stroke: #ee3638;
+        stroke-width: 0.5px;
+      }
+    </style>
+  </defs>
+  <g id="Download_red" data-name="Download red" transform="translate(-15.508 -9.797)">
+    <path id="Path_1107" data-name="Path 1107" class="cls-1" d="M28.614,24.738a.309.309,0,0,1-.309.309H16.067a.309.309,0,0,1,0-.617H28.305A.309.309,0,0,1,28.614,24.738Zm-6.646-3a.308.308,0,0,0,.436,0l3.375-3.375a.309.309,0,1,0-.436-.436l-2.848,2.848V10.356a.309.309,0,1,0-.617,0V20.778L19.029,17.93a.309.309,0,1,0-.436.436Z"/>
+  </g>
+</svg>

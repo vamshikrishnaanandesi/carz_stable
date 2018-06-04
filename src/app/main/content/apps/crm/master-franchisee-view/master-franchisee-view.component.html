@@ -1,0 +1,161 @@
+<!--Edited by Hareesh date : 05/04/2018 -->
+<div class="franshisee-main master-franchisee-view container-fluid">
+
+  <div class="row top-title-component">
+    <div class="col-md-9 breadcrumb-main ">
+      <h1 class="franchisee-title fr-setup-title">Master Franchisee</h1>
+
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb franchisee_separate fr-setup-loaction">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/apps/franchisees/franchisee-list']">All</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Master Franchisee</li>
+        </ol>
+      </nav>
+
+
+    </div>
+
+
+    <div class="col-sm-3">
+      <div class="text-right">
+        <button class="filled-btn  Mfranchisee" *ngIf="franchisees_list.length > 0" [routerLink]="['/apps/crm/create-franchisee/master/'+master_franchisee_id]"
+          mat-button>
+          <img src="../../../../../assets/images/carz/icons/add_new_franchisee.svg" width="25px" class="plus_icons" alt=""> Add New </button>
+
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="spacer-xs"></div>
+  </div>
+
+  <div class="row master_franchisee_view_leftright">
+    <div class="clearfix"></div>
+    <div class="spacer-xs"></div>
+    <div class="frachisee-details-left-side">
+
+      <fuse-app-franchisee-details></fuse-app-franchisee-details>
+    </div>
+    <div>
+      <div class="profile-right-main">
+        <div class=" row " *ngIf="franchisees_list.length == 0 && page_loaded == true">
+
+          <div class="empty-state-main">
+            <img src="../../../../../assets/images/carz/icons/main_intial.svg" width="60px" alt="">
+            <p class="add-new-leads">ADD NEW LEADS</p>
+            <p class="add-new-lead-sub">Start creating profiles and converting leads</p>
+            <button class="filled-btn Createfranchisee intial" [routerLink]="['/apps/crm/create-franchisee/master/'+master_franchisee_id]"
+              mat-button>
+              <img src="../../../../../assets/images/carz/icons/circle_plus_white.svg" width="25px" class="plus_icons" alt=""> Create New</button>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="franchisees_list.length > 0">
+<div class="col-md-12 padding-left-0">
+            <div class="card_main  " [ngClass]="{'topMaster' : franchisee.franchisee_franchise_type == 'Master', 'topFranchisees' : franchisee.franchisee_franchise_type != 'Master' }" *ngFor="let franchisee of franchisees_list | filter: crm_franchisee;let i=index;" [routerLink]="['/apps/crm/franchisee-setup/' + franchisee._id + '/discussion']" >
+              <p class="delete_fr_icon">
+                  <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="  to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+</p>
+              <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+              <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+              <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+
+
+
+              <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+              <p>
+                <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+                <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+                </span>
+              </p>
+              <p>
+                <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+              </p>
+              <p class="partners">
+                <span class="partner-count">{{franchisee.partners_list}}</span> Partners
+              </p>
+              <ul class="stages_progress">
+                <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+                <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+                <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+                <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+                <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+              </ul>
+
+            </div>
+          </div>
+<div class="clearfix"></div>
+<div class="spacer-sm"></div>
+
+<p class="myFranchisees col-md-12">My Franchisees</p>
+<div class="spacer-sm col-md-12"></div>
+
+          <div class="card_main" [ngClass]="{'bottomMaster' : franchisee.franchisee_franchise_type == 'Master', 'bottomFranchisees' : franchisee.franchisee_franchise_type != 'Master' }" *ngFor="let franchisee of franchisees_list | filter: crm_franchisee;let i=index;" [routerLink]="['/apps/crm/franchisee-setup/' + franchisee._id + '/discussion']">
+            <p class="delete_fr_icon">
+                <img class="svg_icons delete" src="../../../../../../assets/images/carz/icons/delete-button.png" alt="" (click)="to_archieve_franchisee(franchisee); $event.stopPropagation();" >
+</p>
+            <img src="../../../../../assets/images/carz/icons/master_mark.png" title="Master Franchisee" class="master-mark" *ngIf="franchisee.franchisee_franchise_type == 'Master'">
+            <img src="../../assets/images/logos/fallout.png" class="card_top_img" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+            <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisee.franchisee_profile_pic">
+
+
+
+            <p class="cards_title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+            <p>
+              <img src="../../../../../assets/images/carz/icons/location-in.svg" class="card-location-icon" alt="">
+              <span class="location_text">{{franchisee.franchisee_address}}, {{franchisee.franchisee_city}}
+
+              </span>
+            </p>
+            <p>
+              <span class="franchisee-list cards-btn body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+            </p>
+            <p class="partners">
+              <span class="partner-count">{{franchisee.partners_list}}</span> Partners
+            </p>
+            <ul class="stages_progress">
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 1 }"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 2,'active-stage':franchisee.franchisee_stage_completed == 1  }"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 3, 'active-stage':franchisee.franchisee_stage_completed == 2}"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 4, 'active-stage':franchisee.franchisee_stage_completed == 3}"></li>
+              <li [ngClass]="{'completed-stage':franchisee.franchisee_stage_completed >= 5, 'active-stage':franchisee.franchisee_stage_completed == 4}"></li>
+            </ul>
+
+
+        </div>
+        </div>
+
+
+        <!-- <div class="row franchisee_main_list">
+
+        <div class="  franchisees-list-main"  *ngFor="let franchisee of franchisees_list | filter: crm_franchisee;let i=index;" [routerLink]="['/apps/crm/franchisee-setup/' + franchisee._id + '/discussion']">
+          <div class="row franchisees-list" >
+
+              <div class="pull-left fl-main-dp">
+                <img src="../../assets/images/logos/fallout.png" class="rounded-circle franchisee-dp" alt="">
+              </div>
+              <div class="">
+                <h1 class="body-txt-title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</h1>
+                  <p class="sub-heading-address body-subtitle">
+                    <img src="../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt="">
+                    <span class="body-sub-title-text"> {{franchisee.franchisee_address}}</span>
+                  </p>
+                  <p class="city-name body-subtitle">
+                    <img src="../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt="">
+                    <span class="body-sub-title-text"> {{franchisee.franchisee_city}}</span>
+                  </p>
+                  <span class="franchisee-list status body-subtitle">{{franchisee.franchisee_franchise_model}}</span>
+                              </div>
+          </div>
+        </div>
+      </div> -->
+      </div>
+    </div>
+
+
+  </div>
+</div>

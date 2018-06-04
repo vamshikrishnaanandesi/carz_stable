@@ -1,0 +1,150 @@
+<div class="franshisee-main container-fluid">
+
+  <div class="row">
+      <!-- <div class="col-sm-6">
+          <div class="row"> -->
+              <!-- <div class="col-sm">
+                  <h1 class="franchisee-title">Franchisee</h1>
+              </div> -->
+
+
+              <div class="col-sm-3 breadcrumb-main ">
+                  <h1 class="franchisee-title fr-lib-title">Franchisee</h1>
+
+
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb franchisee_separate franchisee_breadcrumb_main">
+                          <li class="breadcrumb-item">
+                              <a >All</a>
+                              <!-- [routerLink]="['/apps/crm/master-franchisee-view/'+ obj.franchisee_id]" -->
+                          </li>
+                          <li class="breadcrumb-item active" aria-current="page">Manish Surapaneni</li>
+                      </ol>
+                   </nav>
+
+
+              </div>
+
+
+
+              <div class="col-sm-9" [hidden]="userData.user_role=='franchisee'">
+                  <div class="spacer-xs"></div>
+                  <mat-form-field class="franchisee-search">
+                      <input matInput placeholder="Search for">
+                      <mat-icon class="from-inside-icon">search</mat-icon>
+                  </mat-form-field>
+                  <!-- <mat-icon>favorite</mat-icon> -->
+              </div>
+          <!-- </div>
+      </div> -->
+
+
+    </div>
+    <section>
+        <mat-tab-group>
+            <mat-tab label="Overview">
+                <div class="row">
+                    <!-- <div class="col-md-3 col-lg-3">
+                        <div class="franchisee-profile">
+                        <img src="http://www.tetramind.asia/amararaja/files/images/team/Layer-2.png" class="rounded-circle profile-img" alt="">
+
+                          <h1 class="body-txt-title" title="JAYADEV GALLA">JAYADEV GALLA</h1>
+                          <p class="sub-heading-address body-subtitle"><i class="fa fa-map-marker" aria-hidden="true"></i> Sri Nagar Colony</p>
+                          <p class="city-name body-subtitle"><i class="fa fa-globe" aria-hidden="true"></i> Hyderabad</p>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">CONTACT INFO</p>
+                              <p class="city-name body-subtitle"> manish@wtastudios.com</p>
+                                  <p class="city-name body-subtitle"> 9666119079</p>
+                                  <p class="city-name body-subtitle"> Street Name</p>
+                                  <p class="city-name body-subtitle"> Location</p>
+
+
+
+                          </div>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">PERSONAL</p>
+                              <p class="city-name body-subtitle">33 years</p>
+                              <p class="city-name body-subtitle">Business Analyst</p>
+
+
+
+                          </div>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">FRANCHISEE INFO</p>
+                              <span class="franchisee-list status body-subtitle">XPress Franchisee</span>
+                              <p class="city-name body-subtitle">Lead Source</p>
+                              <p class="city-name body-subtitle">Franchisee Date</p>
+                              <p class="city-name body-subtitle">Estimated Start Date</p>
+                              <p class="city-name body-subtitle">Estimated Start Time</p>
+
+
+
+                          </div>
+                    </div>
+
+
+              </div> -->
+               <!-- <div class="col-md-3 col-lg-3" >
+                <div class="franchisee-profile" >
+                        <div class="col-md-12" [routerLink]="['/apps/franchisees/editprofile']">
+                                <p  class="pull-right"> <img class="svg_icons"src="../../../../../../assets/images/carz/icons/edit.svg" alt=""></p>
+                                    </div>
+                    <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="">
+
+                          <h1 class="body-txt-title" title="franchisee_name" *ngIf="franchisees != null">{{franchisees.franchisee_name}}</h1>
+                          <p class="sub-heading-address body-subtitle"><img src="../../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt=""> <span class="body-sub-title-text" *ngIf="franchisees != null">{{franchisees.franchisee_address}}</span> </p>
+                          <p class="city-name body-subtitle"> <img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt=""> <span class="body-sub-title-text" *ngIf="franchisees != null"> {{franchisees.franchisee_city}}</span></p>
+                          <div class="spacer-xs"> </div>
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">CONTACT INFO</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null"> {{franchisees.franchisee_email}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null"> {{franchisees.franchisee_mobile_number}}</p>
+                          </div>
+                          <div class="spacer-xs"> </div>
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">PERSONAL</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.lead_age}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_occupation}}</p>
+                          </div>
+                          <div class="spacer-xs"> </div>
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">FRANCHISEE INFO</p>
+                              <p> <span class="franchisee-list status body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_franchise_model}}</span></p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.lead_source}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_date |date: 'dd.MM.yyyy'}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_time}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>  -->
+
+                <div class="frachisee-details-left-side">
+                    <fuse-app-franchisee-details></fuse-app-franchisee-details>
+                </div>
+
+                <div class="">
+                  <div class="profile-right-main">
+                      <div class="min-height-right">
+
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+
+            </mat-tab>
+            <mat-tab label="Activity Tracker">Content 2</mat-tab>
+            <mat-tab label="Feedback">Content 2</mat-tab>
+            <mat-tab label="Checklist">Content 2</mat-tab>
+        </mat-tab-group>
+        <ng4-loading-spinner></ng4-loading-spinner>
+    </section>
+
+
+  </div>

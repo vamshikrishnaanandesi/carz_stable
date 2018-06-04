@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13836.736 -18625.092 27.676 27.676">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-size: 21px;
+        font-family: Montserrat-Regular, Montserrat;
+        letter-spacing: 0.03em;
+      }
+
+      .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_665" data-name="Group 665" transform="translate(-14809 -19286)">
+    <text id="New_Account" data-name="New Account" class="cls-1" transform="translate(985.78 681.908)"><tspan x="-5.187" y="0">+</tspan></text>
+    <g id="Ellipse_407" data-name="Ellipse 407" class="cls-2" transform="translate(972.264 660.908)">
+      <ellipse class="cls-3" cx="13.838" cy="13.838" rx="13.838" ry="13.838"/>
+      <ellipse class="cls-4" cx="13.838" cy="13.838" rx="12.838" ry="12.838"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,147 @@
+
+
+// .franshisee-main{
+//   margin: 15px;
+// }
+
+.city-name{
+
+}
+.franchisee-dp{
+  width: 56px;
+  // height: 96px;
+  border: 1px solid #95989A;
+}
+.rating_star{
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 40px;
+}
+.body-sub-title-text{
+  padding-left: 15px;
+}
+
+// icon color
+i.fa {
+  color: #F1464A;
+}
+
+// .franchisee-title{
+//   font-size: 30px;
+//   font-weight: 500;
+//   margin-top: 6px;
+//   color: #4D4D4D;
+//   text-transform: uppercase;
+// }
+.filled-btn.franchisee{
+  width: 150px;
+  color:#fff;
+}
+
+.mat-form-field-infix{
+  font-size: 14px !important;
+}
+ .franchisee_main_list .franchisees-list-main{
+  padding-left: 30px;
+}
+// .franchisee_main_list
+.fl-main-dp .franchisee-dp, .view-all.franchisee{
+  margin-right: 35px;
+}
+
+.main_top_franchisee .list-style-inline li{
+  display: inline-block;
+}
+.main_top_franchisee .list-style-inline{
+  padding-left: 17px;
+}
+.main_top_franchisee li h1 {
+  margin-right: 15px;
+}
+.main_top_franchisee .franchisee-search {
+  position: relative;
+  top: -4px;
+}
+.main_top_franchisee {
+  height: 0;
+}
+.gridListview{
+  width: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+.gridviewlist-main{
+  float: right;
+  margin-left: 20px;
+}
+
+.franchisee-list-view{
+  margin:20px;
+  margin-top: 0px;
+}
+.franchisee-list-view th, .franchisee-list-view td{
+  width: 17% !important;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 35px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  color: #393939;
+  font-weight: 500;
+}
+.franchisee-list-view th.serialNo, .franchisee-list-view td.serialNo
+{
+  width: 15px !important;
+}
+
+.franchisee-list-view tbody{
+  background: #fff;
+}
+.franchisee-list-view thead{
+  background: #EFEFEF;
+}
+.franchisee-list-view th{
+  font-weight: 600;
+  font-size: 13px;
+}
+.franchisee-list-view td{
+  cursor: pointer;
+}
+// .master-normal-drpdwn{
+
+// }
+.noleads_stages{
+width: 100%;
+display: table;
+height: 66vh;
+
+}
+.noleads_stages .no-files-main-head{
+  vertical-align: middle;
+  display: table-cell;
+}
+
+mat-tabs.md-no-animation mat-tab-content , mat-tabs.md-no-animation mat-ink-bar {
+  transition: none !important;
+}
+
+@media only screen and (max-width: 1390px) {
+.card_main{
+  width: 217px;
+}
+}
+.svg_icons.delete{
+  display: none;
+  }
+.card_main:hover .svg_icons.delete{
+display: block;
+}
+.delete_fr_icon{
+  position: absolute;
+  left: 20px;
+  top: 15px;
+
+}
+

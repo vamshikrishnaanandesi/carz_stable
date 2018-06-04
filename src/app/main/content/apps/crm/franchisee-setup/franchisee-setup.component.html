@@ -1,0 +1,2527 @@
+<!-- edited application form by Hareesh on 18 /04/2018 -->
+
+<div class="franshisee-main franchisee-setup-main container-fluid" *ngIf="page_loaded">
+    <!-- <section>
+
+        <div class="franchisee-setup-main-header"> -->
+          <!-- top title component -->
+          <div class="row top-title-component fr-setup">
+            <div class="col-sm-12">
+
+              <div class="main_top_franchisee">
+                <h1 class="franchisee-title"  >{{franchiseeData?.franchisee_name}} Franchisee Setup </h1>
+                <ol class="breadcrumb franchisee_separate fr-setup-loaction">
+                    <li class="breadcrumb-item">
+                      <a [routerLink]="['/apps/franchisees/franchisee-list']">Franchisees</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{franchiseeData?.franchisee_name}}</li>
+                  </ol>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+        <!-- </div>
+      </section> -->
+  <!-- <div class="row" *ngIf="userData.user_role == 'franchisor'">
+    <div class="col-md-6 breadcrumb-main ">
+      <h1 class="franchisee-title fr-setup-title" >{{franchiseeData?.franchisee_name}}</h1>
+      <p class="fr-setup-loaction" >{{franchiseeData?.franchisee_address}}</p>
+
+    </div>
+    <div class=" col-md-6">
+            <div class="pull-right leads_type">
+              <mat-form-field>
+                <mat-select [(value)]="selected_leadType">
+                  <mat-option value="Hot">Hot</mat-option>
+                  <mat-option value="Cool">Cool</mat-option>
+                  <mat-option value="Warm">Warm</mat-option>
+                  <mat-option value="On Hold">On Hold</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+    </div>
+
+    <div class="clearfix"></div>
+  </div> -->
+
+  <div class="row main-CRM-setup">
+
+    <div class="frachisee-details-left-side">
+      <fuse-app-franchisee-details></fuse-app-franchisee-details>
+    </div>
+    <div>
+      <div class="profile-right-main franchisee-stages top">
+        <section class="main-section-started">
+
+          <div class="row">
+            <ul class="breadcrumbsteps">
+              <li class="completed">
+                <a>Profile
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" width="20" alt="">
+                </a>
+              </li>
+              <li class="active" [ngClass]="{'completed': nda_status,'active':franchiseeData.franchisee_stage_completed == 1}">
+                <a (click)="setIndex(0);$event.stopPropagation();">Discussion
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" *ngIf="nda_status" width="20"
+                    alt="">
+                  <img src="../../../../../../assets/images/carz/icons/circle_empty.svg" class="complete_img" *ngIf="!nda_status" width="20"
+                    alt="" (click)="$event.stopPropagation();complete_stage('Discussion')" [hidden]="userData.user_role == 'franchisee'">
+                </a>
+              </li>
+              <li class="child-3" [ngClass]="{'completed': kycupload_status,'active':franchiseeData.franchisee_stage_completed == 2,'disabled':!nda_status}">
+                <a (click)="setIndex(1)">KYC Upload
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" *ngIf="kycupload_status"
+                    width="20" alt="">
+                  <img src="../../../../../../assets/images/carz/icons/circle_empty.svg" class="complete_img" *ngIf="!kycupload_status" width="20"
+                    alt="" (click)="$event.stopPropagation();complete_stage('Kyc_Uploads')" [hidden]="userData.user_role == 'franchisee'">
+                </a>
+              </li>
+              <li class="child-4" [ngClass]="{'completed': assessement_status,'active':franchiseeData.franchisee_stage_completed == 3,'disabled':!kycupload_status}">
+                <a (click)="setIndex(2)">Interview
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" *ngIf="assessement_status"
+                    width="20" alt="">
+                  <img src="../../../../../../assets/images/carz/icons/circle_empty.svg" class="complete_img" *ngIf="!assessement_status" width="20"
+                    alt="" (click)="$event.stopPropagation();complete_stage('Asessments')" [hidden]="userData.user_role == 'franchisee'">
+                </a>
+              </li>
+              <li class="child-5" [ngClass]="{'completed': agrement_status,'active':franchiseeData.franchisee_stage_completed == 4,'disabled':!assessement_status}">
+                <a (click)="setIndex(3)">Agreement
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" *ngIf="agrement_status" width="20"
+                    alt="">
+                  <img src="../../../../../../assets/images/carz/icons/circle_empty.svg" class="complete_img" *ngIf="!agrement_status" width="20"
+                    alt="" (click)="$event.stopPropagation();complete_stage('Agreement_Copy')" [hidden]="userData.user_role == 'franchisee'">
+                </a>
+              </li>
+              <li [ngClass]="{'completed': setup_status,'active':franchiseeData.franchisee_stage_completed == 5 || franchiseeData.franchisee_stage_completed == 6,'disabled':!agrement_status}">
+                <a (click)="setIndex(4)">Setup
+                  <img src="../../../../../../assets/images/carz/icons/tick_transparent.svg" class="complete_img" *ngIf="setup_status" width="20"
+                    alt="">
+                  <img src="../../../../../../assets/images/carz/icons/circle_empty.svg" class="complete_img" *ngIf="!setup_status" width="20"
+                    alt="" (click)="$event.stopPropagation();complete_stage('stage_name')" [hidden]="userData.user_role == 'franchisee'">
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- discussion inner ui started -->
+          <div class="row" *ngIf="tabIndex==0;">
+            <mat-tab-group>
+
+
+              <mat-tab label="NDA UPLOAD">
+                <div class="spacer-sm"></div>
+                <div class="payment_main">
+                  <mat-tab-group class="payment_inner_tab">
+                    <mat-tab label="Files">
+                      <div>
+                        <!-- class="meeting_main" -->
+                        <div class="spacer-sm"></div>
+                        <div class="text-right" *ngIf=" userData.user_role == 'franchisee' && nda_file_name">
+                          <a target="_new" href="http://studychacha.com/img/j/NDA-II-exam-result-4.jpg" class="download-nda" download="NDA"> Download NDA </a>
+                        </div>
+                        <div *ngIf=" userData.user_role == 'franchisee' && !nda_file_name">
+                          <div class="spacer-sm"></div>
+                          <div class="text-center">
+                            <div class="nda-file_upload_icon text-center">
+                              <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="100px" style="margin-bottom:15px;" alt="">
+                            </div>
+                            <p class=" no-files-main-head">UPLOAD NDA</p>
+                            <p class=" no-files-sub-head">Click on the download button to download the unsigned copy. <br>Please sign the agreement and upload it again.</p>
+
+                            <div class="spacer-xs"></div>
+                            <!-- <label for="dragFileupload" class="upload_draoDrop_file">
+                                <div class="nda-file_upload_icon text-center">
+                                    <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="47px" style="margin-bottom:15px;" alt="">
+                                </div>
+                              </label> -->
+                            <input type="file" style="display:none;" id="dragFileupload" accept="application/pdf"  (change)="handleFileInput($event.target.files,'nda','Discussion', 0)">
+                          </div>
+                          <div class="text-center">
+                            <a target="_new" href="http://studychacha.com/img/j/NDA-II-exam-result-4.jpg" download="NDA">
+                              <button class=" empty-btn-secondary NDA" mat-button>Download </button>
+                            </a>
+                            <label for="dragFileupload" class="">
+                              <span class="filled-btn NDAUpload">
+                                <img src="../../../../../assets/images/carz/icons/add.svg" style=" width:13px;left: -16px; top: -2px;" class="btn-icons-left"
+                                  alt=""> Upload</span>
+                            </label>
+                          </div>
+                          <div class="spacer-xs"></div>
+                          <div class="upload_file_progress">
+
+                            <mat-progress-bar mode="determinate" *ngIf="enable_progress_bar == true" value="{{progress_percentage}}"></mat-progress-bar>
+                          </div>
+                        </div>
+
+
+                        <!-- files ui as library files  started-->
+                        <!--nda_file_name  -->
+                        <!--*ngIf="userData.user_role == 'franchisee'"  -->
+                        <!-- userData.user_role == 'franchisor' ||  -->
+
+                        <div class="row franchisee_libray setup_files" *ngIf="nda_file_name">
+
+                          <div class="folder-wise_check files_main" (dblclick)="openStageFiles(nda_file);$event.stopPropagation();">
+                            <ul class="list-inline">
+                              <li>
+                                <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                              </li>
+
+                              <li class="folder_title" title="{{nda_file_name}}" *ngIf="nda_file_edit_name_mode == true">
+                                <input matInput placeholder="File Name" class="folder_title" title="{{nda_file_name}}" (keydown.enter)="edit_nda_file_name(nda_file_name, i)"
+                                  (blur)="edit_nda_file_name(nda_file_name, i)" [(ngModel)]="nda_file_name" name="file_name"
+                                  required>
+                              </li>
+                              <li class="folder_title" *ngIf="nda_file_edit_name_mode == false" title="{{nda_file_name}}">{{nda_file_name}} </li>
+
+                              <li>
+                                <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuStagesNdaFile">
+                                  <mat-icon>more_vert</mat-icon>
+                                </button>
+                              </li>
+                            </ul>
+
+                            <mat-menu #FileMenuStagesNdaFile="matMenu">
+                              <button mat-menu-item (click)="make_nda_file_edit_mode(file, i)">
+
+                                <span>Edit</span>
+                              </button>
+                              <button mat-menu-item (click)="delete_nda_file()">
+
+                                <span>Delete</span>
+                              </button>
+                              <a target="_new" href="{{nda_file}}" download="{{nda_file_name}}">
+                                <button mat-menu-item>
+
+                                  <span>Download</span>
+                                </button>
+                              </a>
+                            </mat-menu>
+                          </div>
+
+
+
+
+                          <!-- <div>
+
+                            <div class="files_main folderfiletype" (click)="openStageFiles(nda_file);$event.stopPropagation();">
+                              <img src="../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                              <h5 class="file-below-title" title="{{nda_file_name}}">{{nda_file_name}}</h5>
+                              <div class="pull-right view-icons animated   fadeIn">
+                                <a target="_new" href="{{nda_file}}" download="{{nda_file_name}}">
+                                  <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="" (click)="$event.stopPropagation();">
+                                </a>
+                              </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                          </div> -->
+
+                        </div>
+
+                        <!-- files ui as library files  ended-->
+
+                        <div *ngIf="userData.user_role == 'franchisor' && !nda_file_name" class="text-center">
+                          <div class="spacer-sm"></div>
+                          <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                          <p class="text-center no-files-main-head">AWAITING NDA</p>
+                          <p class="text-center no-files-sub-head">Franchisee has not uploaded the signed copy of NDA yet. It will get <br>reflected here, once uploaded.</p>
+                        </div>
+
+
+
+                        <!-- <div class="pdf_view_down">
+
+
+                          <table>
+                            <a href="http://studychacha.com/img/j/NDA-II-exam-result-4.jpg" target="_self" download="NDA">
+                              <tr>
+                                <td>
+                                  <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                                </td>
+                                <td>
+                                  <ul class="pdf_details">
+                                    <li>
+                                      <h4>NDA File</h4>
+                                    </li>
+
+                                  </ul>
+
+                                </td>
+                              </tr>
+                            </a>
+                          </table>
+
+                          <a href="http://studychacha.com/img/j/NDA-II-exam-result-4.jpg" target="_self" download="NDA">
+                            <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" class="download_icon pull-right" alt="">
+                          </a>
+                          <div class="clearfix"></div>
+                        </div> -->
+
+
+
+                        <!-- <div *ngIf="!nda_file_name">
+                                <p class="text-center no-files-main-head">No Files, yet</p>
+                      <p class="text-center no-files-sub-head">Start creating checklists to keep track of activity</p>
+                        </div> -->
+
+
+                      </div>
+                      <div class="spacer-sm"></div>
+                    </mat-tab>
+
+
+                  </mat-tab-group>
+                  <!-- <div class="spacer-sm"></div> -->
+
+                </div>
+
+              </mat-tab>
+              <mat-tab label="PAYMENT">
+                <div class="spacer-sm"></div>
+                <div class="payment_main">
+                  <mat-tab-group class="payment_inner_tab">
+                    <mat-tab label="Files">
+                      <div class="spacer-sm"></div>
+                      <div *ngIf="!file_name">
+
+                        <div class="text-center" *ngIf="userData.user_role == 'franchisor'">
+                          <div class="spacer-sm"></div>
+                          <label for="dragFileupload">
+                            <div class="nda-file_upload_icon text-center">
+                              <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="100px" style="margin-bottom:15px; cursor:pointer;"
+                                alt="">
+
+                            </div>
+
+                            <p class=" no-files-main-head">UPLOAD PAYMENT RECEIPT</p>
+                            <!-- <p class=" no-files-sub-head">Browse Your File
+                              <span style="color:#7ec2f4;border-bottom: 1px solid #7ec2f4;cursor:pointer;">Here</span>
+                            </p> -->
+                            <p class=" no-files-sub-head">Upload the payment receipt for 1 Lack, to confirm the payment. Franchisee <br> will view this receipt</p>
+
+                          </label>
+                          <div class="spacer-xs"></div>
+                          <label for="dragFileupload" class="">
+                            <span class="filled-btn-secondary">
+                              <img src="../../../../../assets/images/carz/icons/add.svg" style=" width:13px;left: -16px; top: -2px;" class="btn-icons-left"
+                                alt=""> Upload</span>
+                          </label>
+                          <div class="spacer-xs"></div>
+
+                          <div class="upload_file_progress">
+                            <mat-progress-bar *ngIf="enable_progress_bar === true"   value="{{progress_percentage}}"></mat-progress-bar>
+                          </div>
+                          <!-- <label for="dragFileupload" class="upload_draoDrop_file">
+                                <div class="nda-file_upload_icon text-center">
+                                    <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="47px" style="margin-bottom:15px;" alt="">
+                                </div>
+                              </label> -->
+                          <input type="file" style="display:none;" id="dragFileupload" accept="application/pdf"  (change)="handleFileInput($event.target.files,'payment','Discussion')">
+                          <div class="spacer-xs"></div>
+
+                        </div>
+                        <!-- <label for="dragFileupload" class="upload_draoDrop_file">
+                          <div>
+                            <img src="../../../../../../assets/images/carz/icons/upload.png" width="30px" alt="">
+                            <p class="drap_status">BROWSE YOUR FILE
+                              <span style="color:#6a6a6a">HERE</span>
+
+                            </p>
+                          </div>
+                        </label> -->
+                      </div>
+                      <div *ngIf="userData.user_role == 'franchisee' && !file_name" class="text-center">
+                        <div class="spacer-sm"></div>
+                        <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                        <p class="text-center no-files-main-head">AWAITING PAYMENT RECEIPT</p>
+                        <p class="text-center no-files-sub-head">Franchisor will upload the payment receipt of 1 Lakh. <br>It will get reflected here, once uploaded.</p>
+                      </div>
+
+                      <!-- files ui as library files  started-->
+
+                      <div class="row franchisee_libray setup_files" *ngIf="file_name">
+
+
+                        <div class="folder-wise_check files_main" [ngClass]="{'selected_file_or_folder':edit_stage_file_name == discussion_payment}" (dblclick)="openStageFiles(file_link, i);$event.stopPropagation();">
+                          <ul class="list-inline">
+                            <!-- <mat-progress-bar mode="determinate" *ngIf="show_progress_bar == i" value="{{progress_percentage}}"></mat-progress-bar> -->
+                            <li>
+                              <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                            </li>
+
+
+                            <li class="folder_title" *ngIf="edit_stage_file_name == discussion_payment" title="{{file_name}}">
+                              <input matInput placeholder="File Name" class="folder_title" title="{{payment_file_name}}" (keydown.enter)="edit_discussion_file_name(payment_file_name, i)"
+                                (blur)="edit_discussion_file_name(payment_file_name, i)" [(ngModel)]="payment_file_name" name="file_name"
+                                required>
+                            </li>
+
+
+                            <li class="folder_title" title="{{payment_file_name}}" *ngIf="edit_stage_file_name != discussion_payment">{{payment_file_name}}</li>
+                            <li *ngIf="userData.user_role == 'franchisor'">
+                              <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuStageFile" >
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                            </li>
+                          </ul>
+
+                          <mat-menu #FileMenuStageFile="matMenu" >
+                            <button mat-menu-item (click)="make_stage_file_edit_mode(file, discussion_payment)">
+
+                              <span>Edit</span>
+                            </button>
+                            <button mat-menu-item (click)="delete_discussion_file()">
+
+                              <span>Delete</span>
+                            </button>
+                            <a target="_new" href="{{file_link}}" download="{{file_name}}">
+                              <button mat-menu-item>
+
+                                <span>Download</span>
+                              </button>
+                            </a>
+                          </mat-menu>
+                        </div>
+
+
+
+                        <!-- <div>
+
+                          <div class="files_main folderfiletype" (click)="openStageFiles(file_link);$event.stopPropagation();">
+                            <img src="../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                            <h5 class="file-below-title" title="{{file_name}}">{{file_name}}</h5>
+                            <div class="pull-right view-icons animated   fadeIn">
+                              <a target="_new" href="{{file_link}}" download="{{file_name}}">
+                                <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="" (click)="$event.stopPropagation();">
+                              </a>
+                            </div>
+                          </div>
+
+                          <div class="clearfix"></div>
+                        </div> -->
+
+                      </div>
+
+                      <!-- files ui as library files  ended-->
+
+
+
+                      <!-- <div class="upload_draoDrop_file" *ngIf="file_name">
+
+                        <div class="pdf_view_down discussion" (click)="openDialog(file);$event.stopPropagation();">
+                          <table>
+                            <a href="{{file_link}}" target="_new" download="{{file_name}}" (click)="$event.stopPropagation();">
+                              <tr>
+                                <td>
+                                  <img class="pdf_icon doc" src="../../../../../../assets/images/carz/icons/doc_kyc.svg" alt="">
+
+                                </td>
+                                <td>
+                                  <ul class="pdf_details">
+                                    <li>
+                                      <h4 title="{{file_name}}">{{file_name}} </h4>
+                                    </li>
+
+                                  </ul>
+
+                                </td>
+                              </tr>
+                            </a>
+                          </table>
+                          <a href="{{file_link}}" target="_self" download="{{file_name}}" (click)="$event.stopPropagation();">
+                            <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" title="Download file" class="download_icon pull-right"
+                              alt="">
+                          </a>
+                          <div class="clearfix"></div>
+                        </div>
+
+                      </div> -->
+
+                      <div class="spacer-sm"></div>
+
+
+
+
+                    </mat-tab>
+
+                  </mat-tab-group>
+
+
+
+                </div>
+
+
+                <div>
+
+                </div>
+
+              </mat-tab>
+              <mat-tab label="APPLICATION FORM">
+
+                <div class="spacer-sm"></div>
+                <div class=" application_form ">
+                  <!-- <div class="text-center under-construction">
+                    <div class="spacer-md"></div>
+                    <img src="../../../../../../assets/images/carz/icons/crane.svg" width="115px" style="margin-bottom:15px;" alt="">
+                    <p class="text-center no-files-main-head">Come back soon</p>
+                    <p class="text-center no-files-sub-head">Looks like this page is still under construction</p>
+                  </div> -->
+                  <div class="text-right">
+
+                    <button class="secondary-btn franchisee " [hidden]="form_submitted && !edit_application_form && userData.user_role=='franchisee'"
+                      *ngIf="question_list.length > 0" mat-button (click)="send()">
+                      <img src="../../../../../../assets/images/carz/icons/done_btn.svg" style="left: -13px;top: -1px;position: relative;width: 13px;"
+                        class="btn-icons-left" alt=""> Submit</button>
+
+                    <button class="empty-btn-secondary franchisee " [hidden]="userData.user_role=='franchisor'" *ngIf="question_list.length > 0 && !edit_application_form"
+                      mat-button (click)="edit_form()">
+                      <img src="../../../../../../assets/images/carz/icons/edit-orange.svg" style="left: -13px;top: -1px;position: relative;width: 13px;"
+                        class="btn-icons-left" alt=""> Edit Form</button>
+                    <div class="spacer-sm"></div>
+                  </div>
+
+                  <!-- Franchisee submitted successfully  -->
+                  <div class="text-center" *ngIf="question_list.length >= 0 && userData.user_role == 'franchisee' && !edit_application_form && form_submitted">
+                    <div class="spacer-sm"></div>
+                    <img src="../../../../../../assets/images/carz/icons/submit_form_suc.svg" width="100px" style="margin-bottom:15px;" alt="">
+                    <p class="text-center no-files-main-head">APPLICATION FORM SUBMITTED </p>
+                    <p class="text-center no-files-sub-head">You have successfully submitted your application form. <br>To edit your details, click on the Edit Form button and make changes.</p>
+                    <div class="spacer-sm"></div>
+                  </div>
+                  <!-- /Franchisee submitted successfully  -->
+
+                  <mat-tab-group class="payment_inner_tab application-hidden" [hidden]="form_submitted && userData.user_role=='franchisee' && !edit_application_form">
+
+                    <mat-tab label="Forms">
+                      <!-- <button class="filled-btn franchisee " mat-button (click)="stageComplete()" *ngIf="userData.user_role == 'franchisor'">Stage Complete</button> -->
+
+                      <!-- at zero state Ui started -->
+                      <div class="spacer-sm"></div>
+
+                      <div class="text-center" *ngIf="question_list.length == 0 && question && userData.user_role == 'franchisor'">
+                        <div class="spacer-sm"></div>
+                        <img src="../../../../../../assets/images/carz/icons/app_form.svg" width="100px" style="margin-bottom:15px;" alt="">
+                        <p class="text-center no-files-main-head">CREATE THE APPLICATION FORM</p>
+                        <p class="text-center no-files-sub-head">Go to settings and create the application form to capture franchisee details. <br>This form will be shared with the Franchisee.</p>
+                        <div class="spacer-sm"></div>
+                        <button class="filled-btn"  (click)="navigateApplication()">
+                          <img src="../../../../../assets/images/carz/icons/settings.svg" style="left: -4px;top: 0px;" class="btn-icons-left" alt=""
+                          /> Open Settings
+                        </button>
+                        <div class="spacer-sm"></div>
+                      </div>
+                      <!-- at zero state Ui ended -->
+
+
+                      <!-- not submitted franchisee  -->
+
+                      <div class="text-center" *ngIf="question_list.length == 0 && !question && userData.user_role == 'franchisor'">
+                        <div class="spacer-sm"></div>
+                        <img src="../../../../../../assets/images/carz/icons/app_form.svg" width="100px" style="margin-bottom:15px;" alt="">
+                        <p class="text-center no-files-main-head">No Application form</p>
+                        <p class="text-center no-files-sub-head">Franchisee has not submitted application form </p>
+                        <div class="spacer-sm"></div>
+                      </div>
+
+                      <!-- /not submitted franchisee  -->
+
+                      <!-- *ngIf="userData.user_role == 'franchisor'" -->
+                      <mat-paginator *ngIf="question_list.length >= 0" [length]="5"  [pageSize]="1"></mat-paginator>
+                      <!-- <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate_result" maxSize="2" directionLinks="true"></pagination-controls> -->
+                      <div class="application_main" *ngIf="question_list.length >= 0">
+
+                        <!-- <div class="spacer-sm"></div> -->
+                        <div class="" *ngFor="let question of question_list;let i=index;">
+                          <p>
+                            <label class="input-custom-label" for="app_form_from{{i+1}}">
+                              <span> {{i+1}}) </span> {{question.question_EN}}
+                              <span class="req-astersk" *ngIf="question.isRequire">*</span>
+                            </label>
+                          </p>
+                          <!-- short answers -->
+                          <div class="questions_type_app" *ngIf="question.question_type =='Short Answer'">
+                            <mat-form-field class="app_form_to">
+                              <input matInput id="app_form_from{{i+1}}" placeholder="Short Answer" [(ngModel)]="question.answer">
+                            </mat-form-field>
+                          </div>
+                          <!-- /short answers -->
+                          <!-- Long answers -->
+                          <div class="questions_type_app" *ngIf="question.question_type =='Long Answer'">
+                            <mat-form-field class="app_form_to">
+                              <textarea matInput id="app_form_from{{i+1}}" placeholder="Long Answer" [(ngModel)]="question.answer"></textarea>
+                            </mat-form-field>
+                          </div>
+                          <!-- /Long answers -->
+                          <!-- Multi upload -->
+                          <div class="app-form-radio" *ngIf="question.question_type =='Multiple Choice'">
+                            <mat-radio-group [(ngModel)]="question.answer">
+                              <mat-radio-button *ngFor="let opt of question.options" class="multiple_question_rad" [value]="opt.option">{{opt.option}}</mat-radio-button>
+                              <br>
+                            </mat-radio-group>
+                          </div>
+                          <!-- /Multi upload -->
+                          <div *ngIf="question.question_type =='File Upload'">
+                            <div class="border-file-tags">
+                              <!-- <span class="tags-file">
+                                    <span class="tag-file-name">Uploaded File Name </span>
+                                    <span class="close_x">x</span>
+                                  </span> -->
+                              <span class="tags-file" *ngIf="question.file_name">
+                                <span class="tag-file-name">{{question.file_name}} </span>
+                                <span class="close_x" (click)="remove_file_name(i)">x</span>
+                              </span>
+                              <span class="tags-file" *ngIf="!question.file_name && question.answer">
+                                <span class="tag-file-name">{{question.answer.name}} </span>
+                                <span class="close_x" (click)="remove_file_name(i)">x</span>
+                              </span>
+                              <div class="gray-color-file-upload">
+
+                                <label for="ch-file-tags{{i}}" class="choose-label">Choose File</label>
+                                <input type="file" class="chosee-tags-file" id="ch-file-tags{{i}}" (change)="application_doc($event.target.files,i)">
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+                        <!-- <div class="row">
+
+                          <label class="input-custom-label" for="app_form_to">Postal Address
+                            <span class="req-astersk">*</span>
+                          </label>
+
+                          <mat-form-field class="app_form_to">
+                            <input matInput placeholder="Enter Address" id="app_form_to" name="partner_email">
+                          </mat-form-field> -->
+                        <!-- <mat-form-field class="app_form_to">
+                              <input matInput placeholder="" id="app_form_to" [(ngModel)]="to_mails_list_string" name="partner_email" [ngModelOptions]="{standalone: true}"
+                                disabled>
+                            </mat-form-field> -->
+
+
+
+
+                        <!-- </div> -->
+                        <!-- <div class="row">
+
+                          <label class="input-custom-label" for="app_form_sub">Landline No. </label>
+
+                          <mat-form-field class="app_form_sub">
+                            <input matInput placeholder="Enter landline no." id="app_form_sub">
+                            <!-- [(ngModel)]="subject" [ngModelOptions]="{standalone: true}" -->
+                        <!-- </mat-form-field>
+
+                        </div> -->
+
+                        <!-- <div class="row">
+
+                            <label class="input-custom-label" for="app_form_body">Body : </label>
+
+                            <mat-form-field class="app_form_body remarks">
+
+                              <textarea matInput rows="16" id="app_form_body" [(ngModel)]="body" [ngModelOptions]="{standalone: true}"></textarea>
+                            </mat-form-field>
+
+                        </div> -->
+                        <!-- <div class="row">
+                          <div class="col-xs-12">
+
+                            <label class="input-custom-label">Gender</label>
+                            <br>
+                            <mat-radio-group formControlName="floatLabel">
+                              <mat-radio-button value="Male">Male</mat-radio-button>
+                              <br>
+
+                              <mat-radio-button value="Female">Female</mat-radio-button>
+                            </mat-radio-group>
+                            <div class="clearfix"></div>
+
+                          </div>
+                          <div class="spacer-xs"></div>
+                        </div> -->
+                        <!-- <div class="row">
+                          <div class="choose_files_tags">
+                            <label class="input-custom-label">Upload Resume</label>
+                            <div class="border-file-tags">
+                              <span class="tags-file">
+                                <span class="tag-file-name">Uploaded File Name </span>
+                                <span class="close_x">x</span>
+                              </span>
+                              <div class="gray-color-file-upload">
+
+                                <label for="ch-file-tags" class="choose-label">Choose File</label>
+                                <input type="file" class="chosee-tags-file" id="ch-file-tags">
+                               </div>
+
+                            </div>
+                          </div>
+
+                        </div> -->
+                        <!-- <div class="row">
+                          <div class="col-md-2 col-lg-2 col-sm-4">
+                            <label class="input-custom-label" for="app_form_body">File : </label>
+                          </div>
+                          <div class="col-md-10 col-lg-10 col-sm-8">
+                            <div class="pdf_view_down">
+
+
+                              <table>
+                                <tr>
+                                  <td>
+                                    <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                                  </td>
+                                  <td>
+                                    <ul class="pdf_details">
+                                      <li>
+                                        <h4>Uploaded File Name </h4>
+                                      </li>
+                                      <li>320kb</li>
+                                    </ul>
+
+                                  </td>
+                                </tr>
+                              </table>
+                              <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" class="download_icon pull-right" alt="">
+                            </div>
+                          </div>
+                        </div>
+                        -->
+
+
+
+                      </div>
+                      <div class=" application-hidden" *ngIf="userData.user_role == 'franchisee'">
+                        <!-- 'application_main' class name -->
+                        <!-- <div class="spacer-sm"></div> -->
+                        <!-- <div class="row"> -->
+                        <!-- <div style="margin:auto;">
+
+
+                            <p class="text-center no-files-main-head">No Emails, yet</p>
+                            <p class="text-center no-files-sub-head">keep track of activity</p>
+                          </div> -->
+                        <!-- <div class="row">
+                            <div class="col-md-2 col-lg-2 col-sm-4">
+                              <label class="input-custom-label" for="app_form_body">File : </label>
+                            </div>
+                            <div class="col-md-10 col-lg-10 col-sm-8">
+                              <div class="pdf_view_down">
+
+
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                                    </td>
+                                    <td>
+                                      <ul class="pdf_details">
+                                        <li>
+                                          <h4>Uploaded File Name </h4>
+                                        </li>
+                                        <li>320kb</li>
+                                      </ul>
+
+                                    </td>
+                                  </tr>
+                                </table>
+                                <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" class="download_icon pull-right" alt="">
+                              </div>
+                            </div>
+                          </div> -->
+                        <!-- </div> -->
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <!-- discussion inner UI ended -->
+
+          <!-- KYC Uploads started -->
+          <div class="row" *ngIf="tabIndex==1;">
+
+            <mat-tab-group (selectedTabChange)="getPartnerId($event)">
+              <div *ngFor="let partner of partners_list;let i = index;">
+                <mat-tab label="{{partner.partner_name}}">
+                  <div class="spacer-xs"></div>
+
+                  <!-- <div class="assigned_people" *ngFor="let partner of partners_list;let i = index;">
+                 <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="" *ngIf="!partner.partner_profile_pic"
+                    (click)="get_business_type_by_partner(partner._id)">
+                  <img [src]="partner.partner_profile_pic.path" class="card_top_img" alt="" *ngIf="partner.partner_profile_pic" (click)="get_business_type_by_partner(partner._id)">
+                  <p class="partner_name_thumb">{{partner.partner_name}}</p>
+
+                </div> -->
+                  <!-- <p class="title-for-stages">KYC UPLOAD</p> -->
+
+                  <div class="spacer-xs"></div>
+
+                  <mat-tab-group class="payment_inner_tab">
+                    <mat-tab label="Files">
+
+                      <div class="kyc_uploads_main meetings franchise_type">
+                        <label class="input-custom-label" *ngIf="business_type.length > 0" for="master_fran_name">FRANCHISE TYPE</label>
+                        <br>
+
+                        <div class="text-center" *ngIf="userData.user_role == 'franchisor' &&business_type.length == 0">
+                          <div class="spacer-sm"></div>
+                          <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                          <p class="text-center no-files-main-head">No Files, yet</p>
+                          <p class="text-center no-files-sub-head">Franchisee has not uploaded any files</p>
+                          <div class="spacer-sm"></div>
+
+                        </div>
+
+
+
+
+                        <div class="spacer-xs"></div>
+                        <div class="row marign-0" *ngIf="business_type.length > 0">
+
+                          <!-- <mat-form-field class="master_fran_name">
+                                <mat-select placeholder="Franchisee Type">
+                                  <mat-option *ngFor="let topping of toppingList" [value]="topping.name" (click)="assign_people(topping)">{{topping.name}}</mat-option>
+                                </mat-select>
+                              </mat-form-field> -->
+                          <div class="spacer-xs"></div>
+                          <div *ngFor="let type of business_type;let i = index;" (dblclick)="openStageFiles(type.doc_link);$event.stopPropagation();">
+                            <div class="file_uploads">
+                              <table width="100%">
+                                <tr>
+                                  <!-- <button (click)="interval()">click</button> -->
+                                  <td style="width:55px">
+                                    <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                  </td>
+                                  <td style="width: 180px;" class="fileName_kyc">
+                                    <p class="ellips">{{type.doc_name}}</p>
+                                    <mat-progress-bar mode="determinate" *ngIf="show_progress_bar == i" value="{{type.progress_percentage}}"></mat-progress-bar>
+                                    <p *ngIf="type.doc_status !== 'Uploaded' && type.doc_status !== 'Pending'" [ngClass]="{'orange_pending':type.doc_status == 'Pending', 'red_rej': type.doc_status == 'Rejected', 'green_apro':type.doc_status == 'Approved', 'blue_upld':type.doc_status == 'Uploaded'}"
+                                      class="ellips subStatus">{{type.doc_status}}
+                                      <span *ngIf="type.doc_status == 'Rejected' && userData.user_role == 'franchisee' ">, upload again</span>
+                                    </p>
+                                    <p *ngIf="type.doc_status === 'Uploaded' && userData.user_role == 'franchisee'" [ngClass]="{'orange_pending':type.doc_status == 'Pending', 'red_rej': type.doc_status == 'Rejected', 'green_apro':type.doc_status == 'Approved', 'blue_upld':type.doc_status == 'Uploaded'}"
+                                      class="ellips subStatus">{{type.doc_status}}</p>
+                                  </td>
+                                  <td style=" width: 40px;" *ngIf="type.doc_link && userData.user_role == 'franchisor' && type.doc_status == 'Uploaded'">
+                                    <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="25" alt="" (click)="approve_file(type.doc_name,business_Id, i);$event.stopPropagation();">
+                                  </td>
+                                  <td style="width: 40px;" *ngIf="type.doc_link && userData.user_role == 'franchisor' && type.doc_status == 'Uploaded'">
+                                    <img src="../../../../../../assets/images/carz/icons/close_circle_empty.svg" (click)="reuploadRequest(type.doc_name,business_Id, i);$event.stopPropagation();"
+                                      width="25" alt="">
+                                  </td>
+                                  <td style="width: 40px;" *ngIf="type.doc_link && (userData.user_role == 'franchisor' || userData.user_role == 'franchisee') && type.doc_status == 'Approved'">
+                                    <img src="../../../../../../assets/images/carz/icons/tick.svg" width="25" alt="">
+                                  </td>
+                                  <td style="width: 80px" *ngIf="!type.doc_link && userData.user_role == 'franchisor' &&( type.doc_status == 'Pending' || type.doc_status == 'Rejected')">
+                                    <p class="pending-file pending">{{type.doc_status}}</p>
+                                  </td>
+                                  <td style="width: 40px" *ngIf="!type.doc_link && userData.user_role == 'franchisee'">
+                                    <label for="kycuploaddoc{{i}}">
+                                      <img src="../../../../../../assets/images/carz/icons/upload-up.svg" width="15" alt="">
+                                    </label>
+                                    <input type="file" style="display:none;" id="kycuploaddoc{{i}}" accept="application/pdf,image/x-png,image/jpeg" (change)="upload_kyc_file($event.target.files,type,'kyc',i,'KYC Upload')">
+                                  </td>
+                                  <td style="width: 40px" *ngIf="type.doc_link && userData.user_role == 'franchisee' && type.doc_status == 'Uploaded'">
+                                    <img src="../../../../../../assets/images/carz/icons/delete-button.svg" width="15" alt="" (click)="remove_file(type.doc_name,business_Id, i);$event.stopPropagation();">
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">BIO DATA</p>
+
+                                    </td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="20" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div> -->
+                          <!-- <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt=""> </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">BUSINESS PLAN</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">BANK STATEMENT</p>
+
+                                      <span class="small_bank">6 months</span> </td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">CREDIT CARD</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="file_uploads">
+                                  <table>
+                                    <tr>
+                                      <td style="width:55px">
+                                        <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                      </td>
+                                      <td style="width: 180px;" class="fileName_kyc"><p class="ellips">IT RETURNS
+
+                                        </p></td>
+                                      <td style=" width: 40px;">
+                                        <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                      <td style="width: 40px;">
+                                        <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">BALANCE SHEET</p> </td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">PASSPORT PHOTO </p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">FORM 16</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">EDUCATION</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" (click)="reuploadRequest()" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">CA CERTIFICATE</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="file_uploads">
+                                <table>
+                                  <tr>
+                                    <td style="width:55px">
+                                      <img src="../../../../../../assets/images/carz/icons/doc_kyc.svg" class="files_type" alt="">
+
+                                    </td>
+                                    <td style="width: 180px;" class="fileName_kyc"><p class="ellips">OTHER</p></td>
+                                    <td style=" width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/tick_circle_empty.svg" width="30" alt=""> </td>
+                                    <td style="width: 40px;">
+                                      <img src="../../../../../../assets/images/carz/icons/close_filled.svg" width="30" alt=""> </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div> -->
+                          <div class="clearfix"></div>
+
+                        </div>
+
+                        <div class="spacer-xs"></div>
+                      </div>
+                    </mat-tab>
+
+                    <!-- kyc background verification starts here -->
+                    <mat-tab label="Background Verification" *ngIf="userData.user_role == 'franchisor'">
+                      <div class="spacer-sm"></div>
+                      <!-- <div class="spacer-sm"></div> -->
+                      <div class="pull-right" *ngIf="bg_verification_files.length > 0">
+                        <label for="bgverificationmul" class="download-nda kyc-bg-up-file" style="margin-bottom: 0px;">Upload Another</label>
+                        <input type="file" style="display:none;" id="bgverificationmul" (change)="handleFileInput_kyc($event.target.files)" multiple>
+                      </div>
+
+                      <div class="text-center" *ngIf="bg_verification_files.length == 0">
+
+                        <!--<div class="text-center" *ngIf="!kyc_file_name">-->
+
+
+                        <label for="bgverification">
+                          <div class="nda-file_upload_icon text-center">
+                            <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="100px" style="margin-bottom:15px; cursor:pointer;"
+                              alt="">
+                          </div>
+                        </label>
+                        <p class=" no-files-main-head">UPLOAD VERIFIED FILES</p>
+                        <p class=" no-files-sub-head">After KYC authentication, upload the verified files provided by the third party <br>to complete background verification.</p>
+                        <button class="empty-btn-secondary">
+                          <label for="bgverification" style="margin-bottom: 0px;" class="">+ Upload</label>
+                        </button>
+                        <div class="spacer-xs"></div>
+                        <div class="upload_file_progress">
+
+                          <mat-progress-bar mode="determinate" *ngIf="progress_bar_file == i" value="{{progress_percentage}}"></mat-progress-bar>
+                        </div>
+
+                        <div class="spacer-sm"></div>
+
+                        <!-- <label for="bgverification" class=""><button class="empty-btn-secondary" mat-button >+ Upload</button></label> -->
+                        <input type="file" style="display:none;" id="bgverification" (change)="handleFileInput_kyc($event.target.files)" multiple>
+                      </div>
+
+
+                      <div class="row franchisee_libray setup_files">
+
+                        <div *ngFor="let bg_file of bg_verification_files; let j = index;">
+
+                          <div class="folder-wise_check files_main" [ngClass]="{'selected_file_or_folder':edit_stage_file_name == bg_files}" (dblclick)="openStageFiles(bg_file.link);$event.stopPropagation();">
+                            <ul class="list-inline">
+                              <li>
+                                <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                              </li>
+                              <li class="folder_title" *ngIf="bg_files == edit_stage_file_name " title="{{bg_file.doc_name}}">
+                                <input matInput placeholder="File Name" class="folder_title" title="{{bg_file.doc_name}}" (keydown.enter)="edit_file_name(bg_file,bg_file.doc_name, j)"
+                                  (blur)="edit_file_name(bg_file,bg_file.doc_name, j)" [(ngModel)]="bg_file.doc_name" name="file_name"
+                                  required>
+                              </li>
+                              <li class="folder_title" *ngIf="bg_files != edit_stage_file_name">{{bg_file.doc_name}}</li>
+                              <li>
+                                <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuthirdParty">
+                                  <mat-icon>more_vert</mat-icon>
+                                </button>
+                              </li>
+                            </ul>
+
+                            <mat-menu #FileMenuthirdParty="matMenu">
+
+                              <button mat-menu-item (click)="make_file_edit_mode(bg_file, bg_files, i)">
+
+                                <span>Edit</span>
+                              </button>
+                              <button mat-menu-item (click)="delete_kyc_bg_files(bg_file, j)">
+
+                                <span>Delete</span>
+                              </button>
+                              <a target="_new" href="{{final_paymnet_link}}" download="{{kyc_file_name}}">
+                                <button mat-menu-item>
+                                  <span>Download</span>
+                                </button>
+                              </a>
+                            </mat-menu>
+                          </div>
+
+                          <div class="clearfix"></div>
+                        </div>
+
+                      </div>
+                      <div class="spacer-sm"></div>
+                    </mat-tab>
+
+                    <!-- kyc background verification ends here -->
+
+                  </mat-tab-group>
+                  <!-- <div class="spacer-sm"></div> -->
+                  <div class="clearfix"></div>
+                  <!-- <p class="all_files doc">Documents</p>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb franchisee_separate documents franchisee_breadcrumb_main">
+                    <li class="breadcrumb-item">
+                      <a>Back</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Manish Surapaneni</li>
+                  </ol>
+                </nav> -->
+                  <!-- <div class="folder-wise_check">
+
+
+                  <ul class="list-inline">
+                    <li>
+                      <img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt="">
+                    </li>
+                    <li title="">
+                      <span class="folder_title">KYC Uploads</span>
+                    </li>
+
+                  </ul>
+
+                </div> -->
+                </mat-tab>
+              </div>
+            </mat-tab-group>
+
+          </div>
+          <!-- KYC Uploads Ended -->
+
+          <!-- Assessment UI started -->
+
+          <div class="row" *ngIf="tabIndex==2;">
+            <mat-tab-group (selectedTabChange)="get_stats($event)">
+              <div *ngFor="let partner of partners_list;let i = index;">
+                <mat-tab label="{{partner.partner_name}}">
+                  <!--  *ngIf="userData.user_role != 'franchisee'" -->
+                  <div class="spacer-xs"></div>
+                  <!-- <p class="partner_name_thumb">{{partner.partner_name}}</p> -->
+
+                  <!-- <div class="assigned_people" *ngFor="let partner of partners_list;let i = index;">
+
+                  <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="" *ngIf="!partner.partner_profile_pic"
+                    (click)="get_assessment_types(partner._id)">
+                  <img [src]="partner.partner_profile_pic.path" class="card_top_img" alt="" *ngIf="partner.partner_profile_pic" (click)="get_assessment_types(partner._id)">
+                  <p class="partner_name_thumb">{{partner.partner_name}}</p>
+                </div> -->
+
+
+
+                  <div class="text-right" *ngIf="userData.user_role=='franchisor' && answer_response.length == 0">
+
+                    <ul class="finish_test_main">
+                      <li>
+                        <button class="empty-btn-secondary md-btn-height view-app" mat-button>View Application</button>
+                      </li>
+                      <!-- class="view_ap" -->
+                      <li>
+                        <button class="secondary-btn md-btn" mat-button (click)="post_answers()">Finish Test</button>
+                      </li>
+
+                    </ul>
+                    <div class="spacer-xs"></div>
+                  </div>
+
+
+                  <div class="assessment_main" *ngIf="answer_response.length == 0 && userData.user_role=='franchisor'">
+                    <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onLinkClick($event)">
+                      <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                        <div class="assessment-inner-tabs-main">
+                          <!-- <mat-paginator  #paginator> </mat-paginator> -->
+                          <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate" maxSize="2" directionLinks="true"></pagination-controls>
+                          <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p, id: 'paginate',totalItems:datasource.length}; let j=index;">
+                            <p class="question_number">QUESTION {{j + 1}}</p>
+                            <p class="question">{{question.question_EN}}</p>
+                            <mat-radio-group>
+                              <mat-radio-button [value]="opt._id" *ngFor="let opt of question.options" (change)="loadIdValueInForm(opt.option,type_name,question,j)"
+                                [checked]="question.selected_option == opt.option">{{opt.option}}</mat-radio-button>
+
+                            </mat-radio-group>
+                          </div>
+
+                          <!-- reports started -->
+                          <!-- <div *ngIf="answer_response.length > 0">
+                  <div class="chart">
+                    <circle-progress [percent]="circle" [radius]="100" [showSubtitle]="false" [innerStrokeWidth]="13" [outerStrokeWidth]="13"
+                      [outerStrokeColor]="'#488aff'" [animation]="true" [titleFontSize]="50" [animationDuration]="300" outerStrokeLinecap="square"
+                      [space]="-13"></circle-progress>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="barchart">
+
+
+                    <table class="progressBar_assessment">
+                      <tr *ngFor="let stats of horizantal_stats">
+                        <td>{{stats.heading}}</td>
+                        <td>
+                          <progress-bar [progress]="stats.value" [color]="'#488aff'"></progress-bar>
+                        </td>
+                      </tr>
+                    </table>
+
+
+                    <div class="clearfix"></div>
+                    <div class="spacer-sm"></div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                  <div class="assessment_main" [hidden]='false'>
+                    <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onClickReport($event)">
+                      <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                        <div class="assessment-inner-tabs-main">
+
+                          <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate_result" maxSize="2" directionLinks="true"></pagination-controls>
+                          <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p, id: 'paginate_result',totalItems:datasource.length}; let j=index;">
+                            <p class="question_number">QUESTION {{j + 1}}</p>
+                            <p class="question">{{question.question_EN}}</p>
+                            <div class="question_answers">
+                              <table>
+                                <tr>
+                                  <td>
+                                    <p>
+                                      <span>Answer:
+                                        <strong>{{question.selected_option}}</strong>
+                                      </span>
+                                    </p>
+                                  </td>
+                                  <td>
+                                    <p>
+                                      <span>Correct Answer:
+                                        <strong>{{question.correct_answer}}</strong>
+                                      </span>
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-tab>
+                    </mat-tab-group>
+                  </div>
+                </div>
+                <div *ngIf="answer_response.length == 0">
+                  <p>Assessment Pending</p>
+                </div> -->
+
+                          <!-- reports ended -->
+
+
+
+                        </div>
+                      </mat-tab>
+                    </mat-tab-group>
+                  </div>
+                  <div class="text-center" *ngIf="answer_response.length == 0 && userData.user_role == 'franchisee'">
+                    <div class="spacer-sm"></div>
+                    <div class="spacer-sm"></div>
+                    <img src="../../../../../../assets/images/carz/icons/interview_empty.svg" width="100px" style="margin-bottom:15px;" alt="">
+                    <p class="text-center no-files-main-head">interview not conducted yet</p>
+                    <p class="text-center no-files-sub-head">You can view your reports here, after the interview is over</p>
+                    <div class="spacer-sm"></div>
+
+                  </div>
+                  <!-- reports started -->
+
+                  <div *ngIf="answer_response.length > 0">
+                    <div>
+                      <p CLASS="total_score_ana">TOTAL SCORE ANALYSIS</p>
+                      <div class="spacer-xs"></div>
+
+                    </div>
+                    <div class="chart">
+                      <circle-progress [percent]="circle" [radius]="100" [showSubtitle]="false" [innerStrokeWidth]="13" [outerStrokeWidth]="13"
+                        [outerStrokeColor]="'#488aff'" [animation]="true" [titleFontSize]="50" [animationDuration]="300" outerStrokeLinecap="square"
+                        [space]="-13"></circle-progress>
+                      <p CLASS="total_score_ana">
+                        <span class="total_marks"> TOTAL MARKS: </span> {{circle}} / {{answer_response.length}} </p>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="barchart">
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="barchart">
+
+
+                      <table class="progressBar_assessment">
+                        <tr *ngFor="let stats of horizantal_stats">
+                          <td>{{stats.heading}}</td>
+                          <td>
+                            <progress-bar [progress]="stats.value" [color]="'#488aff'"></progress-bar>
+                          </td>
+                        </tr>
+                      </table>
+
+
+                      <div class="clearfix"></div>
+                      <div class="spacer-sm"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="assessment_main" [hidden]='false'>
+                      <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onClickReport($event)" *ngIf="userData.user_role == 'franchisor'">
+                        <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                          <div class="assessment-inner-tabs-main">
+
+                            <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate_result" maxSize="2" directionLinks="true"></pagination-controls>
+                            <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p, id: 'paginate_result',totalItems:datasource.length}; let j=index;">
+                              <p class="question_number">QUESTION {{j + 1}} <img src="../../../../../../assets/images/carz/icons/tick.svg" *ngIf="question.selected_option == question.correct_answer " width="17" alt=""><img src="../../../../../../assets/images/carz/icons/close_filled.svg" *ngIf="question.selected_option != question.correct_answer " width="17" alt=""></p>
+                              <p class="question">{{question.question_EN}}</p>
+                              <div class="question_answers">
+                                <table>
+                                  <tr>
+                                    <td>
+                                      <p>
+                                        <span>Answer:
+                                          <strong>{{question.selected_option}}</strong>
+                                        </span>
+                                      </p>
+                                    </td>
+                                    <td>
+                                      <p>
+                                        <span>Correct Answer:
+                                          <strong>{{question.correct_answer}}</strong>
+                                        </span>
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </mat-tab>
+                      </mat-tab-group>
+                    </div>
+                  </div>
+                  <!-- <div *ngIf="answer_response.length == 0">
+                    <p>Assessment Pending</p>
+                  </div> -->
+                </mat-tab>
+                <!-- </div>
+      </mat-tab-group>
+
+            </div> -->
+                <!-- </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div> -->
+                <!-- <div *ngIf="answer_response.length == 0">
+    <p>Assessment Pending</p>
+  </div> -->
+                <!-- </mat-tab>
+            </div> -->
+                <!-- <mat-tab label="REPORTS">
+                <div class="spacer-sm"></div>
+                <div class="assigned_people" *ngFor="let partner of partners_list;let i = index;">
+
+                  <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="" *ngIf="!partner.partner_profile_pic"
+                    (click)="get_reports(partner._id)">
+                  <img [src]="partner.partner_profile_pic.path" class="card_top_img" alt="" *ngIf="partner.partner_profile_pic" (click)="get_reports(partner._id)">
+                  <p class="partner_name_thumb">{{partner.partner_name}}</p>
+                  <div class="spacer-xs"></div>
+
+                </div>
+                <div *ngIf="answer_response.length > 0">
+                  <div class="chart">
+                    <circle-progress [percent]="circle" [radius]="100" [showSubtitle]="false" [innerStrokeWidth]="13" [outerStrokeWidth]="13"
+                      [outerStrokeColor]="'#488aff'" [animation]="true" [titleFontSize]="50" [animationDuration]="300" outerStrokeLinecap="square"
+                      [space]="-13"></circle-progress>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="barchart">
+
+
+                    <table class="progressBar_assessment">
+                      <tr *ngFor="let stats of horizantal_stats">
+                        <td>{{stats.heading}}</td>
+                        <td>
+                          <progress-bar [progress]="stats.value" [color]="'#488aff'"></progress-bar>
+                        </td>
+                      </tr>
+                    </table>
+
+
+                    <div class="clearfix"></div>
+                    <div class="spacer-sm"></div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                  <div class="assessment_main" [hidden]='false'>
+                    <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onClickReport($event)">
+                      <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                        <div class="assessment-inner-tabs-main">
+
+                          <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate_result" maxSize="2" directionLinks="true"></pagination-controls>
+                          <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p, id: 'paginate_result',totalItems:datasource.length}; let j=index;">
+                            <p class="question_number">QUESTION {{j + 1}}</p>
+                            <p class="question">{{question.question_EN}}</p>
+                            <div class="question_answers">
+                              <table>
+                                <tr>
+                                  <td>
+                                    <p>
+                                      <span>Answer:
+                                        <strong>{{question.selected_option}}</strong>
+                                      </span>
+                                    </p>
+                                  </td>
+                                  <td>
+                                    <p>
+                                      <span>Correct Answer:
+                                        <strong>{{question.correct_answer}}</strong>
+                                      </span>
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-tab>
+                    </mat-tab-group>
+                  </div>
+                </div>
+                <div *ngIf="answer_response.length == 0">
+                  <p>Assessment Pending</p>
+                </div>
+              </mat-tab>
+
+
+
+              <div class="assessment_main">
+                <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onLinkClick($event)">
+                  <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                    <div class="assessment-inner-tabs-main">
+                      <!-- <mat-paginator  #paginator> </mat-paginator> -->
+                <pagination-controls (pageChange)="currentPage = $event.page;p = $event" id="paginate" maxSize="2" directionLinks="true"></pagination-controls>
+                <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p, id: 'paginate',totalItems:datasource.length}; let j=index;">
+                  <p class="question_number">QUESTION {{j + 1}}</p>
+                  <p class="question">{{question.question_EN}}</p>
+                  <mat-radio-group>
+                    <mat-radio-button [value]="opt._id" *ngFor="let opt of question.options" (change)="loadIdValueInForm(opt.option,type_name,question,j)"
+                      [checked]="question.selected_option == opt.option">{{opt.option}}</mat-radio-button>
+
+                  </mat-radio-group>
+                </div>
+                <!-- </div> -->
+                <!-- </mat-tab> -->
+                <!-- </mat-tab-group>
+              </div> -->
+
+                <div class="assessment_main">
+                  <mat-tab-group class="payment_inner_tab" (selectedTabChange)="onLinkClick($event)">
+                    <mat-tab label="{{type_name.question_type_name}}" *ngFor="let type_name of assessment_types_name; let i=index;">
+                      <div class="assessment-inner-tabs-main">
+                        <!-- <mat-paginator  #paginator> </mat-paginator> -->
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        <div class="questions_main" *ngFor="let question of datasource | paginate: { itemsPerPage: 5, currentPage: p}; let j=index;">
+                          <p class="question_number">QUESTION {{j + 1}}</p>
+                          <p class="question">{{question.question_EN}}</p>
+                          <mat-radio-group>
+                            <mat-radio-button [value]="opt._id" *ngFor="let opt of question.options" (change)="loadIdValueInForm(opt.option,type_name,question,j)"
+                              [checked]="question.selected_option == opt.option">{{opt.option}}</mat-radio-button>
+
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+                <div class="spacer-xs"></div>
+              </div>
+
+            </mat-tab-group>
+          </div>
+          <!-- Assessment UI ended -->
+          <!-- Agreement UI started -->
+          <div class="row" *ngIf="tabIndex==3;">
+
+            <mat-tab-group>
+
+              <mat-tab label="PAYMENT">
+                <div class="spacer-sm"></div>
+                <mat-tab-group class="payment_inner_tab">
+                  <mat-tab label="Files">
+                    <div class="spacer-sm"></div>
+                    <div class="text-center" *ngIf="userData.user_role == 'franchisor' &&  !final_payment">
+                      <!-- <label for="dragFileupload" class="upload_draoDrop_file">
+                        <div>
+                          <img src="../../../../../../assets/images/carz/icons/upload.png" width="30px" alt="">
+
+                            <p class=" no-files-sub-head">Browse Your File <span style="color:#7ec2f4;border-bottom: 1px solid #7ec2f4;cursor:pointer;">Here</span> </p>
+                        </div>
+                      </label> -->
+                      <div class="spacer-sm"></div>
+
+                      <label for="dragFileupload">
+                        <div class="nda-file_upload_icon text-center">
+                          <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="100px" style="margin-bottom:15px; cursor:pointer;"
+                            alt="">
+                        </div>
+                      </label>
+
+                      <p class=" no-files-main-head">UPLOAD PAYMENT RECEIPT</p>
+                      <p class=" no-files-sub-head">Upload the payment receipt for 4 Lakh, to confirm the payment</p>
+
+
+                      <div class="spacer-xs"></div>
+                      <label for="dragFileupload" class="">
+                        <span class="filled-btn-secondary">
+                          <img src="../../../../../assets/images/carz/icons/add.svg" style=" width:13px;left: -16px; top: -2px;" class="btn-icons-left"
+                            alt=""> Upload</span>
+                      </label>
+
+                      <div class="spacer-xs"></div>
+                      <div class="upload_file_progress">
+                        <mat-progress-bar mode="determinate" *ngIf="enable_progress_bar == true" value="{{progress_percentage}}"></mat-progress-bar>
+                      </div>
+
+                      <input type="file" style="display:none;" id="dragFileupload" accept="application/pdf" (change)="handleFileInput($event.target.files,'aggrement','Agreement')">
+                    </div>
+
+
+
+
+
+                    <!-- files ui as library files  started-->
+
+                    <div class="row franchisee_libray setup_files" *ngIf="final_payment">
+                      <!-- userData.user_role == 'franchisor' || -->
+
+                      <div class="folder-wise_check files_main" [ngClass]="{'selected_file_or_folder':edit_stage_file_name == 'final_payment'}"  (dblclick)="openStageFiles(final_paymnet_link, i);$event.stopPropagation();">
+                        <ul class="list-inline">
+                          <li>
+                            <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                          </li>
+
+
+                          <li class="folder_title" *ngIf="edit_stage_file_name == 'final_payment'">
+                            <input matInput placeholder="File Name" class="folder_title" title="{{agreement_file_name}}" (keydown.enter)="edit_agreement_file_name(agreement_file_name, i)"
+                              (blur)="edit_agreement_file_name(agreement_file_name, i)" [(ngModel)]="agreement_file_name" name="agreement_file_name"
+                              required>
+                          </li>
+                          <li class="folder_title" *ngIf="edit_stage_file_name != 'final_payment'">{{agreement_file_name}}</li>
+
+
+
+                          <li *ngIf="userData.user_role == 'franchisor'">
+                            <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuStagesfinal" >
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+
+                        <mat-menu #FileMenuStagesfinal="matMenu" >
+                          <button mat-menu-item (click)="make_stage_file_edit_mode(file, 'final_payment')">
+
+                            <span>Edit</span>
+                          </button>
+                          <button mat-menu-item (click)="delete_agreement_payment()">
+                            <span>Delete</span>
+                          </button>
+                          <a target="_new" href="{{final_paymnet_link}}" download="{{final_payment}}">
+                            <button mat-menu-item>
+                              <span>Download</span>
+                            </button>
+                          </a>
+                        </mat-menu>
+                      </div>
+
+
+
+
+                      <!-- <div>
+
+                        <div class="files_main folderfiletype" (click)="openStageFiles(final_paymnet_link);$event.stopPropagation();">
+                          <img src="../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                          <h5 class="file-below-title" title="{{final_payment}}">{{final_payment}}</h5>
+                          <div class="pull-right view-icons animated   fadeIn">
+                            <a target="_new" href="{{final_paymnet_link}}" download="{{final_payment}}">
+                              <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="" (click)="$event.stopPropagation();">
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div> -->
+
+                    </div>
+
+                    <!-- files ui as library files  ended-->
+
+
+                    <!-- <div class="pdf_view_down upload_draoDrop_file" *ngIf="final_payment">
+
+                      <table>
+                        <a href="{{final_paymnet_link}}" target="_new" download="{{final_payment}}" (click)="$event.stopPropagation();">
+                          <tr>
+                            <td>
+                              <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                            </td>
+                            <td>
+                              <ul class="pdf_details">
+                                <li>
+                                  <h4 title="{{final_payment}}">{{final_payment}} </h4>
+                                </li>
+                              </ul>
+
+                            </td>
+                          </tr>
+                        </a>
+                      </table>
+                      <a href="{{final_paymnet_link}}" target="_self" download="{{final_payment}}" (click)="$event.stopPropagation();">
+                        <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" title="Download file" class="download_icon pull-right"
+                          alt="">
+                      </a>
+                      <div class="clearfix"></div>
+                    </div> -->
+
+
+                    <div *ngIf="userData.user_role == 'franchisee' && !final_payment" class="text-center">
+                      <div class="spacer-sm"></div>
+                      <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                      <p class="text-center no-files-main-head">No Files, yet</p>
+                      <p class="text-center no-files-sub-head">Franchisor has not uploaded any files</p>
+                    </div>
+
+                    <div class="spacer-sm"></div>
+                  </mat-tab>
+
+                </mat-tab-group>
+
+              </mat-tab>
+              <mat-tab label="AGREEMENT">
+                <div class="spacer-sm"></div>
+                <mat-tab-group class="payment_inner_tab">
+                  <mat-tab label="Files">
+                    <div class="spacer-sm"></div>
+
+                    <div class="text-center" *ngIf="userData.user_role == 'franchisor' && !agrement_file_name">
+                      <div class="spacer-sm"></div>
+                      <label for="upload_draoDrop_file">
+                        <div class="nda-file_upload_icon text-center">
+                          <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="100px" style="margin-bottom:15px; cursor:pointer;"
+                            alt="">
+                        </div>
+                      </label>
+                      <p class=" no-files-main-head">UPLOAD THE FINAL AGREEMENT</p>
+                      <p class=" no-files-sub-head">Upload the final agreement so that the Franchisee can begin Initial Setup</p>
+                      <div class="spacer-xs"></div>
+                      <label for="upload_draoDrop_file" class="">
+                        <span class="filled-btn-secondary">
+                          <img src="../../../../../assets/images/carz/icons/add.svg" style=" width:13px;left: -16px; top: -2px;" class="btn-icons-left"
+                            alt=""> Upload</span>
+                      </label>
+
+                      <div class="spacer-xs"></div>
+
+                      <div class="upload_file_progress">
+                        <mat-progress-bar mode="determinate" *ngIf="enable_progress_bar == true" min="0" max="100" value="{{progress_percentage}}"></mat-progress-bar>
+                        <!-- <div class="progress-bar" role="progressbar" *ngIf="progress_bar_file == i" min="0" max="100"  aria-valuemin="0" aria-valuemax="100" [style.width]="progress_percentage + '%'">
+                            {{progress_percentage}}
+                          </div> -->
+                      </div>
+                      <div class="spacer-xs"></div>
+                      <!-- <label for="dragFileupload" class="upload_draoDrop_file">
+                          <div class="nda-file_upload_icon text-center">
+                              <img src="../../../../../../assets/images/carz/icons/nda_uploads.svg" width="47px" style="margin-bottom:15px;" alt="">
+                          </div>
+                        </label> -->
+                      <input type="file" style="display:none;" id="upload_draoDrop_file" accept="application/pdf" (change)="handleFileInput($event.target.files,'aggrement_Copy','Agreement')">
+                    </div>
+
+                    <div *ngIf="userData.user_role == 'franchisee' && !agrement_file_name" class="text-center">
+                      <div class="spacer-sm"></div>
+                      <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                      <p class="text-center no-files-main-head">No Files, yet</p>
+                      <p class="text-center no-files-sub-head">Franchisor has not uploaded any files</p>
+                    </div>
+
+
+
+                    <!-- <p class="upload_file_top_title">Upload Final Agreement</p>
+                    <div class="spacer-sm"></div>
+                    <div *ngIf="userData.user_role == 'franchisor' && !agrement_file_name">
+                      <label for="dragFileupload" class="upload_draoDrop_file">
+                        <div>
+                          <img src="../../../../../../assets/images/carz/icons/upload.png" width="30px" alt="">
+
+                          <p class="drap_status">BROWSE YOUR FILE
+                            <span style="color:#6a6a6a">HERE</span>
+
+                          </p>
+                        </div>
+                      </label>
+                      <input type="file" style="display:none;" id="dragFileupload" (change)="handleFileInput($event.target.files,'aggrement_Copy','Agreement')">
+                    </div> -->
+
+
+                    <!-- files ui as library files  started-->
+
+
+                    <div class="row franchisee_libray setup_files" *ngIf=" agrement_file_name">
+
+
+                      <div class="folder-wise_check files_main" [ngClass]="{'selected_file_or_folder':edit_stage_file_name == agreement}" (dblclick)="openStageFiles(agrement_file_link, i);$event.stopPropagation();">
+                        <ul class="list-inline">
+                          <li>
+                            <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                          </li>
+
+                          <li class="folder_title" *ngIf="edit_stage_file_name == agreement">
+                            <input matInput placeholder="File Name" class="folder_title" title="{{final_agreement_file_name}}" (keydown.enter)="edit_agreement_final_file_name(final_agreement_file_name, i)"
+                              (blur)="edit_agreement_final_file_name(final_agreement_file_name, i)" [(ngModel)]="final_agreement_file_name"
+                              name="file_name" required>
+
+                          </li>
+                          <li class="folder_title" *ngIf="edit_stage_file_name != agreement">{{final_agreement_file_name}}</li>
+
+
+                          <!-- <li class="folder_title" title="{{agrement_file_name}}">{{agrement_file_name}}</li> -->
+                          <li *ngIf="userData.user_role == 'franchisor'">
+                            <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuStagesagreement">
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+
+                        <mat-menu #FileMenuStagesagreement="matMenu">
+                          <button mat-menu-item (click)="make_stage_file_edit_mode(file ,agreement)">
+                            <span>Edit</span>
+                          </button>
+
+                          <button mat-menu-item (click)="delete_final_agreement()">
+
+                            <span>Delete</span>
+                          </button>
+                          <a target="_new" href="{{agrement_file_link}}" download="{{agrement_file_name}}">
+                            <button mat-menu-item>
+
+                              <span>Download</span>
+                            </button>
+                          </a>
+                        </mat-menu>
+                      </div>
+
+
+
+                      <!-- <div>
+
+                        <div class="files_main folderfiletype" (click)="openStageFiles(agrement_file_link);$event.stopPropagation();">
+                          <img src="../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                          <h5 class="file-below-title" title="{{agrement_file_name}}">{{agrement_file_name}}</h5>
+                          <div class="pull-right view-icons animated   fadeIn">
+                            <a target="_new" href="{{agrement_file_link}}" download="{{agrement_file_name}}">
+                              <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="" (click)="$event.stopPropagation();">
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                      </div> -->
+
+                    </div>
+
+                    <!-- files ui as library files  ended-->
+
+
+
+                    <!-- <div class="pdf_view_down upload_draoDrop_file" *ngIf="userData.user_role == 'franchisee' || agrement_file_name">
+
+
+                      <table>
+                          <a href="{{agrement_file_link}}" target="_new" download="{{agrement_file_name}}" (click)="$event.stopPropagation();">
+                        <tr>
+                          <td>
+                            <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                          </td>
+                          <td>
+                            <ul class="pdf_details">
+                              <li>
+                                <h4 title="{{agrement_file_name}}">{{agrement_file_name}} </h4>
+                              </li>
+                            </ul>
+
+                          </td>
+                        </tr>
+                        </a>
+                      </table>
+                     <div class="clearfix"></div>
+                    </div> -->
+
+
+                    <div class="spacer-sm"></div>
+                  </mat-tab>
+
+                </mat-tab-group>
+              </mat-tab>
+            </mat-tab-group>
+
+          </div>
+          <!-- Agreement UI ended -->
+
+          <!-- setup Ui Started -->
+          <div class="row" *ngIf="tabIndex==4">
+
+            <!-- <div class="spacer-sm"></div> -->
+            <div class=" col-md-12 ">
+              <div class="text-center under-construction-setup" *ngIf="setup_department_list.length == 0">
+                <div class="spacer-md"></div>
+                <!-- <img src="../../../../../../assets/images/carz/icons/crane.svg" width="115px" style="margin-bottom:15px;" alt=""> -->
+                <p class="text-center no-files-main-head">BEGIN INITIAL SETUP</p>
+                <!-- <p class="text-center no-files-main-head"> Come back soon</p> -->
+
+                <!-- <p class="text-center no-files-sub-head">Looks like this page is still under construction</p> -->
+
+
+
+                <p class="text-center no-files-sub-head">Go to Settings, and start creating tasks checklists for the Franchisee to complete <br>Initial Setup</p>
+                <div class="spacer-sm"></div>
+                <button class="filled-btn" *ngIf="userData.user_role == 'franchisor'" mat-button (click)="navigateSetup()">
+                  <img src="../../../../../assets/images/carz/icons/settings.svg" style="left: -4px;top: 0px;" class="btn-icons-left" alt=""
+                  /> Open Settings
+                </button>
+              </div>
+
+            </div>
+            <div style="width:100%;" class="" [ngClass]="{'show': setup_department_list.length != 0}">
+            <div class="checklists_list_setup" >
+            <mat-tab-group (selectChange)='onSelectChange($event)' [selectedIndex]="departmentTabIndex">
+              <mat-tab *ngFor="let department of setup_department_list; let i = index" label={{department.setup_department_name_EN}} >
+                <div class="spacer-sm" *ngIf="checklist_opened == false"></div>
+
+                <!-- checklist boxes empty state -->
+
+                <!-- <div class="text-center under-construction-setup" *ngIf="department.setup_department_name_EN == 0">
+                    <div class="spacer-sm"></div>
+                    <p class="text-center no-files-main-head">NO CHECKLISTS ARE CREATED</p>
+                    <p class="text-center no-files-sub-head">Go to Settings, and start creating tasks checklists for the Franchisee to complete <br>Initial Setup</p>
+                    <div class="spacer-sm"></div>
+                    <button class="filled-btn" mat-button (click)="navigateSetup()">
+                      <img src="../../../../../assets/images/carz/icons/settings.svg" style="left: -4px;top: 0px;" class="btn-icons-left" alt=""
+                      /> Open Settings
+                    </button>
+                  </div> -->
+
+                 <!--checklist boxes list-->
+
+                <div class="row margin-left-0" *ngIf="checklist_opened == false">
+                  <div class="checklist_box" *ngFor="let checklist of setup_checklist_list;let i=index;"  (click)="open_checklist(checklist)">
+                    <p class="settings_stage_title-cards">{{checklist.setup_checklist_name_EN}}</p>
+
+                    <div class="box-bottom">
+                      <p>
+                        <img src="../../../../../../assets/images/carz/icons/tick - checklist card.svg" style="left: -4px;top: 0px; width:13px;"
+                          class="btn-icons-left" alt="" /> {{checklist.completed_task_length || 0}} / {{checklist.tasks_length}}
+                        <span class="completed_title" *ngIf="checklist.completed_task_length == checklist.tasks_length">Completed</span>
+                      </p>
+                    </div>
+                    <div class="box-bottom-progress upload_file_progress">
+                      <mat-progress-bar *ngIf="checklist.completed_task_length > 0" mode="determinate" value="{{checklist.completed_task_length * 100 / checklist.tasks_length}}"></mat-progress-bar>
+                      <mat-progress-bar *ngIf="checklist.completed_task_length == 0 || checklist.completed_task_length == undefined" mode="determinate" value="0"></mat-progress-bar>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <!--/checklist boxes list-->
+
+                <!--Checklist Data Main-->
+                <div class=" setup_checklist-main" *ngIf="checklist_opened == true">
+                    <div class="row  margin-left-0">
+                      <div class=" col-md-3 setup_checklist-left">
+
+                        <mat-list role="list" *ngFor="let checklist of setup_checklist_list;let j=index;" (click)="open_checklist(checklist, i)">
+                          <mat-list-item  (click)="activateClass(j)" [ngClass]="{'Boldactive': j == selectedListitem}" role="listitem">
+                            <!-- <span class="Orange_dot"></span> -->
+
+                            <p class="franchisee_setup_left_side_active">{{checklist.setup_checklist_name_EN}}</p>
+
+                          </mat-list-item>
+                          <!-- <mat-list-item role="listitem">Tools</mat-list-item>
+                          <mat-list-item role="listitem">Machinery</mat-list-item> -->
+                        </mat-list>
+                      </div>
+                      <div class=" col-md-9  setup_checklist-right">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb franchisee_separate">
+                            <li class="breadcrumb-item">{{department.setup_department_name_EN}}</li>
+                            <li class="breadcrumb-item active">{{checklist_data.setup_checklist_name_EN}}</li>
+
+                          </ol>
+                        </nav>
+
+                        <p class="settings_stage_title"><span *ngIf="!titleboxchecklist"  >{{checklist_data.setup_checklist_name_EN}}</span><span *ngIf="titleboxchecklist"> <input type="text" value="Equipment" class="settings_stage_title_edit">  </span>
+                          <span class="settings_stage_title_icons">
+                            <!-- <img src="../../../../../../assets/images/carz/icons/edit.svg" *ngIf="!titleboxchecklist" width="15px" (click)="title_box_checklist()" class="edit-activity" alt=""> -->
+                            <!-- <img src="../../../../../../assets/images/carz/icons/tick - checklist card.svg" *ngIf="titleboxchecklist" width="18px" (click)="title_box_checklist()" class="edit-activity" alt=""> -->
+                            <!-- <img src="../../../../../../assets/images/carz/icons/delete-button.png" width="15px" class="delete-activity" alt="" (click)="delete_setup_checklist(department._id)"> -->
+                          </span>
+                        </p>
+
+                        <p class="settings-setup-date">{{checklist_data.created_at|date: 'dd.MM.yyyy'}}</p>
+                        <div class="spacer-xs"></div>
+
+                        <div class="text-center under-construction-setup" *ngIf="checklist_tasks_list == 0">
+                          <div class="spacer-sm"></div>
+                          <!-- <img src="../../../../../../assets/images/carz/icons/crane.svg" width="115px" style="margin-bottom:15px;" alt=""> -->
+                          <p class="text-center no-files-main-head">NO TASKS ARE CREATED</p>
+                          <!-- <p class="text-center no-files-main-head"> Come back soon</p> -->
+
+                          <!-- <p class="text-center no-files-sub-head">Looks like this page is still under construction</p> -->
+
+
+
+                          <p class="text-center no-files-sub-head" *ngIf="userData.user_role == 'franchisor'">Go to Settings, and start creating tasks checklists for the Franchisee to complete <br>Initial Setup</p>
+                          <p class="text-center no-files-sub-head" *ngIf="userData.user_role == 'franchisee'">Franchisor not yet created any checklist, please wait until</p>
+                          <div class="spacer-sm"></div>
+                          <button class="filled-btn" *ngIf="userData.user_role == 'franchisor'" mat-button (click)="navigateSetup()">
+                            <img src="../../../../../assets/images/carz/icons/settings.svg" style="left: -4px;top: 0px;" class="btn-icons-left" alt=""
+                            /> Open Settings
+                          </button>
+                        </div>
+
+
+                        <div class="checklist-checkbox" *ngFor="let task_data of checklist_tasks_list;let i=index;">
+                          <mat-checkbox [(ngModel)]="task_data.task_status" (change)="completeTask(task_data, $event, department._id)">
+                              <span>{{task_data.task_name_EN}}</span>
+                              <!-- <span  *ngIf="task_data.franchisee_file_upload_required">File upload</span> -->
+                              <!-- <span >{{task_data.franchisor_task_file_attachment_file_url}}</span> -->
+                            <!-- <span class="checklist-label"> 1) Checkboxes without text or labels should be given a meaningful label via Checkboxes without
+                              text or labels should be given a meaningful label via Checkboxes without text or labels should
+                              be given a meaningful label via Checkboxes without text or labels should be given a meaningful
+                              label via Checkboxes without text or labels should be given a meaningful label via </span> -->
+                            <!-- <span class="franchisee-action-icons">
+                              <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px"
+                                alt="">
+                              <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px"
+                                alt=""> </span> -->
+                          </mat-checkbox>
+
+
+
+
+                    <!-- multiple choice -->
+                    <div class="app-form-radio que-settings-below-shown-form" *ngIf="task_data.task_type =='Radio Button'">
+
+                      <mat-radio-group [(ngModel)]="task_data.task_answer">
+                        <mat-radio-button *ngFor="let opt of task_data.task_radio_options" class="multiple_question_rad" [value]="opt.option" required>{{opt.option}}</mat-radio-button>
+                        <div class="spacer-xs"></div>
+                      </mat-radio-group>
+                    </div>
+                    <!-- /multiple choice -->
+                    <!-- short Answer -->
+                    <div class="que-settings-below-shown-form" *ngIf="task_data.task_type =='Short Answer'">
+                      <mat-form-field>
+                        <input matInput placeholder="Short Answer" [(ngModel)]="task_data.task_answer" name="task_answer" required>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- /short Answer -->
+                    <!-- <div class="que-settings-below-shown-form" *ngIf="task_data?.franchisee_file_upload_required">
+                        <p class="fileupload-view-disable"> <img src="../../../../../../assets/images/carz/icons/upload-up.svg" style="margin-right: 8px;" width="9px" alt=""> File upload</p>
+                      </div> -->
+
+                    <!-- Tasks -->
+                    <div class="que-settings-below-shown-form" *ngIf="task_data.task_type =='Task'">
+                      <!-- <mat-form-field>
+                      <textarea matInput placeholder="Task" disabled></textarea>
+                    </mat-form-field> -->
+                    </div>
+                    <!-- /Tasks -->
+
+                          <div class="checklist-bottom-actions" *ngIf="task_data.franchisor_task_file_attachment_file_url">
+                            <ul class="list-inline view-attach">
+
+                              <li >  <div class="checklist-bottom-actions" *ngIf="task_data.franchisee_file_upload_required === true">
+                                  <span class="settings-gray-attach-file">
+                                    <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px" alt="">
+                                  </span>
+                                  <span class="attach-file-title">
+                                    <label for="attachFilesetup">File upload </label>
+                                  </span>
+                                  <input type="file" name="" class="attachFilesetup1" id="attachFilesetup"  (change)="checklist_task_file($event.target.files,i);readUrl($event);">
+                                </div>  </li>
+                                <!-- *ngIf="fileToUpload.name" -->
+                                <!-- <li><img src="../../../../../../assets/images/carz/icons/eye.svg" (click)="viewattachment(task_data)" title="Franchisee file view" width="18px" alt=""> <span style="padding-left:8px;padding-right:8px;">  | </span> </li> -->
+                              <li>  <img src="../../../../../../assets/images/carz/icons/eye.svg" style="cursor:pointer" width="18px" alt="" title="Franchisor file view" (click)="viewattachment(task_data)">  </li>
+                              <li><a href="{{task_data.franchisor_task_file_attachment_file_url}}" download="{{task_data.franchisor_task_file_attachment_file_url}}" target="_new"> <img src="../../../../../../assets/images/carz/icons/download.svg" style="cursor:pointer" width="18px"  alt=""> </a></li>
+                              <!-- <li>  <img src="../../../../../../assets/images/carz/icons/eye.svg" style="cursor:pointer" width="18px" alt="" title="Franchisor file view" (click)="viewattachment(task_data)">  </li>
+                              <li><a href="{{task_data.task_franchisee_submitted_file_url}}" download="{{task_data.task_franchisee_submitted_file_url}}" target="_new"> <img src="../../../../../../assets/images/carz/icons/download.svg" style="cursor:pointer" width="18px"  alt=""> </a></li> -->
+                            </ul>
+
+                          </div>
+                          <!-- to view file upload required -->
+                          <div class="que-settings-below-shown-form" *ngIf="!task_data.franchisor_task_file_attachment_file_url">
+                              <!-- <p class="fileupload-view-disable"> <img src="../../../../../../assets/images/carz/icons/upload-up.svg" style="margin-right: 8px;" width="9px" alt="" (change)="checklist_task_file($event.target.files,i);readUrl($event);"> File upload</p> -->
+                              <span class="settings-gray-attach-file">
+                              <span class="attach-file-title">
+                                <label for="attachFilesetup-fr{{i}}"> <img src="../../../../../../assets/images/carz/icons/upload-up.svg" style="margin-right: 8px;" width="9px" alt="">  File upload  <span *ngIf="fileNameInsetup"> {{fileNameInsetup}}</span></label>
+                              </span>
+                              </span>
+                              <input type="file" name="" class="attachFilesetup1" id="attachFilesetup-fr{{i}}"  (change)="checklist_task_file($event.target.files,i);readUrl($event);">
+
+
+                            </div>
+
+                            <!-- /to view file upload required -->
+                          <div class="spacer-xs"></div>
+
+                          <mat-divider></mat-divider>
+                          <div class="spacer-xs"></div>
+
+                        </div>
+                        <!-- <div class="checklist-checkbox">
+                          <mat-checkbox>
+                            <span class="checklist-label"> 1) Checkboxes without text or labels should be given a meaningful label via </span>
+                          </mat-checkbox>
+                          <div class="checklist-bottom-actions">
+                            <span class="settings-gray-attach-file">
+                              <img src="../../../../../../assets/images/carz/icons/attach_file_grey.svg" class="attach_file" width="13px" alt="">
+                            </span>
+
+                            <span class="attach-file-title">
+                              <label for="">hareesh.jpg </label>
+                            </span>
+                            <input type="file" name="" class="attachFilesetup1" id="attachFilesetup">
+                          </div>
+                          <div class="spacer-xs"></div>
+
+                          <mat-divider></mat-divider>
+                          <div class="spacer-xs"></div>
+
+                        </div> -->
+
+                      </div>
+                    </div>
+
+
+                  </div>
+                <!--/Checklist Data Main-->
+
+
+              </mat-tab>
+            </mat-tab-group>
+            </div>
+          </div>
+            <div class="spacer-sm"></div>
+
+
+<!--
+            <mat-tab-group *ngIf="checklist_opened == true"  (selectChange)="onSelectChange($event)">
+              <mat-tab *ngFor="let department of setup_department_list; let i = index" label="{{department.setup_department_name_EN}} {{selectedIndex}}" >
+
+
+                <div class=" setup_checklist-main" >
+                  <div class="row  margin-left-0">
+                    <div class="setup_checklist-left">
+
+                      <mat-list role="list" *ngFor="let checklist of setup_checklist_list;let j=index;" (click)="open_checklist(checklist, i)">
+                        <mat-list-item role="listitem">
+
+                          <strong>{{checklist.setup_checklist_name_EN}}</strong>
+                        </mat-list-item>
+
+                      </mat-list>
+                    </div>
+                    <div class="setup_checklist-right">
+                      <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb franchisee_separate">
+                          <li class="breadcrumb-item">{{department.setup_department_name_EN}}</li>
+                          <li class="breadcrumb-item active">Equipment</li>
+
+                        </ol>
+                      </nav>
+
+                      <p class="settings_stage_title">Equipment
+                        <span class="settings_stage_title_icons">
+                          <img src="../../../../../../assets/images/carz/icons/edit.svg" width="15px" class="edit-activity" alt="">
+                          <img src="../../../../../../assets/images/carz/icons/delete-button.png" width="15px" class="delete-activity" alt="">
+                        </span>
+                      </p>
+                      <p class="settings-setup-date">( 17-04-2018 )</p>
+                      <div class="spacer-xs"></div>
+
+                      <div class="checklist-checkbox" *ngFor="let task_data of checklist_tasks_list;let i=index;">
+                        <mat-checkbox>
+                            <span>{{task_data.task_name}}</span>
+                          <span class="checklist-label"> 1) Checkboxes without text or labels should be given a meaningful label via Checkboxes without
+                            text or labels should be given a meaningful label via Checkboxes without text or labels should
+                            be given a meaningful label via Checkboxes without text or labels should be given a meaningful
+                            label via Checkboxes without text or labels should be given a meaningful label via </span> -->
+                          <!-- <span class="franchisee-action-icons">
+                            <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px"
+                              alt="">
+                            <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px"
+                              alt=""> </span>
+                        </mat-checkbox>
+                        <div class="checklist-bottom-actions">
+                          <span class="settings-gray-attach-file">
+                            <img src="../../../../../../assets/images/carz/icons/upload-up.svg" class="attach_file" width="9px" alt="">
+                          </span>
+                         ../../../../../../assets/images/carz/icons/attach_file_grey.svg -->
+                          <!-- <span class="attach-file-title"> Testing.pdf </span>
+                          <span class="attach-file-title">
+                            <label for="attachFilesetup">File upload </label>
+                          </span>
+                          <input type="file" name="" class="attachFilesetup1" id="attachFilesetup">
+                        </div>
+                        <div class="spacer-xs"></div>
+
+                        <mat-divider></mat-divider>
+                        <div class="spacer-xs"></div>
+
+                      </div>
+                       <div class="checklist-checkbox">
+                        <mat-checkbox>
+                          <span class="checklist-label"> 1) Checkboxes without text or labels should be given a meaningful label via </span>
+                        </mat-checkbox>
+                        <div class="checklist-bottom-actions">
+                          <span class="settings-gray-attach-file">
+                            <img src="../../../../../../assets/images/carz/icons/attach_file_grey.svg" class="attach_file" width="13px" alt="">
+                          </span>
+
+                          <span class="attach-file-title">
+                            <label for="">hareesh.jpg </label>
+                          </span>
+                          <input type="file" name="" class="attachFilesetup1" id="attachFilesetup">
+                        </div>
+                        <div class="spacer-xs"></div>
+
+                        <mat-divider></mat-divider>
+                        <div class="spacer-xs"></div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+              </mat-tab>
+            </mat-tab-group> -->
+
+
+
+          </div>
+          <!-- setup Ui ended -->
+
+        </section>
+
+        <!-- ended tabs with meetings , Activity , Documents  -->
+        <div class="spacer-xs"></div>
+
+
+
+      </div>
+      <div class="profile-right-main bottom" [hidden]="tabIndex==4 || tabIndex==2 || tabIndex==1 " #target>
+        <mat-tab-group>
+          <mat-tab label="Meetings">
+            <!-- <div class="spacer-xs"></div> -->
+            <form #meetingForm="ngForm" name="meetingForm" novalidate>
+              <!-- (ngSubmit)="create_meeting(meetingForm)" -->
+              <!-- *ngIf="userData.user_role == 'franchisor'" -->
+              <div class="meeting_main">
+                <div class="spacer-sm"></div>
+
+                <div class="row meetings" >
+                  <div class="col-sm-8 col-md-8">
+                    <label class="input-custom-label" for="master_fran_name">Meeting Title</label>
+                    <br>
+                    <mat-form-field class="master_fran_name">
+                      <input matInput placeholder=""   id="master_fran_name" [(ngModel)]="meeting_data.meeting_title"
+                        name="meeting_title" [ngModelOptions]="{standalone: true}" required> {{meeting_title}}
+                      <mat-error *ngIf="meetingForm.hasError('required', 'meeting_time')">
+
+                        Title is required
+                      </mat-error>
+                    </mat-form-field>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label class="input-custom-label" for="master_fran_date_kyc">Date</label>
+                        <br>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker"  id="master_fran_date_kyc" placeholder="" [(ngModel)]="meeting_data.meeting_date"
+                            name="meeting_date" [ngModelOptions]="{standalone: true}" required> {{meeting_date}}
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                          <mat-error *ngIf="meetingForm.hasError('required', 'meeting_time')">
+
+                            Date is required
+                          </mat-error>
+                        </mat-form-field>
+
+                      </div>
+                      <div class="col-md-4">
+                        <label class="input-custom-label" for="master_fran_time">Time</label>
+                        <br>
+                        <mat-form-field>
+                          <!-- <input matInput placeholder="" id="master_fran_time" type="time" [(ngModel)]="meeting_data.meeting_time" name="meeting_time"
+                    [ngModelOptions]="{standalone: true}"> {{meeting_time}} -->
+                          <mat-select placeholder="" id="master_fran_time" name="meeting_time" [(ngModel)]="meeting_data.meeting_time" required>
+                            <mat-option *ngFor="let pick of time_picker" value="{{pick.time}}">{{pick.time}}</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="meetingForm.hasError('required', 'meeting_time')">
+
+                            Time is required
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <label class="input-custom-label" for="master_fran_people">Assign People</label>
+                    <br>
+                    <mat-form-field class="master_fran_name">
+                      <mat-select placeholder="Assign People" multiple required>
+                        <mat-option *ngFor="let topping of toppingList" [value]="topping.name" (click)="assign_people(topping)" required>{{topping.name}}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="meetingForm.hasError('required', 'meeting_time')">
+
+                        Assign people is required
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="col-sm-4 col-md-4">
+                    <label class="input-custom-label" for="master_fran_time">Location</label>
+                    <br>
+                    <ng4geo-autocomplete id="address" class="meeting" name="address" [userSettings]="userSettings2" [(ngModel)]="meeting_data.meeting_location"
+                      (componentCallback)="autoCompleteCallback($event)" ngDefaultControl mdInput [ngModelOptions]="{standalone: true}" required></ng4geo-autocomplete>
+                    {{meeting_location}}
+                    <div *ngIf="userData.user_role == 'franchisor'">
+                    <label class="input-custom-label" for="Remarks_meeting">Franchisor Remarks</label>
+                    <br>
+                    <mat-form-field>
+                      <input matInput placeholder="" id="Remarks_meeting"  name="meeting_franchisor_remarks" [(ngModel)]="meeting_data.meeting_franchisor_remarks"> {{meeting_franchisor_remarks}}
+                      <mat-error *ngIf="meetingForm.hasError('required', 'meeting_franchisor_remarks')">
+
+                         Remark is required
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                    <!-- <div class="spacer-sm"></div> -->
+                    <label class="input-custom-label" for="Remarks_meeting">Franchisee Remarks</label>
+                    <br>
+                    <mat-form-field>
+                      <input matInput placeholder="" id="Remarks_meeting" [(ngModel)]="meeting_data.meeting_remarks" name="meeting_remarks" [ngModelOptions]="{standalone: true}"> {{meeting_remarks}}
+                      <mat-error *ngIf="meetingForm.hasError('required', 'meeting_remarks')">
+
+                        Remark is required
+                      </mat-error>
+                    </mat-form-field>
+                    <div class="spacer-sm"></div>
+
+                    <button class="filled-btn franchisee" (click)="create_meeting(meetingForm);sendMessage(meeting_data)" *ngIf="meeting_edit_mode == false" mat-button>Schedule</button>
+                    <button class="filled-btn franchisee" (click)="update_meeting(meeting_data,meetingForm)" *ngIf="meeting_edit_mode == true" mat-button>Save</button>
+                  </div>
+                  <div class="col-md-12">
+                    <!-- <div class="spacer-sm"></div> -->
+                    <div class="assigned_people" *ngFor="let assign_auditor of meeting_data.meeting_assigned_people">
+                      <img src="{{assign_auditor.image}}" alt="{{assign_auditor.name}}">
+                      <p>{{assign_auditor.name}}</p>
+                    </div>
+                    <!-- <button class="filled-btn franchisee" *ngIf="ndaMeeting._id" type="submit" mat-button (click)="edit_meeting(ndaMeeting)">SAVE</button> -->
+                    <div class="spacer-xs"></div>
+
+                    <div class="meetings-divider"></div>
+                  </div>
+                  <div class="spacer-xs"></div>
+
+                </div>
+
+                <div class="franchisee_all_meetings_main" *ngIf="meeting_array.length > 0">
+                  <div class="spacer-sm" *ngIf="userData.user_role == 'franchisor'"></div>
+                  <p class="all_files doc">All Meetings
+                    <mat-divider [inset]="true"></mat-divider>
+                  </p>
+                  <div class="all_meetingmain">
+                  <div class="franchisee_all_meetings_new row" *ngFor="let meeting of meeting_array;let i=index; last as last">
+                    <div class="col-md-10">
+                      <p class="meeting_main_title">
+                        <img src="../../../../../../assets/images/carz/icons/calendar_meet.svg" class="svg-icons calender" alt=""> {{meeting.meeting_title}}</p>
+                      <p class="meeting-time">
+                        <!-- <img alt="" class="svg-icons location" src="../../../../../../assets/images/carz/icons/location-in.svg"> -->
+                        <span class="location_meeting">{{meeting.meeting_location}}</span>
+                      </p>
+                      <p class="meeting-time">{{meeting.meeting_date | date:'dd.MM.yyyy'}} {{meeting.meeting_time}}</p>
+                      <!-- <p class="remark_assign">
+                      <span popover="Assignees" popoverPlacement="top" [popoverOnHover]="false" [popoverCloseOnClickOutside]="true" [popoverCloseOnMouseOutside]="false"
+                        [popoverDisabled]="false" [popoverAnimation]="true">{{meeting.meeting_assigned_people.length}} Assignees</span>
+                      </p> -->
+                      <p class="meeting-time" *ngIf="userData.user_role == 'franchisee'">{{meeting.meeting_remarks}}</p>
+                      <div class="assigned_people created_meeting" *ngFor="let assign_auditor of meeting.meeting_assigned_people">
+                        <img src="{{assign_auditor.image}}" alt="{{assign_auditor.name}}">
+                        <p>{{assign_auditor.name}}</p>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-2" *ngIf="userData.user_role == 'franchisor'">
+                      <p class="pull-right">
+                        <img src="../../../../../../assets/images/carz/icons/edit.svg" (click)="edit_selected(meeting);scroll(target);" width="15px"
+                          class="edit-activity" alt="">
+                        <img src="../../../../../../assets/images/carz/icons/delete-button.png" (click)="delete_meeting(meeting._id, i)" width="15px"
+                          class="delete-activity" alt="">
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+
+                      <mat-divider *ngIf="!last"></mat-divider>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- popoverTitle="Popover header" -->
+                  </div>
+                </div>
+                </div>
+                <!-- <div *ngIf="userData.user_role == 'franchisee' && meeting_array.length==0" class="text-center">
+                  <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                  <p class="text-center no-files-main-head">No Meetings, yet</p>
+                  <p class="text-center no-files-sub-head">Franchisor has not scheduled any meetings</p>
+                </div> -->
+
+              </div>
+            </form>
+          </mat-tab>
+          <mat-tab label="Documents">
+            <!-- <div class="spacer-xs"></div> -->
+
+            <!--files and folders of crm -->
+            <div class="files_folders_crm meeting_main">
+              <div class="spacer-sm"></div>
+              <!-- <p class="all_files doc">Documents</p> -->
+              <nav aria-label="breadcrumb" *ngIf="stepsFiles">
+                <ol class="breadcrumb franchisee_separate documents franchisee_breadcrumb_main">
+                  <li class="breadcrumb-item">
+                    <a (click)="stepsFilesFlag()">Back</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">{{breadcrums_folder_title}}</li>
+                </ol>
+              </nav>
+              <div class="row margin-left-0" *ngIf="stepsDocumentsFlag">
+                <div class="folder-wise_check" *ngFor="let folder of crm_folders" (dblclick)="stepsDocuments(folder)">
+
+                  <ul class="list-inline">
+                    <li>
+                      <img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt="">
+                    </li>
+
+                    <li class="folder_title" title="{{folder.folder_name}}">
+                      {{folder.folder_name}}
+                    </li>
+                    <li>
+                      <!-- <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FolderMenu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button> -->
+                    </li>
+
+                  </ul>
+
+                  <!-- <mat-menu #FolderMenu="matMenu">
+                    <button mat-menu-item>
+
+                      <span>Edit</span>
+                    </button>
+                    <button mat-menu-item>
+
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu> -->
+
+                </div>
+              </div>
+              <div *ngIf="stepsFiles">
+                <div class="row margin-left-0" *ngIf="files_array.length>0 && page_loaded == true">
+
+
+
+                  <div class="folder-wise_check files_main" *ngFor="let file of files_array" (dblclick)="openDialog(file);$event.stopPropagation();">
+                    <ul class="list-inline">
+                      <li>
+                        <img src="../../../../../assets/images/carz/icons/pdf.svg" class="documents_pdf_icon" alt="">
+                      </li>
+                      <li class="folder_title" title="{{file.file_name}}">{{file.file_name}}</li>
+                      <li>
+                        <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenuStages">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                      </li>
+                    </ul>
+
+                    <mat-menu #FileMenuStages="matMenu">
+                      <button mat-menu-item>
+
+                        <span>Edit</span>
+                      </button>
+                      <button mat-menu-item>
+
+                        <span>Delete</span>
+                      </button>
+                      <a target="_self" href="{{file.path}}" download="{{file.file_name}}">
+                        <button mat-menu-item>
+
+                          <span>Download</span>
+                        </button>
+                      </a>
+                    </mat-menu>
+                  </div>
+
+                  <!-- <div class="files_main folderfiletype" *ngFor="let file of files_array" (click)="openDialog(file);$event.stopPropagation();">
+                      <img src="../../../../../assets/images/carz/icons/pdf.svg" alt="">
+                      <h5 class="file-below-title" title="{{file.file_name}}">{{file.file_name}}</h5>
+                      <div class="pull-right view-icons animated   fadeIn">
+                        <a target="_self" href="{{file.path}}" download="{{file.file_name}}">
+                          <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="">
+                        </a>
+                      </div>
+                    </div> -->
+                  <div class="clearfix"></div>
+
+
+                </div>
+              </div>
+              <div *ngIf="!stepsDocumentsFlag && files_array.length==0">
+                <div class="spacer-sm"></div>
+                <img src="../../../../../../assets/images/carz/icons/file_orange.svg" class="documents_file_icon" width="35px" style="margin-bottom:15px;"
+                  alt="">
+                <p class="text-left no-files-main-head">No Files, yet</p>
+                <p class="text-left no-files-sub-head">Franchisee has not uploaded any files</p>
+
+              </div>
+              <div class="spacer-sm"></div>
+            </div>
+            <!--/files and folders of crm -->
+
+          </mat-tab>
+          <mat-tab label="Activity">
+            <!-- <div class="spacer-xs"></div> -->
+
+            <div class="activity-main meeting_main">
+              <div class="spacer-sm"></div>
+              <div class="activitytracker">
+                <!--  under-construction -->
+                <div class="text-center">
+                  <div class="spacer-sm"></div>
+                  <img src="../../../../../../assets/images/carz/icons/crane.svg" width="115px" style="margin-bottom:15px;" alt="">
+                  <p class="text-center no-files-main-head">Come back soon</p>
+                  <p class="text-center no-files-sub-head">Looks like this page is still under construction</p>
+                </div>
+                <!-- <ul>
+                  <li> <strong>
+                    <span class="rounded-circle">
+                      <span class="time-act">13:33</span>
+                    </span>
+                    <img src="../../../../../../assets/images/carz/icons/circle-outline.png" class="img-circle-act" alt="">Today
+                    <span class="pull-right">
+                      <img src="../../../../../../assets/images/carz/icons/edit.svg" width="15px" class="edit-activity" alt="">
+                      <img src="../../../../../../assets/images/carz/icons/delete-button.png" width="15px" class="delete-activity" alt="">
+                    </span>
+                  </strong>
+                  </li>
+                  <li>
+                    <span class="rounded-circle">
+                      <span class="time-act">21:53</span>
+                    </span>
+                    <span class="img-cr-tl">
+                      <img src="../../../../../../assets/images/carz/icons/circle-outline.png" class="img-circle-act" alt="">
+                    </span> Следит за поведением посетителей</li>
+                  <li>
+                    <span class="rounded-circle">
+                      <span class="time-act">09:33</span>
+                    </span>
+                    <span class="img-cr-tl">
+                      <img src="../../../../../../assets/images/carz/icons/circle-outline.png" class="img-circle-act" alt="">
+                    </span> Замечает, когда они тянут курсор к крестику, намереваясь уйти</li>
+                  <li>
+                    <span class="rounded-circle">
+                      <span class="time-act">20:55</span>
+                    </span>
+                    <span class="img-cr-tl">
+                      <img src="../../../../../../assets/images/carz/icons/circle-outline.png" class="img-circle-act" alt="">
+                    </span> И показывает всплывающее окно с заманчивым предложением</li>
+                </ul> -->
+
+              </div>
+
+            </div>
+
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+  <toaster-container [toasterconfig]="config1"></toaster-container>
+</div>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

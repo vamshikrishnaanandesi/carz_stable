@@ -1,0 +1,113 @@
+.que-settings-below-shown-main {
+  cursor: pointer;
+  margin-left:35px;
+  position:relative;
+}
+img.draggable-icon {
+  position: absolute;
+  left: -35px;
+}
+.que-settings-below-shown-form::-webkit-input-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form::-moz-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form:-ms-input-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form::placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+
+
+td.setting-ques-mul-opt input{
+  width: 350px;
+  height: 36px;
+  border: 1px solid #ededed;
+  margin-bottom: 10px;
+  display: block;
+  background: #fff;
+}
+
+.que-settings-below-shown-form .mat-radio-button{
+
+  width: 100%;
+}
+// mat-divider.setting-app-divider.mat-divider {
+//   margin-top: 20px !important;
+// }
+.border-file-tags{
+  border: 1px solid #ececec;
+  min-height: 40px;
+  width: 100%;
+  margin-bottom: 1.25em;
+}
+.choose_files_tags{
+  width: 100%;
+}
+.close_x{
+  color: rgba(216, 33, 33, 0.9);
+  cursor: pointer;
+  position: absolute;
+  top: -3px;
+  right: 0px;
+}
+.tags-file{
+  font-weight: 600;
+  font-size: 14px;
+  padding-left: 15px;
+  /* background: rgba(0, 0, 0, 0.03); */
+  padding: 4px 15px;
+  margin-left: 15PX;
+  border-radius: 17px;
+  position: relative;
+  /* display: inline-block; */
+  margin-top: 5px;
+
+}
+.tag-file-name{
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-bottom: 0px; */
+  margin-top: 9px;
+  display: inline-block;
+}
+.gray-color-file-upload {
+  float: right;
+}
+.chosee-tags-file{
+  display: none;
+}
+.choose-label{
+  background: rgba(168, 168, 168, 0.48);
+  padding: 8.2px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #585858;
+}
+
+
+// right side nav
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
+}

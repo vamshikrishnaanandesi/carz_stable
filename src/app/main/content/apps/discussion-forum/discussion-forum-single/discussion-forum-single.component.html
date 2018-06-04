@@ -1,0 +1,138 @@
+<div class="franshisee-main single-dis-page container-fluid">
+    <section>
+      <!-- <h1 class="franchisee-title  top-title-component">
+          Discussion Wall
+      </h1> -->
+
+      <div class="row top-title-component">
+          <div class="col-md-12">
+            <h1 class="franchisee-title fr-setup-title"> Discussion Wall</h1>
+
+
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb franchisee_separate fr-setup-loaction">
+                <li class="breadcrumb-item">
+                  <a [routerLink]="['/apps/discussion-forum/discussion-forum']">Question wall</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{question_data?.user_name}}</li>
+              </ol>
+            </nav>
+
+
+          </div>
+
+
+
+          <div class="clearfix"></div>
+          <!-- <div class="spacer-xs"></div> -->
+        </div>
+
+
+
+
+
+      <div class="main-library-list franchisee-list-second-component">
+
+            <!-- <div class="spacer-sm"></div> -->
+            <div class="question-wall-main row">
+              <div class="col-md-8">
+
+                  <div class="row">
+                      <div class="col-md-1">
+                        <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt=""> -->
+                        <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!question_data.user_profile_pic">
+                      <img [src]="question_data.user_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="question_data.user_profile_pic">
+                      </div>
+                      <div class="col-md-11" >
+                          <p class="dis-medium-box-title">{{question_data?.user_name}}</p>
+                          <p class="dis-medium-box-date">{{question_data?.created_at|date: 'dd.MM.yyyy'}}</p>
+                          <p class="dis-medium-box-image"><img src="../../../../../assets/images/carz/icons/discussion-GlobeLocation.svg" width="15px" alt="">{{question_data?.franchisee_address}}</p>
+                        <p class="dis-medium-box-sub-title">{{question_data?.discussion_question}}</p>
+                        <!-- <p class="dis-medium-box-sub-title">In publishing and graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation.   </p>   <p class="dis-medium-box-sub-title">Replacing meaningful content with placeholder text allows designers to design the form of the content before the content itself has been produced graphic document or visual presentation. Replacing meaningful content with placehold          </p> -->
+
+                        <mat-divider></mat-divider>
+                            <div class="spacer-xs"></div>
+                            <div class="comments-votes-main">
+
+                        <ul class="list-inline single-dis">
+                          <li><p class="attach-file-discussion big-box"><img src="../../../../../assets/images/carz/icons/Discussion-Comment.svg" class="dis-comment" width="15px" alt=""> {{question_data?.commentsCount}} Comments </p></li>
+                          <li *ngIf="question_data?.franchisor_question_file_attachment_file_url">  <p class="attach-file-discussion" (click)="view_fileUpload(question_data)"><img src="../../../../../assets/images/carz/icons/discussion-attach.svg" class="dis-comment" width="15px" alt=""> View Attachment </p></li>
+                        </ul>
+                        <p class="upvoted-right"><span class="numbers">{{question_data.votes}}</span> <span class="upvoted" (click)="question_vote(question_data)">upvoted </span> </p>
+                        <!-- <p class="upvoted-right"><span class="numbers">{{votesss}}</span> <span class="upvoted" (click)="question_vote(question_data)">upvote</span> </p> -->
+
+
+                      </div>
+                        <mat-divider></mat-divider>
+                        <div class="clearfix"></div>
+                        <div class="spacer-xs"></div>
+
+                            <!-- comment box view UI started -->
+                        <div class="row comment-view" *ngFor="let comment of question_data?.discussion_comments">
+                            <div class="col-md-1">
+                              <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt="">
+                            </div>
+                            <div class="col-md-10">
+                              <div class="comment-bg-box">
+                              <ul class="list-inline">
+                                <li> <p class="dis-medium-box-comment-title">Manish Surapaneni</p></li>
+                                <li ><span class="days">10 days ago</span></li>
+                              </ul>
+                              <p class="showmore">...</p>
+                              <p class="dis-medium-box-sub-title commets-box">{{comment.comment_text}}</p>
+                              </div>
+                              <!-- <ul class="list-inline comments-below">
+                                <li>Upvote</li>
+                                <li>Reply</li>
+                              </ul> -->
+
+                            </div>
+                            <div class="col-md-1">
+                              <p></p>
+                              </div>
+                            </div>
+                            <!-- comment box view UI started -->
+
+                            <!-- comment box input UI started -->
+                            <div class="row">
+                                <div class="col-md-1">
+                                  <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt="">
+                                </div>
+                                <div class="col-md-10">
+                                  <mat-form-field class="about_discussion">
+                                    <textarea matInput id="comment-discussion" placeholder="Post your reply" name="comment_text" [(ngModel)]="question_data.comment_text"></textarea>
+                                  </mat-form-field>
+                                  <p class="attach-file-discussion"><label for="dis-attach-file"><img src="../../../../../assets/images/carz/icons/discussion-attach.svg" class="dis-comment" width="15px" alt=""> Attach file</label>
+                                    <input id="dis-attach-file" type="file" style="display: none;" (change)="handleFileInputComment($event.target.files);readUrl($event);"> </p>
+                                </div>
+                                <div class="col-md-1">
+                                <img src="../../../../../assets/images/carz/icons/Discussion-Send.svg" class="discussion-send-button" width="80px" alt="" (click)="addComment(question_data)">
+                                </div>
+                            </div>
+                            <!-- /comment box input UI ended -->
+
+
+
+                      </div>
+
+                  </div>
+
+
+
+            </div>
+            <div class="col-md-4">
+              <div class="right-side-franchisee-members">
+
+
+              </div>
+            </div>
+            </div>
+
+              <div class="spacer-sm"></div>
+
+
+      </div>
+      <div class="clearfix"></div>
+    </section>
+
+  </div>

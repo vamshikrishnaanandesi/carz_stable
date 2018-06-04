@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.599 21">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6d6d6d;
+      }
+    </style>
+  </defs>
+  <g id="noun_220762_cc" transform="translate(-26.1 -13.581)">
+    <path id="Path_355" data-name="Path 355" class="cls-1" d="M29.082,20.993l4.376-4.376v12.3a1.01,1.01,0,1,0,2.02,0v-12.3l4.376,4.376a.866.866,0,1,0,1.224-1.224l-5.907-5.937a.811.811,0,0,0-.673-.245h-.061a.921.921,0,0,0-.673.245l-5.937,5.937a.868.868,0,0,0,0,1.224A.906.906,0,0,0,29.082,20.993Z" transform="translate(-1.024 0)"/>
+    <path id="Path_356" data-name="Path 356" class="cls-1" d="M39.719,75.8H27.079a.979.979,0,0,0,0,1.959H39.719a.979.979,0,0,0,0-1.959Z" transform="translate(0 -43.178)"/>
+  </g>
+</svg>

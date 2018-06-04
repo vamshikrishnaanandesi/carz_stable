@@ -1,0 +1,265 @@
+// Import Fuse main library
+@import "app/core/scss/core";
+.upload_draoDrop_file{
+  width: 94%;
+  margin: 0 35px;
+  // border: 3px dotted #ccc;
+  // height: 180px;
+  text-align: center;
+  cursor: pointer;
+}
+
+label.input-custom-label{
+  color: rgba(0, 0, 0, 0.73);
+  margin-bottom: 10px;
+}
+input.mat-input-element{
+  font-size: 14px;
+}
+.upload_file_top_title{
+  font-size:20px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.57);
+  margin-bottom: 0px;
+  text-align: center;
+
+}
+.upload_draoDrop_file p.drap_status {
+  font-size: 15px;
+  margin-top: 30px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.38);
+  letter-spacing: 1.1px;
+}
+.all_files{
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 30px;
+  color: rgba(0, 0, 0, 0.86);
+}
+.doc.all_files{
+  padding-left: 0px;
+
+}
+mat-tab-group.payment_inner_tab{
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 375px;
+  border-radius: 5px;
+}
+.all_files_main{
+  position: relative;
+  top: 40px;
+}
+
+// steps process
+.mat-step-header, mat-step{
+  background: #81D184;
+  width: 20%;
+}
+// .mat-stepper-horizontal .mat-step-header:first-child {
+//   border-top-left-radius: 25px;
+//   border-bottom-left-radius: 25px;
+//   pointer-events: none;
+// }
+
+// .mat-stepper-horizontal .mat-step-header:last-child {
+//   border-top-right-radius: 25px;
+//   border-bottom-right-radius: 25px;
+// }
+// mat-step-header#cdk-step-label-0-0:hover,
+// mat-step-header#cdk-step-label-0-0:active,
+// mat-step-header#cdk-step-label-0-0:focus,
+// mat-step-header#cdk-step-label-0-0:focus-within,
+// mat-step-header#cdk-step-label-0-0:visited {
+//   background: #81d184 !important;
+// }
+
+
+// .mat-step-header .mat-step-label.mat-step-label-active {
+//   color: rgba(255, 255, 255, 0.87) !important;
+//   font-size: 15px;
+//   font-weight: inherit !important;
+// }
+
+// .mat-step-icon,
+// .mat-step-icon-not-touched {
+//   display: none !important;
+// }
+
+// mat-step-header#cdk-step-label-0-2,
+// mat-step-header#cdk-step-label-0-3,
+// mat-step-header#cdk-step-label-0-4 {
+//   background: #E3E3E3 !important;
+//   width: 20%;
+//   height: 45px !important;
+// }
+
+// mat-step-header#cdk-step-label-0-1 {
+//   background: #FF951C !important;
+// }
+
+.pdf_view_down{
+  // width: 80%;
+  // margin: 0px 10%;
+  // height: 109px;
+  // padding: 25px;
+  // border: 1.5px solid #CBE7FF;
+  // position: relative;
+  // border-radius: 8px;
+}
+.pdf_view_down .pdf_icon{
+  width: 57.9px;
+}
+.pdf_view_down .pdf_icon.doc{
+position: relative;
+top: -8px;
+}
+.pdf_view_down .pdf_details{
+list-style: none;
+}
+.pdf_view_down .pdf_details h4{
+  font-size: 15px;
+    font-weight: 500;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+    text-transform: capitalize;
+    color: #4c4c4c;
+
+}
+.download_icon{
+  position: absolute;
+  right: 35px;
+  top: 35px;
+  width: 40px;
+  cursor: pointer;
+}
+
+
+.documents_folder{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 125px !important;
+  padding-left: 15px;
+  position: relative;
+  top: 5px;
+}
+
+// meeting CSS
+.meetings .mat-form-field-infix, .meetings .mat-form-field , .application_form .mat-form-field-infix, .application_form .mat-form-field{
+width:100%;
+}
+.meeting_main, .application_main{
+  padding: 35px;
+  padding-top: 0px;
+}
+.location_icon_meeting{
+  width: 15px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  filter: grayscale(100%);
+}
+.assigned_people{
+  text-align: center;
+  width: 60px;
+  display: inline-block;
+}
+.assigned_people img{
+  width:50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.assigned_people p{
+  font-weight: 600;
+  font-size: 10px;
+}
+.assigned_people.circle{
+  border: 1px solid #B0D7F8;
+  height: 50px;
+  border-radius: 50%;
+  color: #B0D7F8;
+  position: absolute;
+  width: 50px;
+  right: 15px;
+}
+.assigned_people.circle h3{
+  margin: 0;
+  line-height: 50px;
+}
+.assigned_people.created_meeting{
+  width: 45px;
+}
+.assigned_people.created_meeting img{
+  width: 30px;
+  height: 30px;
+}
+
+.application_main .pdf_view_down{
+      width:100%;
+      margin: 0px;
+}
+
+// KYC Uploads
+.kyc_uploads_main{
+  padding: 30px;
+
+}
+.kyc_uploads_main .mat-form-field{
+  width: 310px;
+}
+.file_uploads{
+  min-width: 330px;
+  height: 87px;
+  border-radius: 8px;
+  background: #fcfcfc;
+  border: 1px solid rgba(227, 227, 227, 0.36);
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: rgba(93, 93, 93, 0.93);
+  font-weight: 500;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.file_uploads table {
+  margin-top: 16px;
+  margin-left: 9px;
+}
+.file_uploads table img.files_type{
+  width: 30.66px;
+  height: 52.56px;
+}
+
+.fileName_kyc{
+  width: 180px;
+}
+p.ellips {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 180px !important;
+  margin: 0;
+}
+.remarks2 .mat-form-field-infix {
+  height: 140px !important;
+}
+
+.small_bank{
+  font-size: 13px;
+  font-weight: 200;
+}
+
+// Agreement
+
+
+// responsive changes
+@media screen and (max-width: 1400px) {
+.upload_draoDrop_file{
+ width: 90%;
+}
+}

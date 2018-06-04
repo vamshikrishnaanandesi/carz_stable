@@ -1,0 +1,231 @@
+// .franshisee-main{
+//   margin: 15px;
+// }
+
+
+.min-height-right{
+  min-height: 650px;
+}
+
+
+.mat-tab-label{
+  font-size: 20px !important;
+}
+
+.svg_icons{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.body-sub-title-text{
+  padding-left: 15px;
+}
+.mat-tab-label{
+  font-size: 18px;
+  color: #400202;
+}
+.tab-right-actions{
+  position: relative;
+  /* right: 40px; */
+  top: 45px;
+}
+.tab-right-actions ul li{
+display: inline;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+.svg_icons.filter-icons{
+width: 50px;
+height: 40px;
+padding: 10px;
+}
+.tab-right-actions ul{
+position: relative;
+z-index: 1001;
+}
+// .mat-tab-body-content, .mat-tab-body-wrapper{
+//   background: #F9FAFB !important;
+// min-width: 100%;
+// min-height: 500px;
+// background: blanchedalmond  !important;
+// padding: 0 15px  !important;
+
+// }
+
+.test .mat-tab-group .mat-tab-body-wrapper {
+background: red !important;
+padding: 0px 15px;
+}
+.mat-form-field-wrapper{
+padding-bottom: 0 !important;
+}
+.crm-franchisee-list-table tbody tr{
+height: 117px;
+box-shadow: 3px 3px 15px #e9e9e9;
+background: #fff;
+
+}
+
+.table.crm-franchisee-list-table td, .table.crm-franchisee-list-table th{
+vertical-align: middle;
+border-top: 0px solid #dee2e6;
+color: rgba(0, 0, 0, 0.92);
+font-weight: 500;
+}
+.table.crm-franchisee-list-table th{
+color: rgba(162, 161, 161, 0.71);
+}
+.select-option{
+padding-top:25px;
+}
+.leads_count{
+color:rgba(0, 0, 0, 0.63);
+font-size: 22px;
+margin-top: 30px;
+margin-bottom: 40px;
+font-weight: 500;
+}
+.table-row-height{
+height: 10px;
+}
+.mat-tab-label, .mat-tab-link{
+color: rgba(210, 0, 0, 0.87);
+}
+.crm_franchisee_list{
+
+margin: 35px;
+
+}
+
+
+
+// .franshisee-main{
+// margin: 15px;
+// }
+
+.city-name{
+
+}
+.franchisee-dp{
+width: 56px;
+// height: 96px;
+border: 1px solid #95989A;
+}
+.rating_star{
+position: absolute;
+right: 0px;
+top: 0;
+width: 40px;
+}
+.body-sub-title-text{
+padding-left: 15px;
+}
+
+// icon color
+i.fa {
+color: #F1464A;
+}
+
+// .franchisee-title{
+//   font-size: 30px;
+//   font-weight: 500;
+//   margin-top: 6px;
+//   color: #4D4D4D;
+//   text-transform: uppercase;
+// }
+.filled-btn.franchisee{
+width: 150px;
+color:#fff;
+}
+
+.mat-form-field-infix{
+font-size: 14px !important;
+}
+.franchisee_main_list .franchisees-list-main{
+padding-left: 30px;
+}
+// .franchisee_main_list
+.fl-main-dp .franchisee-dp, .view-all.franchisee{
+margin-right: 35px;
+}
+
+
+// master franchisee main view
+
+.profile-right-main{
+  box-shadow: none;
+  padding: 0px;
+}
+
+// .breadcrumb.franchisee_separate {
+//   bottom: -30px !important;
+// }
+.franchisees-list{
+  margin-top: 0px;
+}
+// .master_franchisee_view_leftright{
+//   background: #EBEBEB
+// }
+
+img.plus_icons {
+  width: 27px;
+  position: relative;
+  left: -4px;
+  top: -6px;
+}
+
+
+
+// only in master franchisee list view for first 3 columns
+.card_main:first-child, .card_main:nth-child(2), .card_main:nth-child(3), .card_main:nth-child(4) {
+  margin-top: 0px;
+}
+.filled-btn.Mfranchisee{
+  position: relative;
+  top: 20px;
+}
+.fr-setup-loaction{
+  position: relative;
+  top: 10px;
+  color: #777373;
+  text-transform: capitalize;
+}
+.franchisee-title.fr-setup-title{
+  position: relative;
+  top: 5px;
+  text-transform: capitalize;
+}
+
+.master-franchisee-view .profile-right-main{
+
+  background: transparent;
+}
+.myFranchisees{
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.92);
+  padding-left: 20px;
+  margin-bottom: 0px;
+}
+// to show only master franchisee hidding to all framchisees
+.card_main.topFranchisees {
+  display: none;
+}
+
+// to show only master franchisee hidding to all framchisees
+.card_main.bottomMaster {
+  display: none;
+}
+
+.svg_icons.delete{
+  display: none;
+  }
+.card_main:hover .svg_icons.delete{
+display: block;
+}
+.delete_fr_icon{
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}

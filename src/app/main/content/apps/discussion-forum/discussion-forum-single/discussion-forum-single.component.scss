@@ -1,0 +1,51 @@
+.franshisee-main.single-dis-page{
+  background: #fff;
+  height: 100vh;
+}
+p.showmore {
+  position: absolute;
+  top: -8px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.dis-medium-box-comment-title {
+  color: #393939;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.days {
+  font-size: 12px;
+  color: #AFAFAF;
+}
+ul.list-inline.comments-below li {
+  font-weight: 500;
+  color: rgba(77, 77, 77, 0.81);
+  font-size: 12px;
+}
+.comment-bg-box {
+  background: #F6F6F6;
+  padding: 15px 20px;
+  position: relative;
+}
+.comments-votes-main{
+  position: relative;
+}
+p.upvoted-right {
+
+  bottom: 0px !important;
+}
+.dis-medium-box-sub-title.commets-box{
+  margin-bottom: 0px;
+}
+.comment-view{
+  margin-bottom: 35px;
+}
+ul.list-inline.comments-below {
+  margin-top: 15px;
+  cursor: pointer;
+}
+.main-library-list.franchisee-list-second-component {
+  margin-top: 0;
+}

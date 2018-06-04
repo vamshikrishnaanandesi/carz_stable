@@ -1,0 +1,309 @@
+
+<div class="franshisee-main container-fluid">
+    <!-- <div class="spacer-xs"></div> -->
+    <!-- Master frnachisee heading -->
+    <div class="row">
+        <div class="col-md-9 breadcrumb-main">
+            <h1 class="franchisee-title fr-lib-title">Master Franchisee</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb franchisee_separate franchisee_breadcrumb_main">
+                  <li class="breadcrumb-item">
+                    <a [routerLink]="['/apps/crm/master-franchisee-list']">All</a>
+                  </li>
+                  <li class="breadcrumb-item active" title="Create Master Franchisee" aria-current="page">Create Master Franchisee</li>
+                </ol>
+              </nav>
+        </div>
+        <div class="col-md-3">
+              <div class="text-right">
+
+              </div>
+        </div>
+<div class="clearfix"></div>
+      </div>
+      <!-- / Master frnachisee heading -->
+      <div class="spacer-xs"></div>
+
+      <div class="bg-franshisee">
+
+        <form class="master_franchisee_from_main" (ngSubmit)="create_franchisee(franchiseeForm)" #franchiseeForm="ngForm" name="franchiseeForm" novalidate>
+            
+          <table style="width:100%">
+            <tr>
+              <td>
+                  <label class="input-custom-label" for="master_fran_name">Master Franchisee Name </label><br>
+                  <mat-form-field class="master_fran_name">
+                    <input matInput placeholder="Name" *ngIf="create_flag == true" autofocus id="master_fran_name" [(ngModel)]="create_master_data.franchisee_name" [ngModelOptions]="{standalone: true}" required>
+                    <!-- <input matInput placeholder="" *ngIf="create_flag == false"  id="master_fran_name" [(ngModel)]="edit_master_data.franchisee_name" [ngModelOptions]="{standalone: true}" required> -->
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_name')">
+
+                         Name is required
+                    </mat-error>
+                    <!-- <mat-error *ngIf="name.invalid">{{getErrorName()}}</mat-error> -->
+                  </mat-form-field>
+              </td>
+              <td>
+
+                <label class="input-custom-label" for="master_fran_country">Email</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="Email" *ngIf="create_flag == true" id="master_fran_email" [(ngModel)]="create_master_data.franchisee_email"  [ngModelOptions]="{standalone: true}" (blur)="validate_Franchisee(create_master_data.franchisee_email)" required>
+                  <!-- <input matInput placeholder="" *ngIf="create_flag == false"  id="master_fran_email" [(ngModel)]="edit_master_data.franchisee_email" [ngModelOptions]="{standalone: true}" (blur)="validate_Franchisee(create_master_data.franchisee_email)"required> -->
+                  <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_email')">
+
+                      Email is required
+                  </mat-error>
+                  <!-- <mat-error *ngIf="email.invalid">{{getErrorEmail()}}</mat-error> -->
+                </mat-form-field>
+                  </td>
+              <td class="location" >
+
+            <label class="input-custom-label" for="master_fran_country">Area</label><br>
+            <!-- <mat-form-field class="master_fran_country">
+              <input matInput placeholder="" *ngIf="create_flag == true" id="master_fran_country" [(ngModel)]="create_master_data.franchisee_area"  [ngModelOptions]="{standalone: true}" required >
+              <input matInput placeholder="" *ngIf="create_flag == false" id="master_fran_country" [(ngModel)]="edit_master_data.franchisee_area"  [ngModelOptions]="{standalone: true}"  required> -->
+              <ng4geo-autocomplete  id="master_fran_country" name="master_fran_country" *ngIf ="create_master_data.franchisee_area!=null"  [(ngModel)]="create_master_data.franchisee_area" (componentCallback)="autoComplete($event)" ngDefaultControl mdInput></ng4geo-autocomplete>
+              <!-- <ng4geo-autocomplete  id="master_fran_country" name="master_fran_country" *ngIf ="franchisees.franchisee_area!=null"   [(ngModel)]="franchisees.franchisee_area" (componentCallback)="autoCompleteCallback1($event,i)" ngDefaultControl mdInput></ng4geo-autocomplete> -->
+              <!-- <mat-error *ngIf="area.invalid">{{getErrorArea()}}</mat-error> -->
+            <!-- </mat-form-field> -->
+              </td>
+              <td>
+
+            <label class="input-custom-label" for="master_fran_country">Country</label><br>
+            <mat-form-field class="master_fran_country">
+              <input matInput placeholder="Country" *ngIf="create_flag == true" id="master_fran_country" [(ngModel)]="create_master_data.franchisee_country"  [ngModelOptions]="{standalone: true}" required>
+              <!-- <input matInput placeholder="" *ngIf="create_flag == false" id="master_fran_country" [(ngModel)]="edit_master_data.franchisee_country"  [ngModelOptions]="{standalone: true}" required> -->
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_country')">
+
+                  Country is required
+              </mat-error>
+              <!-- <mat-error *ngIf="country.invalid">{{getErrorCountry()}}</mat-error> -->
+            </mat-form-field>
+              </td>
+              <td>
+
+            <label class="input-custom-label" for="master_fran_country">State</label><br>
+            <mat-form-field class="master_fran_country">
+              <input matInput placeholder="State" *ngIf="create_flag == true" id="master_fran_country" [(ngModel)]="create_master_data.franchisee_state"  [ngModelOptions]="{standalone: true}" required >
+              <!-- <input matInput placeholder="" *ngIf="create_flag == false" id="master_fran_country" [(ngModel)]="edit_master_data.franchisee_state"  [ngModelOptions]="{standalone: true}"  required> -->
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_state')">
+
+                  State is required
+              </mat-error>
+              <!-- <mat-error *ngIf="state.invalid">{{getErrorState()}}</mat-error> -->
+            </mat-form-field>
+              </td>
+              <td>
+                  <label class="input-custom-label" for="master_fran_country">City</label><br>
+                  <mat-form-field class="master_fran_country">
+                    <input matInput placeholder="City" *ngIf="create_flag == true" id="master_fran_country" [(ngModel)]="create_master_data.franchisee_city"  [ngModelOptions]="{standalone: true}" required>
+                    <!-- <input matInput placeholder="" *ngIf="create_flag == false" id="master_fran_country" [(ngModel)]="edit_master_data.franchisee_city"  [ngModelOptions]="{standalone: true}"  required> -->
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_city')">
+
+                        City is required
+                    </mat-error>
+                    <!-- <mat-error *ngIf="city.invalid">{{getErrorCity()}}</mat-error> -->
+                  </mat-form-field>
+
+              </td>
+              <td>
+
+                  <label class="input-custom-label" for="master_fran_country">Pincode</label><br>
+                  <mat-form-field class="master_fran_country">
+                    <input matInput placeholder="Pincode" *ngIf="create_flag == true" id="master_fran_country" [(ngModel)]="create_master_data.franchisee_pincode"  [ngModelOptions]="{standalone: true}" required (blur)="validate_Franchisee_Pincode(create_master_data.franchisee_pincode) ">
+                    <!-- <input matInput placeholder="" *ngIf="create_flag == false" id="master_fran_country" [(ngModel)]="edit_master_data.franchisee_pincode"  [ngModelOptions]="{standalone: true}"  required> -->
+                    <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_pincode')">
+
+                        Pincode is required
+                    </mat-error>
+                    <!-- <mat-error *ngIf="pincode.invalid">{{getErrorPincode()}}</mat-error> -->
+                  </mat-form-field>
+                    </td>
+            </tr>
+          </table>
+          <hr class="hr_line">
+          <div class="spacer-xs"></div>
+
+            <table style="width:100%">
+                <tr *ngFor="let franchisees of franchisee_list;let i = index;">
+                  <td>
+                      <label class="input-custom-label" for="master_fran_name">Franchisee Name</label><br>
+                      <mat-form-field class="master_fran_name">
+                        <input matInput placeholder="Name" id="master_fran_name" name="franchisee_name" [(ngModel)]="franchisees.franchisee_name"  [ngModelOptions]="{standalone: true}" required  minlength="4" >
+                        <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_name')">
+
+                            Name is required
+                        </mat-error>
+                      </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_email">Email</label><br>
+                      <mat-form-field class="master_fran_email">
+                        <input matInput placeholder="Email" id="master_fran_email" [(ngModel)]="franchisees.franchisee_email"  [ngModelOptions]="{standalone: true}"  (blur)="validate_Franchisee(franchisees.franchisee_email,i)" required>
+                  
+                      </mat-form-field>
+                  </td>
+                  <td class="location">
+
+                <label class="input-custom-label" for="master_fran_country">Area</label><br>
+                
+                  <ng4geo-autocomplete  id="master_fran_country" name="master_fran_country" *ngIf ="franchisees.franchisee_area!=null"   [(ngModel)]="franchisees.franchisee_area" (componentCallback)="autoCompleteCallback1($event,i)" ngDefaultControl mdInput></ng4geo-autocomplete>
+            
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">Country</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="Country" id="master_fran_country" [(ngModel)]="franchisees.franchisee_country" [ngModelOptions]="{standalone: true}" required>
+                  <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_country')">
+
+                      Country is required
+                  </mat-error>
+                </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">State</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="State" id="master_fran_country" [(ngModel)]="franchisees.franchisee_state"  [ngModelOptions]="{standalone: true}" required >
+                  <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_state')">
+
+                      State is required
+                  </mat-error>
+                </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_country">City</label><br>
+                      <mat-form-field class="master_fran_country">
+                        <input matInput placeholder="City" id="master_fran_country" [(ngModel)]="franchisees.franchisee_city"  [ngModelOptions]="{standalone: true}"  required >
+                        <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_city')">
+
+                            City is required
+                        </mat-error>
+                      </mat-form-field>
+                  </td>
+                  <td>
+
+                      <label class="input-custom-label" for="master_fran_country">Pincode</label><br>
+                      <mat-form-field class="master_fran_country">
+
+                        <input matInput placeholder="Pincode" id="master_fran_country" [(ngModel)]="franchisees.franchisee_pincode"  [ngModelOptions]="{standalone: true}" (blur)="validate_Franchisee_Pincode(franchisees.franchisee_pincode,i)" required  minlength="6">
+                        
+
+                      </mat-form-field>
+                        </td>
+
+                </tr>
+
+              </table>
+              <!-- <table style="width:100%">
+                <tr>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_name">Franchisee Name</label><br>
+                      <mat-form-field class="master_fran_name">
+                        <input matInput placeholder="" id="master_fran_name" [(ngModel)]="create_data.franchisee_name"  [ngModelOptions]="{standalone: true}" >
+                      </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_email">Email</label><br>
+                      <mat-form-field class="master_fran_email">
+                        <input matInput placeholder="" id="master_fran_email" [(ngModel)]="create_data.franchisee_email"  [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">Area/Pincode</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_address"  [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">Country</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" >
+                </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">State</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_state"  [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_country">City</label><br>
+                      <mat-form-field class="master_fran_country">
+                        <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_city"  [ngModelOptions]="{standalone: true}" >
+                      </mat-form-field>
+
+                  </td>
+                </tr>
+
+              </table> -->
+              <!-- <table style="width:100%">
+                <tr>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_name">Franchisee Name</label><br>
+                      <mat-form-field class="master_fran_name">
+                        <input matInput placeholder="" id="master_fran_name" [(ngModel)]="create_data.franchisee_name"  [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_email">Email</label><br>
+                      <mat-form-field class="master_fran_email">
+                        <input matInput placeholder="" id="master_fran_email" [(ngModel)]="create_data.franchisee_email"  [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">Area/Pincode</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_address"  [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">Country</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" >
+                </mat-form-field>
+                  </td>
+                  <td>
+
+                <label class="input-custom-label" for="master_fran_country">State</label><br>
+                <mat-form-field class="master_fran_country">
+                  <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_state"  [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+                  </td>
+                  <td>
+                      <label class="input-custom-label" for="master_fran_country">City</label><br>
+                      <mat-form-field class="master_fran_country">
+                        <input matInput placeholder="" id="master_fran_country" [(ngModel)]="create_data.franchisee_city"  [ngModelOptions]="{standalone: true}" >
+                      </mat-form-field>
+
+                  </td>
+                </tr>
+
+              </table> -->
+              <table>
+                <tr >
+                  <td colspan="5"> <a class="add_another" *ngIf="franchisee_add != null" (click)="add_franchisee()"> + Add Another</a></td>
+
+                </tr>
+              </table>
+
+              <div class="text-right">
+
+                <div class="spacer-md"></div>
+                <!-- <div class="spacer-xs"></div> -->
+              <button class="empty-btn franchisee" mat-button [routerLink]="['/apps/crm/master-franchisee-list']">CANCEL</button>
+
+              <button class="filled-btn franchisee" type="submit"  mat-button  >DONE</button>
+              </div>
+
+            </form>
+    </div>
+
+  </div>
+
+

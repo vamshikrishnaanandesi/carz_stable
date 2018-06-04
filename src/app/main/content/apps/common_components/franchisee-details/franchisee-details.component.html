@@ -1,0 +1,81 @@
+<!-- Edited on 06/04/18 by Hareesh
+new UI -->
+
+<div class="franchisee-profile fixed-left-side" *ngIf="franchisees != null">
+  <div class="" [routerLink]="['/apps/crm/crm-edit-franchisee/' + franchisees._id]" [hidden]="userData.user_role =='franchisee'">
+    <p class="pull-right">
+      <img class="svg_icons" src="../../../../../../assets/images/carz/icons/edit.svg" alt="">
+    </p>
+  </div>
+  <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="" *ngIf="!franchisees.franchisee_profile_pic">
+  <img [src]="franchisees.franchisee_profile_pic.path" class="card_top_img" alt="" *ngIf="franchisees.franchisee_profile_pic">
+
+  <h1 class="body-txt-title" title="{{franchisees.franchisee_name}}">{{franchisees.franchisee_name}}</h1>
+  <p class="city-name body-subtitle margin-bottom-0" ><span class="position_fr">{{franchisees.franchisee_occupation}}, </span> <span class="age_fr">{{franchisees.lead_age}}</span></p>
+
+  <div class="spacer-xs"> </div>
+
+  <div class="profilesubsections">
+    <p class="profile-left-sub-head">FRANCHISEE INFO</p>
+    <p>
+      <span class="franchisee-list status body-subtitle">{{franchisees.franchisee_franchise_model}}</span>
+    </p>
+    <p class="sub-heading-address body-subtitle" title="{{franchisees.franchisee_address}}">
+    <img src="../../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt="">
+    <span class="body-sub-title-text">{{franchisees.franchisee_address}}</span>
+  </p>
+  <p class="city-name body-subtitle" title="{{franchisees.franchisee_city}}">
+    <img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt="">
+    <span class="body-sub-title-text"> {{franchisees.franchisee_city}}</span>
+  </p>
+    <!-- <p class="city-name body-subtitle">{{franchisees.lead_source}}</p>
+    <p class="city-name body-subtitle">{{franchisees.franchisee_preferred_date |date: 'dd.MM.yyyy'}}</p>
+    <p class="city-name body-subtitle">{{franchisees.franchisee_preferred_time}}</p> -->
+  </div>
+  <div class="spacer-xs"> </div>
+
+  <div class="profilesubsections">
+    <p class="profile-left-sub-head">PERSONAL INFO</p>
+    <p class="city-name body-subtitle" title="{{franchisees.franchisee_email}}"> <img src="../../../../../../assets/images/carz/icons/mail_fr.svg" class="svg-icons" alt="">  <span class="body-sub-title-text"> {{franchisees.franchisee_email}} </span></p>
+    <p class="city-name body-subtitle" title="{{franchisees.franchisee_mobile_number}}">  <img src="../../../../../../assets/images/carz/icons/phone_fr.svg" class="svg-icons" alt="">  <span class="body-sub-title-text">  {{franchisees.franchisee_mobile_number}} </span> </p>
+    <p class="city-name body-subtitle" > <img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons map" alt=""><span class="body-sub-title-text">  {{franchisees.franchisee_address}},{{franchisees.franchisee_city}} </span> </p>
+
+  </div>
+  <div class="spacer-xs"></div>
+
+  <div class="profilesubsections">
+    <p class="profile-left-sub-head">PAYMENT INFO</p>
+    <p class="city-name body-subtitle" title=" "> <span class="status_lacks">1 Lakh :</span> <span style="text-transform: capitalize"> {{franchisees.first_lakh_payment}} </span> </p>
+    <p class="city-name body-subtitle" title=" "> <span class="status_lacks">4 Lakh : </span> <span style="text-transform: capitalize"> {{franchisees.second_lakh_payment}} </span> </p>
+
+
+  </div>
+  <div class="spacer-xs"></div>
+  <div class="profilesubsections">
+    <div class="leads_type">
+      <mat-form-field>
+        <mat-select [(ngModel)]="selected_leadType" >
+          <mat-option *ngFor="let opt of options_list;let i=index;" [value]="opt.value" (click)="onChange(opt)">
+            {{opt.option}}
+          </mat-option>
+          <!-- <mat-option value="Hot">Hot</mat-option>
+          <mat-option value="Cool">Cool</mat-option>
+          <mat-option value="Warm">Warm</mat-option>
+          <mat-option value="On Hold">On Hold</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <mat-form-field>
+        <mat-select placeholder="Favorite food">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    </div>
+  </div>
+
+
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

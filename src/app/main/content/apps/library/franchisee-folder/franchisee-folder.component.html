@@ -1,0 +1,42 @@
+<div class="franshisee-main container-fluid">
+  <div class="row top-title-component">
+      <div class="col-md-9 left-top ">
+          <h1 class="franchisee-title fr-lib-title">Library</h1>
+
+
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb franchisee_separate franchisee_breadcrumb_main">
+                  <li class="breadcrumb-item">
+                      <a [routerLink]="['/apps/library/library-main']">Library</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page" *ngIf="franchisees != null">{{franchisees.franchisee_name}}</li>
+              </ol>
+           </nav>
+
+
+      </div>
+      <div class="col-md-3">
+          <div class="text-right"></div>
+      </div>
+  </div>
+  <section>
+<!-- <div class="spacer-xs"></div> -->
+  <div class="row franchisee-list-second-component">
+    <div class="frachisee-details-left-side" *ngIf="userData.user_role !='franchisee'">
+      <fuse-app-franchisee-details></fuse-app-franchisee-details>
+    </div>
+    <!-- <div > -->
+        <!-- [ngClass]="{'col-sm-12':userData.user_role == 'franchisee','col-sm-10':userData.user_role != 'franchisee'}" -->
+      <div class="profile-right-main">
+        <section>
+          <!-- <div class="row"> -->
+               <fuse-app-documents-component></fuse-app-documents-component>
+               <ng4-loading-spinner></ng4-loading-spinner>
+          <!-- </div> -->
+        </section>
+      </div>
+    <!-- </div> -->
+  </div>
+  </section>
+</div>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

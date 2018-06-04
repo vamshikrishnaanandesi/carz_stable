@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8152 -12630 22 21">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #707070;
+        stroke-width: 0.7px;
+        opacity: 0.86;
+      }
+
+      .cls-2 {
+        opacity: 0.62;
+        fill: url(#pattern);
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+    <pattern id="pattern" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 256 256">
+      <image width="256" height="256" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAQAAAD2e2DtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAgYGKiMBct19AAAHtElEQVR42u3dXYhUdRzG8WfO7Hih4kWBhdILiSVbrcZU2NuVEhRCGJTQ20WBBN2E+VKr+ZKa7upqIETbCxGIRjd1GxSB3hjNStEalBEGhmL0Rgqus+t2YS2t7v+c/8yc//mdc57nM1c6s2d+M7+vs7M77mwFl9TxPOq4DTVI2TUxjCEMogEAFQBVbEQvuqznkkyNoh+b0awCWI8tiKznkYxFeADAFxX0oKEHflKjuLuKNbjfeg4xEmE0wh3WU4ihegUnMdd6CjFzNtKzf2o1PfsnpwDIKQByCoCc+yngKI5ZDyepmY/prrNOY3zK02nrmSVFRxxbPq9PAeQUADkFQE4BkFMA5BQAOQVATgGQUwDkFAA5BUBOAZBTAOQUADkFQE4BkFMA5BQAOQVATgGQUwDkFAA5BUBOAZBTAOQUADkFQE4BkFMA5BQAOb1FlJ+5mb+Z5hh+wcXwV6MAkjyKlbgLVxlc899o4ADeDX01eoMIt1n40HHvZHf6FNekcEv0BhFteRMrrEfAg9iPSrjDKwC3R/Ck9QgAgKVYGe7gCsDtKesBsphEAbjVrQeYsCjcnhSASwVzrEeYMDPcG3orAJdxfGs9wv9UQx1YAbg1rAfIggJw24Vz1iOEpwDcfsJL1iOEpwDiDGJ52b8jqtcC4n2CQ1iGOroDvBh0D6ZZ3zxArwVY2dHSKwI3dnhtztcC9AhgYyfWWY9wiZ4DWMjN+hWAhRytXwFkL1frVwBZy9n6FUC2crd+BZClHK5fAWTHZ/0j2Y+lALLhs/4tOJL9YAogC31e699sMZoCCK8PaxMvY7R+BRBertevAELzWf9rdutXAGH5rX+T5YgKIJwCrF8BhFOI9SuAUAqyfgUQhs/6t+Zh/QogBL/1b7Qe8xL9l7C09WNN4mVys349AqStYOtXAOnyWf+2PK1fAaTJb/2vWo85mQJISyHXrwDSUtD1K4B0FHb9CiANPuvfns/1K4DO+a1/g/WYLvpGUGd2YXXiZXK8fj0CdKbw61cAnSjB+hVA+3zW/3re168A2uW3/vXWYyZTAO0ozfoVQDtKtH4F0Dqf9e8oyvoVQKv81t9rPaY/BdCK0q1f3wlsxW6Pdw4t2Pr1COCvlOtXAL581r+zeOtXAH781v+K9ZjtUADJSrx+BZCs1OtXAElKvn4FEM9n/X1FXr8CiOO3/petx+yMvhHkMoBViZcp/Pr1COBCsn4FMDWf9fcHWP8F5znNcDdWvzLmcgMev8KlL8g173Zc2x8dH9n5K2MUwOXs1g887ri+zzo+sgLwZLl+YCZOTHmNj3V8ZAXgxXb9ALAEF6+4xo9SOK4C8OCz/v7gUzyB3ydd4weYlcJRFUCifKwfAOZgAIfxF77DfixL6ZgKIEF+1h+GAoi1p+TrVwCxyr9+BRDDZ/27rIfsmAJw4Fi/AnBgWb8CmBLP+mMDOOU465T1zIH5rH+39ZCpiQngK8dZX1rPHBTX+mMDeMtx1j7rmQNiW39sAMsdZz1kPXMwe+nWHxsA8PEUZxy0njgYxvUnBDAbR6/4/H+19cSB+Kx/wHrIAGIDAGrYgj///avfsA5V63kDYV1/YgAAUMF8PIybrCcNiHf9XgGUXS/x+hUAFuEC8foVAA4lrn+P9YhBkQdQwwj1+ukD6CFfP30A15Gvnz4A4Ffq9SsA7HPcAXutB8sIfQAzcJx4/QoAQA++n3TTR8rw0/3eFACA6XgDJzGOcZzF5+ixHidTCmDCbNxM+LYYzgD43iPoDM5Yj5AnfP8WZBIFQE4BkFMA5BQAOQVATgGQUwDkFAA5BUCu67I/Fe1bw2Mh30aZwX8LX4wXUMcthXtEuIjjaGAQh60HKbIqtmI08b9N5/k0hgFMs74bcy325eAN5gtM41S+n+hNU0wAPR4/M1OE0xjus76Xc8wZQIRnULOeLhURnrMeoYgiLLIeITV16wGKKMIC6xFS0209QBFFhfvK3608tyRDRfu6X1KmAMgpAHIKgJz7idN5fGM9nMPtmG49Qnm4A/gZi62Hc/gaC61HKA99CiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHIKgJwCIKcAyCkAcgqAnAIgpwDIKQByCoCcAiCnAMgpAHJdznPm4YT1cA5zUj5eN1agjgUx90XxXev4+3H3je7CDdZTZ6ALa7EJ06zHMFMpc/U++rDKegRb3M8B7sWL1iNY4w5gNfntB3sAdesB7EWoWI+QmgstXn4Grrce2Vwzwo/WM6RmuMXLn8Np65HNDUcYsp4hNa3fkvLc9nYNRXin5YfOfBrFYMsf0/pHlMso3qviDMawxHqSFGzDgZY/5gfMw0LrwQ1tx0EAiLAW5zFe4NMIelFt6y6YibfNp7c5NbEdNUx8DXArnsWd6EbNOsoWNXEMDbyPYx0cYymeRh0L2kyoeJoYxhAG0QCAfwC6yWo6sMT/1AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wMi0wNlQwNjo0MjozNSswMTowMJTdJZkAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDItMDZUMDY6NDI6MzUrMDE6MDDlgJ0lAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="/>
+    </pattern>
+  </defs>
+  <g id="Group_275" data-name="Group 275" transform="translate(-9756 -13619)">
+    <g id="Rectangle_1202" data-name="Rectangle 1202" class="cls-1" transform="translate(1604 989)">
+      <rect class="cls-3" width="22" height="21" rx="1"/>
+      <rect class="cls-4" x="0.35" y="0.35" width="21.3" height="20.3" rx="0.65"/>
+    </g>
+    <path id="expand" class="cls-2" d="M0,0H13.85V13.85H0Z" transform="translate(1608 993)"/>
+  </g>
+</svg>

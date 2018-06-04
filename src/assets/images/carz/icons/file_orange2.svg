@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15698.5 -14829.5 48 61">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #f70;
+      }
+
+      .cls-2 {
+        stroke: #f70;
+      }
+    </style>
+  </defs>
+  <g id="file_1_" data-name="file (1)" transform="translate(-15704.5 -14829)">
+    <path id="Path_478" data-name="Path 478" class="cls-1" d="M42.5,22h-25a1,1,0,0,0,0,2h25a1,1,0,0,0,0-2Z"/>
+    <path id="Path_479" data-name="Path 479" class="cls-1" d="M17.5,16h10a1,1,0,0,0,0-2h-10a1,1,0,0,0,0,2Z"/>
+    <path id="Path_480" data-name="Path 480" class="cls-1" d="M42.5,30h-25a1,1,0,0,0,0,2h25a1,1,0,0,0,0-2Z"/>
+    <path id="Path_481" data-name="Path 481" class="cls-1" d="M42.5,38h-25a1,1,0,0,0,0,2h25a1,1,0,0,0,0-2Z"/>
+    <path id="Path_482" data-name="Path 482" class="cls-1" d="M42.5,46h-25a1,1,0,0,0,0,2h25a1,1,0,0,0,0-2Z"/>
+    <path id="Path_483" data-name="Path 483" class="cls-2" d="M38.914,0H6.5V60h47V14.586ZM39.5,3.414,50.086,14H39.5ZM8.5,58V2h29V16h14V58Z"/>
+  </g>
+</svg>

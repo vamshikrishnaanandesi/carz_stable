@@ -1,0 +1,268 @@
+<div class="settings-main">
+  <!-- top title component -->
+  <div class="row top-title-component">
+    <div class="col-sm-6 padding-left-0">
+
+      <div class="main_top_franchisee">
+        <h1 class="franchisee-title">Ticketing System</h1>
+      </div>
+
+    </div>
+    <div class="col-sm-6 padding-right-0">
+      <div class="text-right">
+
+        <button class="filled-btn margin-left-15" style="width:auto !important;" (click)="createTicket()" mat-button>
+          <img src="../../../../../assets/images/carz/icons/add.svg" style="left: -4px; top: 0px; position: relative; width: 12px;"
+            class="btn-icons-left" alt=""> Create New</button>
+      </div>
+    </div>
+  </div>
+  <!-- /top title component -->
+
+    <!-- top second title component -->
+    <div class="row second-level-title-ticket">
+      <div class="col-sm-6 padding-left-0">
+        <p class="marign-0"> <span>Sort By: </span> <span class="thickblack font-weight-500" [matMenuTriggerFor]="dateCreated">Date Created<mat-icon class="chevron_right">expand_more</mat-icon></span> </p>
+       <!-- <table>
+          <tr>
+            <td>Sort By</td>
+            <td [matMenuTriggerFor]="dateCreated">Date Created <mat-icon class="chevron_right">expand_more</mat-icon>
+             </td>
+
+          </tr>
+        </table> -->
+        <mat-menu #dateCreated="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="text-right">
+            <div class="master-normal-drpdwn alltickets">
+          <mat-form-field>
+            <mat-select placeholder="All Tickets">
+              <mat-option value="All">All Tickets</mat-option>
+              <mat-option value="Master">All Tickets2</mat-option>
+              <mat-option value="Normal">All Tickets3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- /top second title component -->
+
+    <!-- table ticketing system started when zero  -->
+    <div class="list-ticket second-level-title-ticket row" *ngIf="ticket_list == 0">
+<table class="table table-hover table-border">
+  <!-- <thead class="thead-table">
+  <tr>
+    <th>NAME</th>
+    <th>SUBJECT</th>
+    <th>TYPE</th>
+    <th>DATE</th>
+    <th>STATUS</th>
+  </tr>
+</thead> -->
+<tbody class="tickets-body-table">
+
+<td colspan="5" *ngIf="ticket_list == 0">
+
+
+  <div class="" style="height: 500px; margin:0 auto;">
+      <div class="text-center">
+          <div class="spacer-md"></div>
+          <div class="spacer-sm"></div>
+          <img src="../../../../../assets/images/carz/icons/interview_empty.svg" width="100px" style="margin-bottom:15px;" alt="">
+          <p class="text-center no-files-main-head">CREATE YOUR FIRST TICKET</p>
+          <p class="text-center no-files-sub-head">Facing an issue? Raise a ticket to resolve it.</p>
+          <div class="spacer-sm"></div>
+
+        </div>
+  </div>
+
+</td>
+</tbody>
+</table>
+
+
+    </div>
+
+    <!-- /table ticketing system started when zero  -->
+
+        <!-- table ticketing system started when list are available  -->
+        <div class="list-ticket second-level-title-ticket row">
+
+            <table class="table table-hover table-border" *ngIf="ticket_list != 0">
+
+              <thead class="thead-table">
+              <tr>
+                <!-- <th width="40px" ><mat-checkbox class="checkbox-table"></mat-checkbox></th> -->
+                <th>NAME</th>
+                <th>SUBJECT</th>
+                <th>TYPE</th>
+                <th>DATE</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+
+            <tbody class="tickets-body-table">
+              <tr  *ngFor="let ticket of ticket_list" [routerLink]="['/apps/ticketing-system/ticketing-system-single/' + ticket._id]">
+                <td width="40px"><mat-checkbox></mat-checkbox></td>
+                <td>{{ticket.name}}</td>
+
+                <td>{{ticket.subject}}</td>
+                <td>{{ticket.type}}</td>
+                <!-- <td class="tickeTypemain">
+                    <mat-form-field  >
+                        <mat-select [(value)]="ticketTypeselected" class="tickeType">
+
+                            <mat-option value="Problem">Problem</mat-option>
+                            <mat-option value="Incident">Incident</mat-option>
+                            <mat-option value="Question">Question</mat-option>
+                            <mat-option value="Request">Request</mat-option>
+                        </mat-select>
+                      </mat-form-field>   </td> -->
+
+                <td>{{ticket.created_at|date: 'dd/MM/yyy'}}</td>
+                <td>{{ticket.status}}</td>
+
+              </tr>
+              <!-- <tr>
+                  <td width="40px"><mat-checkbox></mat-checkbox></td>
+                  <td>ddd</td>
+                  <td>ddd</td>
+                  <td class="tickeTypemain">
+                      <mat-form-field  >
+                          <mat-select [(value)]="ticketTypeselected" class="tickeType">
+
+                              <mat-option value="Problem">Problem</mat-option>
+                              <mat-option value="Incident">Incident</mat-option>
+                              <mat-option value="Question">Question</mat-option>
+                              <mat-option value="Request">Request</mat-option>
+                          </mat-select>
+                        </mat-form-field>   </td>
+                  <td>ddd</td>
+                  <td>ddd</td>
+
+                </tr> -->
+                <!-- <tr>
+                    <td width="40px"><mat-checkbox></mat-checkbox></td>
+                    <td>ddd</td>
+                    <td>ddd</td>
+                    <td class="tickeTypemain">
+                        <mat-form-field  >
+                            <mat-select [(value)]="ticketTypeselected" class="tickeType">
+
+                                <mat-option value="Problem">Problem</mat-option>
+                                <mat-option value="Incident">Incident</mat-option>
+                                <mat-option value="Question">Question</mat-option>
+                                <mat-option value="Request">Request</mat-option>
+                            </mat-select>
+                          </mat-form-field>   </td>
+                    <td>ddd</td>
+                    <td>ddd</td>
+
+                  </tr> -->
+                  <!-- <tr>
+                      <td width="40px"><mat-checkbox></mat-checkbox></td>
+                      <td>ddd</td>
+                      <td>ddd</td>
+                      <td class="tickeTypemain">
+                          <mat-form-field  >
+                              <mat-select [(value)]="ticketTypeselected" class="tickeType">
+
+                                  <mat-option value="Problem">Problem</mat-option>
+                                  <mat-option value="Incident">Incident</mat-option>
+                                  <mat-option value="Question">Question</mat-option>
+                                  <mat-option value="Request">Request</mat-option>
+                              </mat-select>
+                            </mat-form-field>   </td>
+                      <td>ddd</td>
+                      <td>ddd</td>
+
+                    </tr> -->
+
+            </tbody>
+            </table>
+
+
+                </div>
+
+                <!-- /table ticketing system started when list are available  -->
+
+
+                <!-- right side bar  -->
+        <div class="rightNavbar animated fadeInRight" *ngIf="createTicketRightNav">
+          <mat-icon class="pull-right" (click)="createTicket()" style="cursor: pointer;">close</mat-icon>
+
+          <form #ticketForm="ngForm" name="ngForm" (ngSubmit)="create_ticket(ticketForm)">
+
+          <p  class="rightNavbar-title">New Ticket</p>
+          <div class="spacer-xs"></div>
+        <label for="nav-name">Name</label>
+        <mat-form-field>
+          <input matInput id="nav-name" placeholder="Enter Name" name="name" [(ngModel)]="name" required >
+
+          <mat-error *ngIf="ticketForm.hasError('required', 'name')">
+
+              Name is required
+          </mat-error>
+        </mat-form-field>
+        <label for="nav-Subject">Subject</label>
+        <mat-form-field>
+          <input matInput id="nav-Subject" placeholder="Enter Subject" name="subject" [(ngModel)]="subject" required>
+
+          <mat-error *ngIf="ticketForm.hasError('required', 'subject')">
+
+              Subject is required
+            </mat-error>
+
+        </mat-form-field>
+
+        <label for="nav-type">Type</label>
+        <mat-form-field  >
+
+            <mat-select id="nav-type" placeholder="Ticket Type" [(value)]="ticketTypeselected" name="type" [(ngModel)]="type" required>
+
+                <mat-option value="Problem">Problem</mat-option>
+                <mat-option value="Incident">Incident</mat-option>
+                <mat-option value="Question">Question</mat-option>
+                <mat-option value="Feature Request">Feature Request</mat-option>
+                <!-- 'Question,Incident,Problem,Feature Request' -->
+            </mat-select>
+            <mat-error *ngIf="ticketForm.hasError('required', 'type')">
+
+                Type is required
+              </mat-error>
+          </mat-form-field>
+          <!-- <mat-form-field>
+              <mat-select placeholder="Ticket Type" [(value)]="ticket_type" id="nav-type"
+                name="ticket_type" [(ngModel)]="type" required>
+                <mat-option *ngFor="let tickets of ticket_type" value="{{ticket_type.ticket_name}}">{{ticket_type.ticket_name}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="franchiseeForm.hasError('required', 'franchisee_franchise_type')">
+                  Franchisee Type is required
+                </mat-error>
+            </mat-form-field> -->
+          <label for="nav-enddate">About</label>
+          <mat-form-field class="about_campaign-ticket">
+            <textarea matInput placeholder="Leave a comment" name="description" [(ngModel)]="description" required></textarea>
+            <mat-error *ngIf="ticketForm.hasError('required', 'description')">
+
+                Description is required
+              </mat-error>
+          </mat-form-field>
+          <div class="spacer-sm"></div>
+          <div class="text-right">
+              <button class="filled-btn margin-left-15" style="width:auto !important;" mat-button >
+
+                <img src="../../../../../assets/images/carz/icons/add.svg" style="left: -4px; top: 0px; position: relative; width: 12px;"
+                  class="btn-icons-left" alt="" > Create</button>
+            </div>
+          </form>
+                </div>
+
+
+</div>

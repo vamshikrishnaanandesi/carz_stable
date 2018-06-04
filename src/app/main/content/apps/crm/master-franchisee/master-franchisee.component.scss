@@ -1,0 +1,32 @@
+
+// froms input fields Widths started
+
+.master_fran_name{
+  width: 350px;
+}
+.master_fran_country{
+  width: calc(100% - 10px);
+}
+
+// froms input fields Widths ended
+
+
+.bg-franshisee{
+  min-height: 100%;
+  padding: 30px;
+}
+.add_another{
+  color: #EE3638 !important;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.location{
+  position: relative;
+  top: -10px;
+
+}
+form.master_franchisee_from_main table tr td.location {
+  top: -1px;
+}

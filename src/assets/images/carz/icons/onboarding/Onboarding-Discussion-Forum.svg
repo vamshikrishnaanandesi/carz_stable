@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.018 72.018">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f70;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #f70;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-width: 0.6px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Onboarding_-_Discussion_Forum" data-name="Onboarding - Discussion Forum" transform="translate(-1473 -452.491)">
+    <circle id="Ellipse_467" data-name="Ellipse 467" class="cls-1" cx="30.674" cy="30.674" r="30.674" transform="translate(1478.824 457.826)"/>
+    <g id="Ellipse_468" data-name="Ellipse 468" class="cls-2" transform="translate(1473 452.491)">
+      <circle class="cls-4" cx="36.009" cy="36.009" r="36.009"/>
+      <circle class="cls-5" cx="36.009" cy="36.009" r="35.009"/>
+    </g>
+    <g id="chat_1_" data-name="chat (1)" transform="translate(1497.229 476.475)">
+      <path id="Path_236" data-name="Path 236" class="cls-3" d="M9.392,24.226h5.1a.381.381,0,1,0,0-.761h-5.1a.381.381,0,1,0,0,.761Z" transform="translate(-5.469 -13.005)"/>
+      <path id="Path_237" data-name="Path 237" class="cls-3" d="M19.594,29.465H9.392a.381.381,0,1,0,0,.761h10.2a.381.381,0,1,0,0-.761Z" transform="translate(-5.469 -16.721)"/>
+      <path id="Path_238" data-name="Path 238" class="cls-3" d="M19.594,35.465H9.392a.381.381,0,1,0,0,.761h10.2a.381.381,0,1,0,0-.761Z" transform="translate(-5.469 -20.436)"/>
+      <path id="Path_239" data-name="Path 239" class="cls-3" d="M21.217,2.492,7.82,2.465A2.3,2.3,0,0,0,5.493,4.723V6.673L2.327,6.68A2.3,2.3,0,0,0,0,8.938v8.049a2.3,2.3,0,0,0,2.327,2.257H4.709v3.807a.381.381,0,0,0,.251.355.4.4,0,0,0,.141.026.4.4,0,0,0,.29-.124L9.2,19.243l6.524-.026A2.3,2.3,0,0,0,18.05,16.96v-.043l2.064,2.2a.4.4,0,0,0,.29.124.4.4,0,0,0,.141-.026.381.381,0,0,0,.251-.355V15.056h.42A2.3,2.3,0,0,0,23.543,12.8V4.749A2.3,2.3,0,0,0,21.217,2.492ZM17.265,16.959a1.521,1.521,0,0,1-1.544,1.5l-6.7.027a.4.4,0,0,0-.289.124l-3.241,3.46v-3.2a.387.387,0,0,0-.392-.381H2.327a1.521,1.521,0,0,1-1.542-1.5V8.937a1.522,1.522,0,0,1,1.543-1.5l3.558-.007h0l9.836-.02a1.521,1.521,0,0,1,1.542,1.5v8.049ZM22.758,12.8a1.521,1.521,0,0,1-1.542,1.5H20.4a.387.387,0,0,0-.392.381v3.2L18.05,15.784V8.91a2.3,2.3,0,0,0-2.328-2.258l-9.444.019V4.722a1.521,1.521,0,0,1,1.541-1.5l13.4.027h0a1.521,1.521,0,0,1,1.542,1.5V12.8Z" transform="translate(0 0)"/>
+    </g>
+  </g>
+</svg>

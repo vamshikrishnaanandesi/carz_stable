@@ -1,0 +1,49 @@
+.franshisee-main {
+  margin: 0;
+
+  //  background: rgba(228, 228, 228, 0.22);
+   padding: 15px;
+   padding-left: 30px;
+   max-height: 630px;
+   min-height: 630px;
+ }
+
+ .franchisee-info{
+  font-size: 42px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.69);
+  margin-bottom: 63.5px;
+
+}
+  .mat-form-field {
+    width: 100%;
+  }
+  .edit-img-title{
+    font-size: 16px;
+    color: rgb(25, 34, 45);
+    font-weight: 500;
+  }
+  .edit-profile-save{
+    background: #f1464a;
+    outline: 0;
+    color: #fff !important;
+    width: 180px;
+    height: 45px;
+  }
+  .svg_icons{
+    width: 45px;
+    height: 45px;
+  }
+  .profile-img{
+    width: 180px;
+    height: 180px;
+    border: 0px solid !important;
+  }
+  .remarks .mat-form-field-infix {
+    height: 300px !important;
+}
+.create_main_franchisee_tab{
+   background: rgba(228, 228, 228, 0.22);
+   padding: 15px;
+
+}

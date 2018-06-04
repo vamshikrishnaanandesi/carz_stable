@@ -1,0 +1,23 @@
+<div class="text-center">
+<div class="spacer-sm"></div>
+<p class=" no-files-main-head">Good Job !</p>
+<p class=" no-files-sub-head">Stage is Completed,<br> you can change lead to other stages</p>
+<div class="spacer-xs"></div>
+<div class="profilesubsections">
+  <form action="">
+    <div class="leads_type">
+      <mat-form-field>
+        <mat-select [(ngModel)]="selected_leadType" required >
+          <mat-option *ngFor="let opt of options_list;let i=index;" [value]="opt.value" (click)="changeLeadStatus(opt)">
+            {{opt.option}}
+          </mat-option>
+              </mat-select>
+      </mat-form-field>
+
+    </div>
+<div class="spacer-sm"></div>
+
+    <button class="secondary-btn md-btn" type="submit" (click)="closeDialogpop();"  mat-button >Confirm</button>
+  </form>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.461 12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f70;
+      }
+    </style>
+  </defs>
+  <g id="Marketing_Calendar" data-name="Marketing / Calendar" transform="translate(-14.823 12.085)">
+    <path id="Path_1241" data-name="Path 1241" class="cls-1" d="M18.772,4.932h-.554V3.973H17.175v.959H13V3.973H11.961v.959h-.521A1.566,1.566,0,0,0,9.875,6.5v7.912a1.566,1.566,0,0,0,1.564,1.564h7.333a1.566,1.566,0,0,0,1.564-1.564V6.5A1.566,1.566,0,0,0,18.772,4.932Zm.521,9.477a.522.522,0,0,1-.391.521H11.57c-.418,0-.652-.234-.652-.521V8.021h8.376ZM15.761,10.69H12.194v2.94h3.568Z" transform="translate(4.948 -16.059)"/>
+  </g>
+</svg>

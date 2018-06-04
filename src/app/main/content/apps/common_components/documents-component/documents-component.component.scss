@@ -1,0 +1,183 @@
+
+
+// folder section right
+
+.delete_btn{
+  position: relative;
+  top: 8px;
+  // right: 15px;
+}
+.createMainBtn .delete_btn{
+  margin-right: 35px;
+}
+.createMainBtn{
+  position: absolute;
+  right: 70px;
+}
+
+.attachedfiles{
+  font-size: 13px;
+  margin-bottom: 0;
+
+  padding-top: 15px;
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+  top: 47px;
+}
+
+.intial_state_franchisee_folder{
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 200px;
+}
+.upload.svg-icons{
+  width: 17px;
+    height: 17px;
+    /* padding-right: 8px; */
+    margin-right: 8px;
+}
+
+
+.folderfiletype{
+  margin-left: 0px;
+}
+.file-below-title{
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 106px;
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+
+}
+.file-below-date{
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+
+}
+
+// add icon css
+.add-icon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.folder_save_btn{
+  float: right;
+  margin-left: 30px;
+    width: 100px;
+    height: 38px;
+}
+.delete_folder{
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+}
+.bg-franshisee{
+  background: #F9FAFB;
+}
+.franchisee_name_lib{
+  font-size: 20px;
+  color: #000000;
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px !important;
+  position: relative;
+  top: 5px;
+}
+.deleteUplaodMain{
+  // line-height: 132px;
+//   position: relative;
+// top: 35px;
+margin-bottom: 35px;
+}
+.common_drive_diff{
+  margin-top: 25px;
+  margin-left: 0px;
+  margin-bottom: 25px;
+}
+
+.deleteUplaodMain .delete_btn{
+  margin-right: 35px;
+}
+.library_main_component{
+  position: absolute;
+  top: 0px;
+  width: 97.5%;
+  left: 30px;
+}
+.library_main_component .setting-icon {
+  margin-top: 15px;
+}
+// create button dropdown
+.createMainBt{
+  position: relative;
+}
+.foldernfile{
+
+}
+.chooseOpt{
+  position: absolute;
+  right: 10px;
+  /* text-align: left; */
+  background: #fff;
+  width: 180px;
+  border-radius: 8px;
+}
+div.chooseOpt p {
+
+  /* padding: 8px; */
+  cursor: pointer;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  /* left: -15px; */
+  padding: 10px 0px;
+  margin: 0px;
+  color: #4D4D4D;
+}
+.common_drive_title{
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  top: 7px;
+}
+.chooseOpt p:hover {
+  background: rgba(255, 119, 0, .22);
+  color: #4D4D4D;
+}
+.upload_file{
+  display: none;
+}
+
+// common folder title
+.common_sep_fold{
+  margin-top: 30px;
+}
+
+.common_drive_main_spe{
+  padding-bottom: 35px;
+  border-bottom: 2px solid rgba(112, 112, 112, 0.40);
+  // padding-top: 15px;
+}
+.download_btn{
+  margin-right: 30px;
+}
+mat-grid-list.franchisee_libray.mat-grid-list mat-grid-tile.mat-grid-tile {
+  width: calc(((14.2857% - 35.857143px) * 1.56) + 0px) !important;
+}

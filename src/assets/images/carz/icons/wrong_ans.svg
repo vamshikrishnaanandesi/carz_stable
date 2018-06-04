@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ee3638;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <g id="wrong_ans" data-name="wrong ans" transform="translate(-664 -1114)">
+    <rect id="Rectangle_1578" data-name="Rectangle 1578" class="cls-1" width="25" height="25" rx="6" transform="translate(664 1114)"/>
+    <g id="Group_469" data-name="Group 469" transform="translate(671.214 1121.249)">
+      <path id="Path_459" data-name="Path 459" class="cls-2" d="M3263.522-13555.432l10.249,10.248" transform="translate(-3263.522 13555.432)"/>
+      <path id="Path_460" data-name="Path 460" class="cls-2" d="M0,0,10.249,10.249" transform="translate(0 10.25) rotate(-90)"/>
+    </g>
+  </g>
+</svg>

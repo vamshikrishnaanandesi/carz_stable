@@ -1,0 +1,133 @@
+<div class="franshisee-main container-fluid">
+  <section>
+      <div class="spacer-xs"></div>
+      <div class="row">
+          <div class="col-md-3 col-lg-3">
+              <div class="franchisee-profile">
+                  <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="">
+                  <h1 class="body-txt-title" title="JAYADEV GALLA" *ngIf="franchisees != null">{{franchisees.franchisee_name}}</h1>
+                  <p class="sub-heading-address body-subtitle" *ngIf="franchisees != null">
+                      <img src="../../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt="">
+                      <span class="body-sub-title-text"> {{franchisees.franchisee_address}} </span>
+                  </p>
+                  <p class="city-name body-subtitle" *ngIf="franchisees != null">
+                      <img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons location" alt="">
+                      <span class="body-sub-title-text"> {{franchisees.franchisee_city}} </span>
+                  </p>
+                  <div class="spacer-xs"></div>
+                  <div class="profilesubsections">
+                      <p class="profile-left-sub-head">CONTACT INFO</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null"> {{franchisees.franchisee_email}}</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null"> {{franchisees.franchisee_mobile_number}}</p>
+                  </div>
+                  <div class="spacer-xs"></div>
+                  <div class="profilesubsections">
+                      <p class="profile-left-sub-head">PERSONAL</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_age}}</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_occupation}}</p>
+                  </div>
+                  <div class="spacer-xs"></div>
+                  <div class="profilesubsections">
+                      <p class="profile-left-sub-head">FRANCHISEE INFO</p>
+                      <span class="franchisee-list status body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_franchise_model}}</span>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null">{{lead_source}}</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_date |date: 'dd.MM.yyyy'}}</p>
+                      <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_time}}</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-9">
+              <div class="profile-right-main">
+                  <section>
+                      <div class="row">
+                          <div class="col-sm-5">
+                              <!-- <nav aria-label="breadcrumb">
+                                  <ol class="breadcrumb">
+                                      <li class="breadcrumb-item">
+                                          <a href="#">Library</a>
+                                      </li>
+                                      <li class="breadcrumb-item ">
+                                          <a href="#" *ngIf="franchisees != null">{{franchisees.franchisee_name}}</a>
+                                      </li>
+                                      <li class="breadcrumb-item active" aria-current="page">Folder name</li>
+                                  </ol>
+
+
+
+
+                              </nav> -->
+
+
+                              <nav aria-label="breadcrumb">
+                                  <ol class="breadcrumb franchisee_separate">
+                                      <li class="breadcrumb-item">
+                                          <a [routerLink]="['/apps/library/library-main']">Library</a>
+                                      </li>
+                                      <li class="breadcrumb-item ">
+                                          <a href="#" *ngIf="franchisees != null">{{franchisees.franchisee_name}}</a>
+                                      </li>
+                                      <li class="breadcrumb-item active" aria-current="page">Folder name</li>
+                                  </ol>
+                               </nav>
+
+                          </div>
+                          <div class="col-sm-7">
+                              <div class="text-right">
+                                  <svg class="svg-icons " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8182.05 -12518.05 32.1 32.1">
+                                      <defs>
+                                          <style>
+                                              .cls-1 {
+                                                  opacity: 0.55;
+                                              }
+                                          </style>
+                                      </defs>
+                                      <image id="delete-button" class="cls-1" width="32.1" height="32.1" transform="translate(-8182.05 -12518.05)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR8UHAEoHRg3AAAC3ElEQVRo3u2Zz0uUQRzGP6trpoQSgaKCXsw8JFn+QCRFKQM9GmHeQhC6ePBi/4LbRfAHdOrknrp4lCy8iN5qwwi2JHVduiwqtmLW5k6HZu39Me/uvu++bxG8zxz25Zn5fp/nnRnmnZ0J4BS3eEArrUCECC944ziTA1QwxxlCU86Yo+JvydcQ04lnSowa+8kCtiOCrHIbAMEq74Ab9Ms8a/Tz0+v3D8n3jdB2zrURkWzIa/li9hEItqnS8VVsIxDsU+ytgV75piOmmhFZ02svYdCCD9BICxdM/H0A0pTx0FBzkTRFwAS1pqgfbLKFyNdUNWEOlfO8kHJImOp85IdJuC6eKQmGc8l3kPJMXiBI0WEcay3KeMs1AFZ4xiYpexPKEiW08JgBAKLc5JtVwzHpc94lYT3mZfYx6yYLcqTKPTFQLmfXgpYs0jX5vbatc+KJgRPWNSpKA5UAfPVE/k/mSmsDnwBo98xAu0ZFaSACQLNplXMHIzRrVJSo4xSB4Jhxy0XaGYKMc4xAcEqdtsK4HwgxJZ++s+Xatz1II6Xy+SlPsjUtIuzpShg2DLoCxUxw4In4ARPm3YJ6SzbASwBese/CAFzhLgD3WMk3pE967nJBHrpktj5VZc4R8Rq+Ad+Ab8A3YMfAIBvM6CIaWGKJBl2+GTYYLNSWaikOsItAMKThZhEIZjXMEALBru4b49JSXEo9AE0arsmCqT//+ufEfzUHfAO+Ad+Ab8A34BvwDfgG/rGBFEcAJDRcwoI5KvSQV30+MEmSNd0paic77NCpYcpZI8mkLi7rplSNHhnSbeBLFD1o7kNjq26ZrUclpR6CqPy9auDNHZsmbeKMrTJZothAHIFg2U6IJZYRCOL2ghZlt00XeGAZZFpmWlQ3sLq4rOU9lwH4yGtiDuXruSP/qhxynS/2gkddPSMcdeJ/gD1XxPfkZY0S2e45P/OcY5JccnwvHmeVRR7xwbrJLz7O/MGO4G1VAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTMxVDIwOjI4OjAxKzAxOjAwXTRiywAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0zMVQyMDoyODowMSswMTowMCxp2ncAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC" (click)="delete_selected_files()" />
+                                  </svg>
+                                  <div class="upload-btn-wrapper">
+                                      <button class="btn">
+                                          <svg class="svg-icons upload" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8091 -12514 23 23">
+                                              <image id="upload_4_" data-name="upload (4)" width="23" height="23" transform="translate(-8091 -12514)" xlink:href="data:image/png;base64,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" />
+                                          </svg>
+                                          Upload a file
+                                      </button>
+                                      <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
+                                  </div>
+                              </div>
+                          </div>
+                          <section>
+                              <div class="main-folder-section ">
+                                  <h1 class="padding-left">Files </h1>
+                                  <div *ngFor='let file of files_list; let i=index' style="float:left;">
+                                      <!-- (click)="toggleSelected(file, $event)" -->
+                                      <input type="checkbox" id="filenames2{{i}}" [(ngModel)]="file.flag" class="checkboxHide" (click)="select_files(file, file.flag,i, $event)" [checked]="saveUsername">
+                                      <label for="filenames2{{i}}">
+                                          <div class="folderfiletype">
+                                              <!-- <mat-checkbox [(ngModel)]="file.flag"  class="checkbox_type " (click)="select_files(file, file.flag, i)"></mat-checkbox> -->
+                                              <!-- <input type="checkbox"  [(ngModel)]="file.flag" name="flag" (click)="select_files(file,file.flag,i)" class="checkbox_type "> -->
+                                              <img src="../../../../../assets/images/carz/icons/pdf.svg" class="svg-icons" alt="" *ngIf="file.image_type=='pdf'">
+                                              <img src="../../../../../assets/images/carz/icons/img.svg" class="svg-icons" alt="" *ngIf="file.image_type=='image'">
+                                              <img src="../../../../../assets/images/carz/icons/file.svg" class="svg-icons" alt="" *ngIf="file.image_type=='docs'">
+                                              <!-- <img src="../../../../../assets/images/carz/icons/file.svg" alt="">  -->
+                                              <h5 class="file-below-title" title="{{file.file_name}}">{{file.file_name}}</h5>
+                                              <h5 class="file-below-date">{{file.date_uploaded |date: 'dd.MM.yyyy'}}</h5>
+                                              <div class="pull-right view-icons animated   fadeIn">
+                                                  <!-- <img class="svg_icons" src="../../../../../../assets/images/carz/icons/eye.svg" alt=""> -->
+                                                  <a target="_self" href="{{file.path}}" download="{{file.file_name}}">
+                                                      <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download-file.svg" alt="">
+                                                  </a>
+                                                  <img class="svg_icons" (click)="openDialog(file)" src="../../../../../../assets/images/carz/icons/eye.svg" alt="">
+                                              </div>
+                                          </div>
+                                      </label>
+                                      <!-- <button mat-raised-button (click)="view_file(file)">Pick one</button> -->
+                                  </div>
+                              </div>
+                          </section>
+                          <div class="clearfix"></div>
+                      </div>
+                  </section>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>

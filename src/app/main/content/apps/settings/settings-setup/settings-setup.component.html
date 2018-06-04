@@ -1,0 +1,350 @@
+<div class="settings-main">
+  <!-- top title component -->
+  <div class="row top-title-component">
+    <div class="col-sm-6">
+
+      <div class="main_top_franchisee">
+        <h1 class="franchisee-title">Settings</h1>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="text-right">
+
+        <button class="empty-btn" mat-button (click)="cancelsettings()">Cancel</button>
+
+        <button class="filled-btn margin-left-15" mat-button>
+          <img src="../../../../../../assets/images/carz/icons/tick_save.svg" style="left: 22px;top: 14px;position: absolute;"
+            class="btn-icons-left" alt=""> Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- left side component -->
+
+  <div class="main-CRM-setup">
+
+    <div class="row settings-main-row">
+
+      <div class="franchisee-profile settings">
+        <mat-list>
+          <!-- <mat-list-item>Discussion</mat-list-item> -->
+          <mat-accordion class="discussion_accordian">
+            <mat-expansion-panel [expanded]="discussion === 0" (opened)="setdiscussion(0)" hideToggle="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span class="Orange_dot"></span>
+                  <strong>CRM</strong>
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                            Discussion
+                        </mat-panel-description> -->
+              </mat-expansion-panel-header>
+              <mat-list-item (click)="navigateApplication();">Discussion</mat-list-item>
+              <mat-list-item>KYC Upload</mat-list-item>
+              <mat-list-item>Assessment</mat-list-item>
+              <mat-list-item>
+                <strong>Setup</strong>
+              </mat-list-item>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!--
+                <mat-divider></mat-divider>
+                <mat-list-item>Library</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Assessment</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Marketing</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Feed</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Revenue & Sales</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Audit Management</mat-list-item> -->
+        </mat-list>
+      </div>
+      <div class="profile-right-main" #target>
+
+
+        <!--
+            <div class=" col-md-12 ">
+                <div class="text-center under-construction-setup">
+                  <div class="spacer-md"></div>
+                <div class="spacer-sm"></div>
+
+                  <img src="../../../../../../assets/images/carz/icons/crane.svg" width="115px" style="margin-bottom:15px;" alt="">
+
+                  <p class="text-center no-files-main-head"> Come back soon</p>
+
+                  <p class="text-center no-files-sub-head">Looks like this page is still under construction</p>
+
+                  <div class="spacer-sm"></div>
+
+                </div>
+              </div> -->
+
+        <!-- at zero state Ui started -->
+
+
+
+        <div class="text-center" *ngIf="setup_department_list.length == 0">
+          <img src="../../../../../../assets/images/carz/icons/app_form.svg" width="100px" style="margin-bottom:15px;" alt="">
+          <p class="text-center no-files-main-head">CREATE A CHECKLIST
+
+          </p>
+          <p class="text-center no-files-sub-head">Start creating tasks checklists for the Franchisee to complete and
+            <br> to keep track of their activities</p>
+          <div class="spacer-sm"></div>
+          <button class="filled-btn" (click)="add_checklist()" mat-button>
+            <img src="../../../../../../assets/images/carz/icons/checklist_icon.svg" style="left: -7px;top: -2px;position: relative;width: 16px;"
+              class="btn-icons-left" alt=""> Create New
+          </button>
+        </div>
+
+        <!-- at zero state Ui ended -->
+
+
+        <!-- check lists started -->
+
+
+        <div class="settings-application" [ngClass]="{'show': setup_department_list.length != 0}">
+          <mat-tab-group (selectChange)='onSelectChange($event)'>
+            <mat-tab *ngFor="let department of setup_department_list; let i = index" label={{department.setup_department_name_EN}}>
+              <div class="tasks_section_checklist" *ngIf="checklist_opened == true">
+
+                <div class="spacer-xs"></div>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb franchisee_separate">
+                    <li class="breadcrumb-item " (click)="checklist_opened = false;">{{department.setup_department_name_EN}}</li>
+                    <li class="breadcrumb-item active">{{checklist_data.setup_checklist_name_EN}}</li>
+
+                  </ol>
+                </nav>
+                <div class="title_box_checklist">
+                  <p class="settings_stage_title"><span *ngIf="!titleboxchecklist"  >{{checklist_data.setup_checklist_name_EN}}</span><span *ngIf="titleboxchecklist">
+                    <input type="text" value="Equipment" class="settings_stage_title_edit" [(ngModel)]="checklist_data.setup_checklist_name_EN">  </span>
+                    <span class="settings_stage_title_icons">
+                      <img src="../../../../../../assets/images/carz/icons/edit.svg" *ngIf="!titleboxchecklist" width="15px" (click)="title_box_checklist()" class="edit-activity" alt="">
+                      <img src="../../../../../../assets/images/carz/icons/tick - checklist card.svg" *ngIf="titleboxchecklist" width="18px" (click)="update_setup_checklist(checklist_data); title_box_checklist()" class="edit-activity" alt="">
+                      <!-- <img src="../../../../../../assets/images/carz/icons/delete-button.png" width="15px" class="delete-activity" alt="" (click)="delete_setup_checklist(checklist_data._id)"> -->
+                    </span>
+                  </p>
+                  <p class="settings-setup-date">{{checklist_data.created_at|date: 'dd.MM.yyyy'}}</p>
+                </div>
+                <div class="spacer-xs"></div>
+                <div class="setting-right-gray-box-main">
+                  <form #setupChecklistTaskForm="ngForm" name="setupChecklistTaskForm" (ngSubmit)="create_edit_task(franchisee_file_upload_required, setupChecklistTaskForm)"   novalidate>
+
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="addanitem">
+                        <mat-form-field>
+                          <input matInput placeholder="Add an item" [(ngModel)]="task_data.task_name_EN" name="task_name_EN" required >
+                          <mat-error *ngIf="setupChecklistTaskForm.hasError('required', 'task_name_EN')">
+
+                              Task is required
+                            </mat-error>
+                        </mat-form-field>
+                      </div>
+
+                    </div>
+                    <div class="col-md-3">
+
+                      <div class="dropdown-setting-right">
+
+                        <mat-form-field>
+                          <mat-select [(ngModel)]="task_data.task_type" name="task_type" required>
+                            <mat-option [value]="task_type_data.value" *ngFor="let task_type_data of setup_task_types" (click)="change_option(task_type_data.task_type)">{{task_type_data.task_type}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="multiple-option-radio-btn" *ngIf="task_data.task_type == 'Radio Button'">
+
+                    <table>
+                      <tr *ngFor="let option_data of setup_task_radio_options;let i=index;">
+                        <td class="multi-options setting-ques-mul-opt">
+                          <input type="text" matInput placeholder="Add an item" [(ngModel)]="option_data.option" name="option" [ngModelOptions]="{standalone: true}">
+                        </td>
+                      </tr>
+                      <tr>
+                        <span class="add-options" (click)="add_more_option_task();">+ Add Option</span>
+                      </tr>
+                    </table>
+
+                  </div>
+
+
+                  <mat-form-field>
+                      <input matInput id="nav-startdate" [matDatepicker]="picker" placeholder="Due date" name="task_due_date" [(ngModel)]="task_data.task_due_date"
+                        required>
+                      <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+
+
+                      <mat-error *ngIf="setupChecklistTaskForm.hasError('required', 'task_due_date')">
+
+
+                        Due Date is required
+                      </mat-error>
+                    </mat-form-field>
+
+                  <div class="spacer-xs"></div>
+                  <!-- gray box to add checklists -->
+                  <div class="right-gray-box-bottom">
+                    <div class="col-xs-12">
+
+                      <div class="pull-left">
+                        <p class="required-button">File Upload
+                          <span class="required-btn-toggle" >
+                            <mat-slide-toggle [(ngModel)]="task_data.franchisee_file_upload_required"></mat-slide-toggle>
+                          </span>
+
+                          <span class="settings-gray-attach-file" *ngIf="!uploaded_file_name && !task_data.franchisor_task_file_attachment_file_name">
+                            <img src="" alt="">
+                            <img src="../../../../../../assets/images/carz/icons/attach_file_grey.svg" class="attach_file" width="15px" alt="">
+                          </span>
+                          <!-- <span class="attach-file-title"> Testing.pdf </span> -->
+                          <span class="attach-file-title" *ngIf="!uploaded_file_name && !task_data.franchisor_task_file_attachment_file_name">
+                            <label for="attachFilesetup">Attach file </label>
+                          </span>
+                          <input type="file" name="" class="attachFilesetup1" id="attachFilesetup" *ngIf="!uploaded_file_name" accept="image/jpeg,image/x-png" (change)="handleFileInput($event.target.files);readUrl($event);" multiple>
+
+
+                            <!-- <span class="attach-file-title"> Testing.pdf </span> -->
+                            <span class="attach-file-title" *ngIf="uploaded_file_name || task_data.franchisor_task_file_attachment_file_name">
+                              <label for="attachFilesetup">{{uploaded_file_name || task_data.franchisor_task_file_attachment_file_name}} </label>
+                            </span>
+                            <span class="settings-gray-attach-file" *ngIf="uploaded_file_name || task_data.franchisor_task_file_attachment_file_name">
+                              <img src="../../../../../../assets/images/carz/icons/delete-button.png" (click)="delete_uploaded_file(fileToUpload, task_data.franchisor_task_file_attachment_file_name)" width="15px"
+                                class="delete-activity" alt="">
+                            </span>
+
+
+                        </p>
+
+                      </div>
+                      <div class="pull-right">
+                        <button class="empty-btn-secondary settings-right-add-btn" type="reset" mat-button (click)="cancel_task_creation()">Cancel</button>
+                        <button *ngIf="!is_edit" class="secondary-btn settings-right-add-btn margin-left-15" mat-button>
+                          <img src="../../../../../../assets/images/carz/icons/add.svg" style="left: -7px;top: -2px;position: relative;width: 13px;"
+                            class="btn-icons-left" alt=""> Add</button>
+                        <button *ngIf="is_edit" class="secondary-btn settings-right-add-btn margin-left-15" mat-button >
+                          <img src="../../../../../../assets/images/carz/icons/tick_save.svg" style="left: -7px;top: -2px;position: relative;width: 16px;"
+                            class="btn-icons-left" alt="" > Save</button>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
+                  <!-- /gray box to add checklists -->
+
+
+                  </form>
+                </div>
+                <div class="spacer-xs"></div>
+
+
+                <!-- created checklist below gray box -->
+
+                <div [sortablejs]="checklist_tasks_list">
+                  <div class="que-settings-below-shown-main" *ngFor="let task_data of checklist_tasks_list;let i=index;">
+
+                    <!-- created questions -->
+                    <div class="col-xs-10">
+                      <p class="que-settings-below-shown pull-left">
+                        <img src="../../../../../../assets/images/carz/icons/draggable.svg" class="draggable-icon" width="13px" alt=""><span>{{i+1}}) </span>
+
+                        <span>{{task_data.task_name_EN}}</span>
+                        <span>{{task_data.task_due_date|date: 'dd.MM.yyyy'}}</span>
+                        <!-- <span >{{task_data.franchisor_task_file_attachment_file_url}}</span> -->
+                      </p>
+                    </div>
+                    <!-- /created questions -->
+
+                    <!-- actions delete edit -->
+                    <div class="col-xs-2">
+                      <p class="pull-right">
+                          <img src="../../../../../../assets/images/carz/icons/eye.svg" *ngIf="task_data?.franchisor_task_file_attachment_file_url" (click)="view_fileUpload(task_data);" width="15px"
+                          class="edit-activity" alt="">
+                        <img src="../../../../../../assets/images/carz/icons/edit.svg" (click)="edit_selected(task_data);scroll(target);" width="15px"
+                          class="edit-activity" alt="">
+                        <img src="../../../../../../assets/images/carz/icons/delete-button.png" (click)="delete_checklist_task(task_data._id)" width="15px"
+                          class="delete-activity" alt="">
+                      </p>
+                    </div>
+                    <!-- /actions delete edit -->
+
+
+                    <div class="clearfix"></div>
+                    <!-- multiple choice -->
+                    <div class="app-form-radio que-settings-below-shown-form" *ngIf="task_data.task_type =='Radio Button'">
+
+                      <mat-radio-group>
+                        <mat-radio-button *ngFor="let opt of task_data.task_radio_options" class="multiple_question_rad" [value]="opt.option">{{opt.option}}</mat-radio-button>
+                        <div class="spacer-xs"></div>
+                      </mat-radio-group>
+                    </div>
+                    <!-- /multiple choice -->
+                    <!-- short Answer -->
+                    <div class="que-settings-below-shown-form" *ngIf="task_data.task_type =='Short Answer'">
+                      <mat-form-field>
+                        <input matInput placeholder="Short Answer" disabled>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- /short Answer -->
+                    <div class="que-settings-below-shown-form" *ngIf="task_data?.franchisee_file_upload_required">
+                        <p class="fileupload-view-disable"> <img src="../../../../../../assets/images/carz/icons/upload-up.svg" style="margin-right: 8px;" width="9px" alt=""> File upload</p>
+                      </div>
+
+                    <!-- Tasks -->
+                    <div class="que-settings-below-shown-form" *ngIf="task_data.task_type =='Task'">
+                      <!-- <mat-form-field>
+                      <textarea matInput placeholder="Task" disabled></textarea>
+                    </mat-form-field> -->
+                    </div>
+                    <!-- /Tasks -->
+                    <mat-divider class="setting-app-divider"></mat-divider>
+                    <div class="spacer-xs"></div>
+                  </div>
+                </div>
+              </div>
+              <!--/tasks_section_checklist-->
+              <!-- /created checklist below gray box -->
+              <div class="spacer-sm"></div>
+              <div class="checklists_list_setup" *ngIf="checklist_opened == false">
+                <div class="row margin-left-0">
+                  <div class="checklist_box addNew" (click)="add_checklist(setup_department_list)">
+                    <span class="add_plus">+</span>
+                  </div>
+                  <div class="checklist_box" *ngFor="let checklist of setup_checklist_list;let i=index;">
+                    <p class="settings_stage_title-cards"  (click)="open_checklist(checklist)">{{checklist.setup_checklist_name_EN}}</p>
+                     <img src="../../../../../../assets/images/carz/icons/delete-button.png" width="15px" class="delete-activity dchecklist" alt="" (click)="delete_setup_checklist(checklist._id)">
+                    <div class="box-bottom"><p> {{checklist.tasks_length}} tasks </p> </div>
+                  </div>
+
+                </div>
+              </div>
+              <!--/checklists_list_setup-->
+
+
+
+            </mat-tab>
+            <!-- <mat-tab label="Equipment & Tools">Content 2</mat-tab> -->
+          </mat-tab-group>
+        </div>
+
+        <!-- checklist ended -->
+        <div class="spacer-xs"></div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

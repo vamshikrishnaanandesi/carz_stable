@@ -1,0 +1,74 @@
+<div class="franshisee-main container-fluid">
+    <div class="spacer-xs"></div>
+    <div class="row">
+           <h1 class="franchisee-title">  5 Stages</h1>
+    </div>
+  <section>
+            <div class="row">
+              <div class="col-md-3 col-lg-3">
+                <div class="franchisee-profile">
+                    <div class="col-md-12" [routerLink]="['/apps/franchisees/editprofile']">
+                      <p  class="pull-right"> <img class="svg_icons"src="../../../../../../assets/images/carz/icons/edit.svg" alt=""></p>
+                          </div>
+          <img src="../../assets/images/logos/fallout.png" class="rounded-circle profile-img" alt="">
+
+                          <h1 class="body-txt-title" title="franchisee_name"  *ngIf="franchisees != null">{{franchisees.franchisee_name}}</h1>
+                          <p class="sub-heading-address body-subtitle"><img src="../../../../../../assets/images/carz/icons/location-in.svg" class="svg-icons location" alt=""> <span class="body-sub-title-text"  *ngIf="franchisees != null"> {{franchisees.franchisee_address}}</span></p>
+                          <p class="city-name body-subtitle"><img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons" alt=""> <span class="body-sub-title-text"  *ngIf="franchisees != null">  {{franchisees.franchisee_city}}</span> </p>
+                          <div class="spacer-xs">  </div>
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">PROCESS STAGE</p>
+                              <mat-form-field class="Fstages">
+                                  <mat-select placeholder="Stage 2">
+                                    <mat-option >Option1</mat-option>
+                                    <mat-option >Option2</mat-option>
+                                    <mat-option>Option3</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                          </div>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">CONTACT INFO</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_email}}</p>
+                                  <p class="city-name body-subtitle" *ngIf="franchisees != null"> {{franchisees.franchisee_mobile_number}}</p>
+                                  <!-- <p class="city-name body-subtitle"> Street Name</p>
+                                  <p class="city-name body-subtitle"> Location</p> -->
+
+
+
+                          </div>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">PERSONAL</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.lead_age}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_occupation}}</p>
+
+
+
+                          </div>
+                          <div class="spacer-xs">  </div>
+
+                          <div class="profilesubsections">
+                              <p class="profile-left-sub-head">FRANCHISEE INFO</p>
+                              <span class="franchisee-list status body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_franchise_model}}</span>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.lead_source}}</p>
+                              <!-- <p class="city-name body-subtitle">Franchisee Date</p> -->
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_date |date: 'dd.MM.yyyy'}}</p>
+                              <p class="city-name body-subtitle" *ngIf="franchisees != null">{{franchisees.franchisee_preferred_time}}</p>
+
+
+
+                          </div>
+                  </div>
+
+
+              </div>
+
+            </div>
+
+  </section>
+
+
+  </div>

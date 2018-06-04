@@ -1,0 +1,153 @@
+span.settings_stage_title_icons {
+    padding-left: 30px;
+}
+.settings_stage_title{
+    font-size: 20px;
+    color: #393939;
+    font-weight: 600;
+    // margin-bottom: 25px;
+}
+ol.breadcrumb.franchisee_separate {
+    position: relative;
+}
+
+td.setting-ques-mul-opt input{
+  width: 350px;
+  height: 36px;
+  border: 1px solid #ededed;
+  margin-bottom: 10px;
+  display: block;
+  background: #fff;
+}
+
+
+.settings-gray-attach-file{
+    padding-left: 60px;
+}
+.settings-setup-date{
+    font-size: 12px;
+    font-weight: 600;
+    color: #6D6D6D;
+}
+.multi-options{
+
+}
+.attach_file{
+  margin-right: 6px;
+  position: relative;
+  top: -2px;
+}
+.attach-file-title{
+
+}
+.attachFilesetup1{
+  display: none;
+}
+.addNew.checklist_box{
+  background: rgba(243, 243, 243, 0.4);
+}
+.checklist_box{
+  padding: 20px;
+  width: 255px;
+  height: 146px;
+  border: 1px solid #C8C8C8;
+  border-radius: 10px;
+  margin-right: 35px;
+  margin-bottom: 35px;
+  position: relative;
+cursor: pointer;
+}
+.add_plus{
+  font-size: 70px;
+  color: #b7b7b7;
+  text-align: center;
+  display: block;
+}
+.checklist_box:last-child{
+  // margin-right: 0px;
+}
+.box-bottom{
+  width: 75px;
+    /* border: 1px solid; */
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    background: #F3F3F3;
+    position: absolute;
+    bottom: 20px;
+}
+.box-bottom p {
+  font-size: 12px;
+}
+.settings_stage_title-cards{
+  color: #393939;
+    font-weight: 700;
+    font-size: 16px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+.show{
+  display: block;
+}
+
+.que-settings-below-shown-main {
+  cursor: pointer;
+  margin-left:35px;
+  position:relative;
+}
+img.draggable-icon {
+  position: absolute;
+  left: -35px;
+}
+.que-settings-below-shown-form::-webkit-input-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form::-moz-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form:-ms-input-placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+.que-settings-below-shown-form::placeholder {
+  color: peachpuff;
+  font-size: 12px;
+}
+
+
+td.setting-ques-mul-opt input{
+  width: 350px;
+  height: 36px;
+  border: 1px solid #ededed;
+  margin-bottom: 10px;
+  display: block;
+  background: #fff;
+}
+
+.que-settings-below-shown-form .mat-radio-button{
+
+  width: 100%;
+}
+.settings_stage_title_edit{
+  border-bottom: 1px solid #ccc !important;
+}
+.fileupload-view-disable{
+  font-size: 13px;
+  // font-weight: 500;
+  color: #6D6D6D;
+  padding-left: 15px;
+}
+img.delete-activity.dchecklist {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.top-title-component{
+  z-index: 2;
+}

@@ -1,0 +1,135 @@
+// Fix: "Icon button ripple radius is not correct on Edge & Safari"
+.mat-icon-button {
+
+    .mat-button-ripple {
+        border-radius: 50%;
+    }
+}
+
+// Fix: "Inconsistent font sizes across elements"
+.mat-input-wrapper {
+    font-size: 16px;
+}
+
+.mat-checkbox {
+    font-size: 16px;
+}
+
+.mat-radio-button {
+    font-size: 16px;
+}
+
+.mat-pseudo-checkbox-checked:after {
+    width: 14px !important;
+    height: 7px !important;
+}
+
+// Fix: "Input underlines has wrong color opacity value"
+.mat-form-field-underline {
+  background-color: transparent;
+}
+.mat-form-field-infix{
+padding: 0.4375em 0.3em;
+border: rgba(227, 227, 227, 1) solid 1px;
+height: 40px;
+background: rgba(255, 255, 255, 1)
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label{
+  transform: none;
+  opacity: 0;
+}
+// custom lable css
+label.input-custom-label {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.mat-form-field-label{
+  padding-left: 15px;
+  color: rgba(149, 152, 154, 1);
+  font-size: 15px !important;
+}
+.mat-form-field-label-wrapper{
+  top: -7px !important;
+}
+
+
+// .mat-form-field-label{
+//   display: block !important;
+//   font-size: 18px !important;
+//   color: rgba(0, 0, 0, 0.83);
+//   font-weight: 500 !important;
+//   position: relative !important;
+
+// }
+// .mat-form-field-label-wrapper{
+//   overflow: inherit !important;
+// }
+.mat-form-field-wrapper{
+  // margin-bottom: 29px !important;
+  // padding-bottom: 26px !important;
+}
+.Fstages.mat-form-field-wrapper{
+  padding-bottom: 0px  !important;
+}
+.remarks .mat-form-field-infix {
+  height: 300px !important;
+}
+input.mat-input-element{
+  padding-left: 15px !important;
+  padding-top: 5px !important;
+
+}
+
+
+// Fix: "Some idiots using table-cell and inline-table in mat-select"
+.mat-form-field {
+
+    &.mat-form-field-type-mat-select {
+
+        .mat-input-infix {
+            display: inline-flex;
+            width: auto;
+
+            .mat-select-trigger {
+                display: inline-flex;
+                align-items: center;
+                width: 100%;
+
+                .mat-select-value {
+                    display: flex;
+                    max-width: none;
+                    margin-right: 8px;
+                }
+
+                .mat-select-arrow-wrapper {
+                    display: inline-flex;
+                    top: 5px;
+                    position: relative;
+                }
+            }
+        }
+    }
+}
+
+// Fix: "Stepper icons are broken due to Fuse's icon helpers"
+mat-horizontal-stepper,
+mat-vertical-stepper {
+
+    mat-step-header {
+
+        mat-icon {
+            height: 16px !important;
+            width: 16px !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            color: rgba(255, 255, 255, 0.87) !important;
+        }
+    }
+}
+
+mat-vertical-stepper {
+    padding: 16px 0;
+}

@@ -1,0 +1,75 @@
+.list-inline li{
+  display: inline-block;
+  padding-right: 8px;
+}
+mat-icon.chevron_right.mat-icon.material-icons {
+  position: relative;
+  top: 7px;
+}
+.second-level-title-ticket{
+  margin: 35px;
+}
+.thickblack{
+  color: #393939;
+}
+.graycolor{
+  color: #6D6D6D;
+}
+.font-weight-400{
+  font-weight: 400;
+}
+.font-weight-500{
+  font-weight: 500;
+}
+.font-weight-600{
+  font-weight: 600;
+}
+
+
+
+// custom
+.master-normal-drpdwn.alltickets{
+  /* top: 99px; */
+  top: 0px !important;
+}
+tbody.tickets-body-table {
+  background: #fff;
+}
+.table-border{
+  border: 1px solid #ccc;
+}
+.table-border thead tr th{
+  padding: 15px 0px 15px 35px;
+  color: #6D6D6D;
+  font-size: 11px;
+  font-weight: 500;
+  position: relative;
+}
+.thead-table{
+  background: #EFEFEF;
+}
+.tickets-body-table tr td{
+  padding: 20px 0px 20px 35px;
+}
+.checkbox-table {
+  position: absolute;
+  top: 14px;
+}
+.rightNavbar {
+  width: 345px;
+  background: #ffffff;
+  position: fixed;
+  right: 0;
+  min-height: 100%;
+  z-index: 1001;
+  box-shadow: -3px -10px 68px #ccc;
+  padding: 30px;
+  top: 50px;
+  overflow-y : scroll;
+
+}
+
+p.rightNavbar-title {
+  font-weight: 600;
+  font-size: 18px;
+}

@@ -1,0 +1,106 @@
+
+
+// folder section right
+
+.delete_btn{
+  position: relative;
+  top: 8px;
+}
+
+
+.attachedfiles{
+  font-size: 13px;
+  margin-bottom: 0;
+
+  padding-top: 15px;
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+  top: 47px;
+}
+
+.intial_state_franchisee_folder{
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 200px;
+}
+.upload.svg-icons{
+  width: 17px;
+    height: 17px;
+    /* padding-right: 8px; */
+    margin-right: 8px;
+}
+
+.folderfiletype{
+  margin-left: 0px;
+}
+.file-below-title{
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 106px;
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+
+}
+.file-below-date{
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+
+}
+
+// add icon css
+.add-icon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.folder_save_btn{
+  float: right;
+  margin-left: 30px;
+    width: 100px;
+    height: 38px;
+}
+.delete_folder{
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+}
+
+.franchisee_name_lib{
+  font-size: 20px;
+  color: #000000;
+  margin: 0;
+text-transform: capitalize;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px !important;
+  position: relative;
+  top: 5px;
+}
+.deleteUplaodMain{
+  // line-height: 132px;
+  // position: relative;
+  // top: 35px;
+  margin-bottom: 35px;
+}
+.common_drive_diff{
+  margin-top: 25px;
+  margin-left: 0px;
+  margin-bottom: 25px;
+}
+
+.deleteUplaodMain .delete_btn{
+  margin-right: 35px;
+}

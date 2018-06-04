@@ -1,0 +1,342 @@
+<div class="animated fadeIn common_drive_main_spe" *ngIf="save_route=='library-main' || save_route=='common-folder'">
+   <div class="pull-left">
+      <h3 class="common_drive_title" *ngIf="save_route=='library-main'">Common Drive</h3>
+   </div>
+   <div class="pull-right">
+      <div class="text-right" >
+
+         <div class="createMainBtn">
+            <a target="_self" href="" download="">
+                <img class="svg-icons download_btn"  *ngIf="delete_files.length > 0" src="../../../../../../assets/images/carz/icons/download-file.svg" alt="">
+                </a>
+            <svg class="svg-icons delete_btn" (click)="delete_selected()"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8182.05 -12518.05 32.1 32.1">
+              <defs>
+                 <style>
+                    .cls-1 {
+                    opacity: 0.55;
+                    }
+                 </style>
+              </defs>
+              <image id="delete-button" class="cls-1" width="32.1" height="32.1" (click)="delete_selected()" transform="translate(-8182.05 -12518.05)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR8UHAEoHRg3AAAC3ElEQVRo3u2Zz0uUQRzGP6trpoQSgaKCXsw8JFn+QCRFKQM9GmHeQhC6ePBi/4LbRfAHdOrknrp4lCy8iN5qwwi2JHVduiwqtmLW5k6HZu39Me/uvu++bxG8zxz25Zn5fp/nnRnmnZ0J4BS3eEArrUCECC944ziTA1QwxxlCU86Yo+JvydcQ04lnSowa+8kCtiOCrHIbAMEq74Ab9Ms8a/Tz0+v3D8n3jdB2zrURkWzIa/li9hEItqnS8VVsIxDsU+ytgV75piOmmhFZ02svYdCCD9BICxdM/H0A0pTx0FBzkTRFwAS1pqgfbLKFyNdUNWEOlfO8kHJImOp85IdJuC6eKQmGc8l3kPJMXiBI0WEcay3KeMs1AFZ4xiYpexPKEiW08JgBAKLc5JtVwzHpc94lYT3mZfYx6yYLcqTKPTFQLmfXgpYs0jX5vbatc+KJgRPWNSpKA5UAfPVE/k/mSmsDnwBo98xAu0ZFaSACQLNplXMHIzRrVJSo4xSB4Jhxy0XaGYKMc4xAcEqdtsK4HwgxJZ++s+Xatz1II6Xy+SlPsjUtIuzpShg2DLoCxUxw4In4ARPm3YJ6SzbASwBese/CAFzhLgD3WMk3pE967nJBHrpktj5VZc4R8Rq+Ad+Ab8A3YMfAIBvM6CIaWGKJBl2+GTYYLNSWaikOsItAMKThZhEIZjXMEALBru4b49JSXEo9AE0arsmCqT//+ufEfzUHfAO+Ad+Ab8A34BvwDfgG/rGBFEcAJDRcwoI5KvSQV30+MEmSNd0paic77NCpYcpZI8mkLi7rplSNHhnSbeBLFD1o7kNjq26ZrUclpR6CqPy9auDNHZsmbeKMrTJZothAHIFg2U6IJZYRCOL2ghZlt00XeGAZZFpmWlQ3sLq4rOU9lwH4yGtiDuXruSP/qhxynS/2gkddPSMcdeJ/gD1XxPfkZY0S2e45P/OcY5JccnwvHmeVRR7xwbrJLz7O/MGO4G1VAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTMxVDIwOjI4OjAxKzAxOjAwXTRiywAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0zMVQyMDoyODowMSswMTowMCxp2ncAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"
+                 />
+           </svg>
+         <button class="filled-btn franchisee"  mat-button (click)="CreateID()" > <img src="../../../../../../assets/images/carz/icons/add.svg" class="add_create" alt=""> Create </button>
+         <div class="foldernfile" *ngIf="showfolderfile">
+                <div class="chooseOpt box-shadow">
+                  <p (click)="add_new()">New Folder</p>
+                  <p><label  for="file">Upload File</label></p>
+                  <input type="file" class="upload_file"
+                  id="file"
+                  (change)="handleFileInput($event.target.files,0)" *ngIf="save_route=='library-main'" multiple>
+                  <input type="file" class="upload_file"
+               id="file"
+               (change)="handleFileInput($event.target.files,1)" multiple>
+                </div>
+         </div>
+        </div>
+      </div>
+
+   </div>
+   <div class="clearfix"></div>
+</div>
+  <!--//taken  -->
+<!--Test -->
+  <div class="row library_main_component" *ngIf="save_route=='library-main' || save_route=='common-folder'">
+   <div class="col-sm-9">
+      <h1 class="franchisee-title common_sep_fold" *ngIf="!commonDriveSet">
+         <!-- <span *ngIf="save_route=='library-main'">Common Drive</span> -->
+         <span *ngIf="folder_data != null && save_route=='common-folder'">{{folder_data.folder_name}}</span>
+      </h1>
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb franchisee_separate">
+            <li class="breadcrumb-item " *ngIf="save_route=='common-folder'" [routerLink]="['/apps/library/library-main']"><a>Common Drive</a></li>
+            <li class="breadcrumb-item " title="{{folder_path.folder_name}}" aria-current="page" *ngFor="let folder_path of folder_data.path; let i = index"><a (click)="navigate(folder_path.folder_id)">{{folder_path.folder_name}}</a></li>
+            <li class="breadcrumb-item active" title="{{folder_data.folder_name}}" aria-current="page">{{folder_data.folder_name}}</li>
+         </ol>
+      </nav>
+   </div>
+
+</div>
+  <!--Test end  -->
+<div class="row" *ngIf="commonDriveSet">
+   <div class="col-sm-7" >
+      <p class="franchisee_name_lib">
+         <span *ngIf="franchisees != null && (save_route=='franchisee-folder' || save_route=='franchisee-sub-folder')"> {{franchisees.franchisee_name}}</span>
+         <span *ngIf="save_route=='library-main'">Common Drive</span>
+         <span *ngIf="folder_data != null && save_route=='common-folder'">{{folder_data.folder_name}}</span>
+      </p>
+   </div>
+   <div class="col-sm-5">
+      <div class="text-right deleteUplaodMain">
+         <svg class="svg-icons delete_btn"   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8182.05 -12518.05 32.1 32.1">
+            <defs>
+               <style>
+                  .cls-1 {
+                  opacity: 0.55;
+                  }
+               </style>
+            </defs>
+            <image id="delete-button" class="cls-1" width="32.1" height="32.1" (click)="delete_selected()" transform="translate(-8182.05 -12518.05)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR8UHAEoHRg3AAAC3ElEQVRo3u2Zz0uUQRzGP6trpoQSgaKCXsw8JFn+QCRFKQM9GmHeQhC6ePBi/4LbRfAHdOrknrp4lCy8iN5qwwi2JHVduiwqtmLW5k6HZu39Me/uvu++bxG8zxz25Zn5fp/nnRnmnZ0J4BS3eEArrUCECC944ziTA1QwxxlCU86Yo+JvydcQ04lnSowa+8kCtiOCrHIbAMEq74Ab9Ms8a/Tz0+v3D8n3jdB2zrURkWzIa/li9hEItqnS8VVsIxDsU+ytgV75piOmmhFZ02svYdCCD9BICxdM/H0A0pTx0FBzkTRFwAS1pqgfbLKFyNdUNWEOlfO8kHJImOp85IdJuC6eKQmGc8l3kPJMXiBI0WEcay3KeMs1AFZ4xiYpexPKEiW08JgBAKLc5JtVwzHpc94lYT3mZfYx6yYLcqTKPTFQLmfXgpYs0jX5vbatc+KJgRPWNSpKA5UAfPVE/k/mSmsDnwBo98xAu0ZFaSACQLNplXMHIzRrVJSo4xSB4Jhxy0XaGYKMc4xAcEqdtsK4HwgxJZ++s+Xatz1II6Xy+SlPsjUtIuzpShg2DLoCxUxw4In4ARPm3YJ6SzbASwBese/CAFzhLgD3WMk3pE967nJBHrpktj5VZc4R8Rq+Ad+Ab8A3YMfAIBvM6CIaWGKJBl2+GTYYLNSWaikOsItAMKThZhEIZjXMEALBru4b49JSXEo9AE0arsmCqT//+ufEfzUHfAO+Ad+Ab8A34BvwDfgG/rGBFEcAJDRcwoI5KvSQV30+MEmSNd0paic77NCpYcpZI8mkLi7rplSNHhnSbeBLFD1o7kNjq26ZrUclpR6CqPy9auDNHZsmbeKMrTJZothAHIFg2U6IJZYRCOL2ghZlt00XeGAZZFpmWlQ3sLq4rOU9lwH4yGtiDuXruSP/qhxynS/2gkddPSMcdeJ/gD1XxPfkZY0S2e45P/OcY5JccnwvHmeVRR7xwbrJLz7O/MGO4G1VAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTMxVDIwOjI4OjAxKzAxOjAwXTRiywAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0zMVQyMDoyODowMSswMTowMCxp2ncAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"
+               />
+         </svg>
+         <!-- <button class="filled-btn" mat-button  (click)="add_new()">Create folder </button>
+         <div class=" upload-btn-wrapper">
+            <button class="filled-btn"  >
+            Upload a file</button>
+            <input type="file"
+            id="file"
+            (change)="handleFileInput($event.target.files,0)" *ngIf="save_route=='library-main'" multiple>
+            <input type="file"
+            id="file"
+            (change)="handleFileInput($event.target.files,1)" *ngIf="save_route=='common-folder'" multiple>
+         </div> -->
+         <button class="filled-btn franchisee"  mat-button (click)="CreateID()" >  <img src="../../../../../../assets/images/carz/icons/add.svg" class="add_create" alt="">  Create </button>
+         <div class="foldernfile" *ngIf="showfolderfile">
+                <div class="chooseOpt box-shadow">
+                  <p (click)="add_new()">New Folder</p>
+                  <p><label  for="file">Upload File</label></p>
+                  <input type="file" class="upload_file"
+                  id="file"
+                  (change)="handleFileInput($event.target.files,0)" *ngIf="save_route=='library-main'" multiple>
+                  <input type="file" class="upload_file"
+               id="file"
+               (change)="handleFileInput($event.target.files,1)" multiple>
+                </div>
+         </div>
+      </div>
+   </div>
+   <hr class="hr-line">
+   <div class="clearfix"></div>
+</div>
+<div class="row" *ngIf="save_route=='franchisee-folder' || save_route=='franchisee-sub-folder'">
+   <div class="col-sm-7"  *ngIf="save_route=='franchisee-folder'">
+      <p class="franchisee_name_lib">
+         <!-- && (save_route=='franchisee-folder')  -->
+         <span *ngIf="franchisees != null"> {{franchisees.franchisee_name}}</span>
+      </p>
+   </div>
+   <div class="col-sm-7"  *ngIf="save_route=='franchisee-sub-folder'">
+      <p class="franchisee_name_lib" title="{{folder_data.folder_name}}">
+         <!-- && (save_route=='franchisee-folder')  -->
+         <span *ngIf="franchisees != null"> {{folder_data.folder_name}}</span>
+      </p>
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" *ngIf="franchisees != null" [routerLink]="['/apps/library/franchisee-folder/' + franchisee_Id]">{{franchisees.franchisee_name}}</a></li>
+            <li class="breadcrumb-item "  title="{{folder_path.folder_name}}" aria-current="page" *ngFor="let folder_path of folder_data.path; let i = index"><a (click)="navigate(folder_path.folder_id)">{{folder_path.folder_name}}</a></li>
+            <li class="breadcrumb-item active" title="{{folder_data.folder_name}}" aria-current="page">{{folder_data.folder_name}}</li>
+         </ol>
+      </nav>
+   </div>
+   <div class="col-sm-5">
+      <div class="text-right deleteUplaodMain">
+          <!-- <a target="_self" href="" download="">
+              <img class="svg-icons download_btn"  *ngIf="delete_files.length > 0" src="../../../../../../assets/images/carz/icons/download-file.svg" alt="">
+              </a> -->
+         <svg class="svg-icons delete_btn"   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-8182.05 -12518.05 32.1 32.1">
+            <defs>
+               <style>
+                  .cls-1 {
+                  opacity: 0.55;
+                  }
+               </style>
+            </defs>
+            <image id="delete-button" class="cls-1" width="32.1" height="32.1" (click)="delete_selected()" transform="translate(-8182.05 -12518.05)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR8UHAEoHRg3AAAC3ElEQVRo3u2Zz0uUQRzGP6trpoQSgaKCXsw8JFn+QCRFKQM9GmHeQhC6ePBi/4LbRfAHdOrknrp4lCy8iN5qwwi2JHVduiwqtmLW5k6HZu39Me/uvu++bxG8zxz25Zn5fp/nnRnmnZ0J4BS3eEArrUCECC944ziTA1QwxxlCU86Yo+JvydcQ04lnSowa+8kCtiOCrHIbAMEq74Ab9Ms8a/Tz0+v3D8n3jdB2zrURkWzIa/li9hEItqnS8VVsIxDsU+ytgV75piOmmhFZ02svYdCCD9BICxdM/H0A0pTx0FBzkTRFwAS1pqgfbLKFyNdUNWEOlfO8kHJImOp85IdJuC6eKQmGc8l3kPJMXiBI0WEcay3KeMs1AFZ4xiYpexPKEiW08JgBAKLc5JtVwzHpc94lYT3mZfYx6yYLcqTKPTFQLmfXgpYs0jX5vbatc+KJgRPWNSpKA5UAfPVE/k/mSmsDnwBo98xAu0ZFaSACQLNplXMHIzRrVJSo4xSB4Jhxy0XaGYKMc4xAcEqdtsK4HwgxJZ++s+Xatz1II6Xy+SlPsjUtIuzpShg2DLoCxUxw4In4ARPm3YJ6SzbASwBese/CAFzhLgD3WMk3pE967nJBHrpktj5VZc4R8Rq+Ad+Ab8A3YMfAIBvM6CIaWGKJBl2+GTYYLNSWaikOsItAMKThZhEIZjXMEALBru4b49JSXEo9AE0arsmCqT//+ufEfzUHfAO+Ad+Ab8A34BvwDfgG/rGBFEcAJDRcwoI5KvSQV30+MEmSNd0paic77NCpYcpZI8mkLi7rplSNHhnSbeBLFD1o7kNjq26ZrUclpR6CqPy9auDNHZsmbeKMrTJZothAHIFg2U6IJZYRCOL2ghZlt00XeGAZZFpmWlQ3sLq4rOU9lwH4yGtiDuXruSP/qhxynS/2gkddPSMcdeJ/gD1XxPfkZY0S2e45P/OcY5JccnwvHmeVRR7xwbrJLz7O/MGO4G1VAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTMxVDIwOjI4OjAxKzAxOjAwXTRiywAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0zMVQyMDoyODowMSswMTowMCxp2ncAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"
+               />
+         </svg>
+         <!-- <button class="filled-btn" mat-button  (click)="add_new()">Create folder </button>
+         <div class=" upload-btn-wrapper">
+            <button class="filled-btn"  >
+            Upload a file</button>
+            <input type="file"
+               id="file"
+               (change)="handleFileInput($event.target.files,1)" multiple>
+         </div> -->
+         <button class="filled-btn franchisee"  mat-button (click)="CreateID()" > <img src="../../../../../../assets/images/carz/icons/add.svg" class="add_create" alt="">  Create </button>
+         <div class="foldernfile" *ngIf="showfolderfile">
+                <div class="chooseOpt box-shadow">
+                  <p (click)="add_new()">New Folder</p>
+                  <p><label  for="file">Upload File</label></p>
+                  <input type="file" class="upload_file"
+                  id="file"
+                  (change)="handleFileInput($event.target.files,0)" *ngIf="save_route=='library-main'" multiple>
+                  <input type="file" class="upload_file"
+               id="file"
+               (change)="handleFileInput($event.target.files,1)" multiple>
+                </div>
+         </div>
+      </div>
+   </div>
+   <hr class="hr-line">
+   <div class="clearfix"></div>
+</div>
+<div class="fileUpload_intialstage" *ngIf="folder.length == 0 && files_list.length==0 && !upload_doc_status">
+  <img src="../../../../../../assets/images/carz/icons/file_up_intial.svg">
+  <!-- <p class="uploadmsg"> Start uploading your files here</p> -->
+  <p class="no-files-main-head "> START UPLOADING FILES</p>
+  <p class="no-files-sub-head"> Upload the files, you wish to share with all franchisees. <br>These files will get shared automatically.</p>
+</div>
+<p class="common_drive_diff " *ngIf="folder.length > 0 || upload_doc_status">Folders ({{folder.length}}) </p>
+<!-- <mat-grid-list cols="{{foldergrid}}" class="franchisee_libray"  (window:resize)="onResize($event)" rowHeight="2:0.8">
+   <mat-grid-tile *ngIf="create_flag" >
+      <input type="checkbox" id="draftFolder"  [(ngModel)]="create_flag" class="checkboxHide" >
+      <label for="draftFolder">
+         <div class="folder-wise" *ngIf="save_route=='franchisee-folder' || save_route=='franchisee-sub-folder'">
+            <input matInput placeholder="Enter Name" class="compaign_name" [(ngModel)]="folder_name" (blur)="createFolder(folder_name)" name="folder_name" required>
+         </div>
+         <div class="folder-wise" *ngIf="save_route=='library-main'">
+            <input matInput placeholder="Enter Name" class="compaign_name" [(ngModel)]="folder_name" (blur)="create_common_folder(folder_name)" name="folder_name" required>
+         </div>
+         <div class="folder-wise" *ngIf="save_route=='common-folder'">
+            <input matInput placeholder="Enter Name" class="compaign_name" [(ngModel)]="folder_name" (blur)="createFolder(folder_name)" name="folder_name" required>
+         </div>
+      </label>
+   </mat-grid-tile>
+   <mat-grid-tile *ngFor="let folders of folder; let i = index">
+      <input type="checkbox" id="foldernames{{i}}" [(ngModel)]="folders.flag" class="checkboxHide" (click)="select_folders(folders, folders.flag,i)">
+      <label for="foldernames{{i}}">
+         <div class="folder-wise"  (dblclick)="navigate(folders._id)">
+            <ul class="list-inline">
+               <li><img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt=""></li>
+               <li *ngIf="folders.id !== editFolderId" (click)="toggle(folders.id)" title="{{folders.folder_name}}">{{folders.folder_name}}</li>
+               <li *ngIf="folders.id === editFolderId">
+                  <input matInput placeholder="Folder Name" class="folder_title" title="{{folders.folder_name}}" (blur)="edit_Folder(folders,folder_name)" [(ngModel)]="folders.folder_name" name="folder_name"
+                  required>
+               </li>
+            </ul>
+         </div>
+      </label>
+   </mat-grid-tile>
+</mat-grid-list> -->
+<div   class=" row franchisee_libray"  (dblclick)="openDialog(file)">
+    <div *ngIf="create_flag"  >
+       <input type="checkbox" id="draftFolder"  [(ngModel)]="create_flag" class="checkboxHide" >
+       <label  for="draftFolder">
+          <div class="folder-wise_check"  *ngIf="save_route=='franchisee-folder' || save_route=='franchisee-sub-folder'">
+             <input matInput placeholder="Enter Name" autofocus class="compaign_name" [(ngModel)]="folder_name" (keydown.enter)="createFolder(folder_name)" (blur)="createFolder(folder_name)" name="folder_name" required>
+          </div>
+          <div class="folder-wise_check"  *ngIf="save_route=='library-main'">
+             <input matInput placeholder="Enter Name" autofocus class="compaign_name" [(ngModel)]="folder_name" (keydown.enter)="create_common_folder(folder_name)" (blur)="create_common_folder(folder_name)" name="folder_name" required>
+          </div>
+          <div class="folder-wise_check" *ngIf="save_route=='common-folder'">
+             <input matInput placeholder="Enter Name" autofocus class="compaign_name" [(ngModel)]="folder_name" (keydown.enter)="createFolder(folder_name)" (blur)="createFolder(folder_name)" name="folder_name" required>
+          </div>
+       </label>
+    </div>
+    <div  *ngFor="let folders of folder; let i = index">
+       <input type="checkbox" id="foldernames{{i}}" [(ngModel)]="folders.flag" class="checkboxHide" (click)="select_folders(folders, folders.flag,i)">
+       <label  for="foldernames{{i}}">
+          <div class="folder-wise_check"   (dblclick)="navigate(folders._id)">
+             <ul class="list-inline">
+                <li><img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png"  alt=""></li>
+                <!-- <li *ngIf="folders.id !== editFolderId" (click)="toggle(folders.id)" title="{{folders.folder_name}}">{{folders.folder_name}}</li> -->
+                <li class="folder_title" *ngIf="folders.id === editFolderId && i == selected_row">
+                   <input matInput placeholder="Folder Name" class="folder_title" title="{{folders.folder_name}}" (keydown.enter)="edit_Folder(folders,folder_name)" (blur)="edit_Folder(folders,folder_name)" [(ngModel)]="folders.folder_name" name="folder_name"
+                   required>
+                   <!-- <p class="folder_title" *ngIf="i != selected_row" >{{folders.folder_name}}</p> -->
+                </li>
+                <li class="folder_title" *ngIf="i != selected_row">{{folders.folder_name}}</li>
+
+                <li *ngIf="folders.crm_folder != true"> <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FolderMenu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button></li>
+             </ul>
+             <mat-menu #FolderMenu="matMenu">
+                <button (click)="renameFolder(i)"  mat-menu-item>
+
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="delete_selected()">
+
+                  <span>Delete</span>
+                </button>
+             </mat-menu>
+          </div>
+       </label>
+    </div>
+  </div>
+<div  style="clear:both;">
+<div class="clearfix"></div>
+<p class="common_drive_diff files" *ngIf="files_list.length>0">Files ({{files_list.length}})</p>
+<!-- <div *ngFor='let file of files_list;let i=index' style="float:left;">
+   <input type="checkbox" id="filenames{{i}}"  [(ngModel)]="file.flag" class="checkboxHide" (click)="select_files(file, file.flag,i)">
+   <label for="filenames{{i}}">
+      <div class="files_main folderfiletype" >
+         <img src="../../../../../assets/images/carz/icons/pdf.svg" alt=""  *ngIf="file.image_type=='pdf'" >
+         <img src="../../../../../assets/images/carz/icons/img.svg" alt="" *ngIf="file.image_type=='image'" >
+         <img src="../../../../../assets/images/carz/icons/file.svg" alt=""  *ngIf="file.image_type=='docs'" >
+         <h5 class="file-below-title" title="{{file.file_name}}">{{file.file_name}}</h5>
+         <div class="pull-right view-icons animated   fadeIn">
+
+            <img class="svg_icons" (click)="openDialog(file)"  src="../../../../../../assets/images/carz/icons/eye.svg" alt="">
+         </div>
+      </div>
+   </label>
+   <div class="clearfix"></div>
+</div> -->
+<div class="row franchisee_libray">
+<div *ngFor='let file of files_list;let i=index'>
+    <input type="checkbox" id="filenames{{i}}"  [(ngModel)]="file.flag" class="checkboxHide" (click)="select_files(file, file.flag,i)">
+    <label for="filenames{{i}}">
+
+        <div class="folder-wise_check files_main" (dblclick)="openDialog(file, i)">
+            <ul class="list-inline">
+                <li *ngIf="file.image_type=='pdf'"> <img src="../../../../../assets/images/carz/icons/pdf.svg" class="files-icons" alt=""   ></li>
+                  <li *ngIf="file.image_type=='image'" > <img src="../../../../../assets/images/carz/icons/img.svg" class="files-icons" alt="" ></li>
+                  <li *ngIf="file.image_type=='docs'" >   <img src="../../../../../assets/images/carz/icons/file.svg" class="files-icons" alt=""  ></li>
+                <!-- <li class="folder_title" title="{{file.file_name}}">{{file.file_name}}</li> -->
+                <li class="folder_title" title="{{file.file_name}}" *ngIf="i == selected_file_row" >
+                  <input matInput placeholder="File Name"  class="folder_title"   title="{{file.file_name}}"  (keydown.enter)="edit_file_name(file,file.file_name, i)" (blur)="edit_file_name(file,file.file_name, i)" [(ngModel)]="file.file_name" name="file_name"
+                  required>
+                  <!-- <p *ngIf="i != selected_file_row" >{{file.file_name}}</p> -->
+                 </li>
+                  <li *ngIf="i != selected_file_row" class="folder_title" title="{{file.file_name}}">{{file.file_name}}</li>
+
+
+
+                <li>    <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="FileMenu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button></li>
+              </ul>
+
+                <mat-menu #FileMenu="matMenu">
+                  <button (click)="make_file_edit_mode(file, i)"  mat-menu-item>
+
+                    <span>Edit</span>
+                  </button>
+                  <button  mat-menu-item >
+
+                    <span (click)="delete_file(file)">Delete</span>
+                  </button>
+                  <a target="_self" href="{{file.path}}" download="{{file.file_name}}">
+                  <button mat-menu-item>
+
+                    <span>Download</span>
+                  </button>
+                </a>
+                </mat-menu>
+        </div>
+
+
+
+
+       <!-- <div class="files_main folderfiletype" >
+          <img src="../../../../../assets/images/carz/icons/pdf.svg" alt=""  *ngIf="file.image_type=='pdf'" >
+          <img src="../../../../../assets/images/carz/icons/img.svg" alt="" *ngIf="file.image_type=='image'" >
+          <img src="../../../../../assets/images/carz/icons/file.svg" alt=""  *ngIf="file.image_type=='docs'" >
+          <h5 class="file-below-title" title="{{file.file_name}}">{{file.file_name}}</h5>
+          <div class="pull-right view-icons animated   fadeIn">
+              <a target="_self" href="{{file.path}}" download="{{file.file_name}}">
+                  <img class="svg_icons" src="../../../../../../assets/images/carz/icons/download.svg" alt="">
+
+                  </a>
+             <img class="svg_icons" (click)="openDialog(file)"  src="../../../../../../assets/images/carz/icons/eye.svg" alt="">
+          </div>
+       </div> -->
+    </label>
+    <div class="clearfix"></div>
+ </div>
+</div>
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

@@ -1,0 +1,148 @@
+
+
+.franchisee-profile, .profile-right-main{
+  padding: 35px;
+  -webkit-box-shadow: 3px 3px 15px #e9e9e9;
+  box-shadow: 3px 3px 15px #e9e9e9;
+  min-height: 710px;
+  // margin-top: 35px;
+  background: #fff;
+  /* padding-left: 30px; */
+  /* padding-right: 30px; */
+}
+.franchisee-profile{
+  width: 289px;
+
+}
+.profile-img{
+  border: 1px solid #bbb;
+  margin-bottom: 0;
+  // margin-top: 20px;
+
+}
+.min-height-right{
+  min-height: 650px;
+
+}
+
+.franchisee-title{
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+
+.body-txt-title{
+  font-weight: 700;
+    font-size: 20px;
+    width: 100%;
+    padding: 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 13px;
+    text-transform: capitalize;
+}
+p.profile-left-sub-head {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000000;
+
+}
+.mat-tab-label{
+  font-size: 20px !important;
+}
+.mat-tab-label-active {
+  font-weight: 600 !important;
+  color: #000;
+
+}
+// folder section right
+
+
+.attachedfiles{
+  font-size: 13px;
+  margin-bottom: 0;
+
+  padding-top: 15px;
+}
+
+.upload.svg-icons{
+  width: 17px;
+    height: 17px;
+    /* padding-right: 8px; */
+    margin-right: 8px;
+}
+.franchisee-profile .body-subtitle{
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.body-sub-title-text{
+  padding-left: 15px;
+}
+
+.mat-tab-label{
+  font-size: 18px;
+  color: #400202;
+}
+
+  .svg_icons{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+
+
+.file-below-title{
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 8px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 125px;
+
+}
+.file-below-date{
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+
+}
+
+// add icon css
+.add-icon{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.folder_save_btn{
+  float: right;
+  margin-left: 30px;
+    width: 100px;
+    height: 38px;
+}
+.delete_folder{
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+}
+
+.checkboxHide{
+  display: none;
+}
+.folderfiletype{
+  cursor: pointer;
+}
+
+input[type=checkbox]:checked + label div.folderfiletype {
+
+
+  border:1px solid #FF7700;
+  box-shadow: 3px 3px 15px #e9e9e9;
+}

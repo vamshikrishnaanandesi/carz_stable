@@ -1,0 +1,62 @@
+
+.main-folder-section{
+  min-height: 605px;
+  background: #fff;
+  padding: 35px;
+  /* margin-top: 47.5px; */
+}
+
+  // folder section right
+
+
+  .attachedfiles{
+    font-size: 13px;
+    margin-bottom: 0;
+
+    padding-top: 15px;
+  }
+
+
+  .upload.svg-icons{
+    width: 17px;
+      height: 17px;
+      /* padding-right: 8px; */
+      margin-right: 8px;
+  }
+
+
+
+  .file-below-title{
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 8px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 125px;
+
+  }
+  .file-below-date{
+    font-size: 12px;
+    font-weight: 300;
+    text-align: left;
+
+  }
+
+  // add icon css
+  .add-icon{
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  .view_dnld_icons li{
+    display: inline-block;
+  }
+  .franchisee-title.common_sub_drive{
+  position: relative;
+  top: 35px;
+  left:33px;
+}
+

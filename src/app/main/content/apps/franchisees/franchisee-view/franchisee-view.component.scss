@@ -1,0 +1,28 @@
+
+.folderfiletype{
+  margin-left: 0px;
+}
+.file-below-title{
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 106px;
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+
+}
+.file-below-date{
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+
+}
+.franchisee-list-second-component.franchisee-view-file {
+  background: #fff;
+  padding: 35px;  
+}

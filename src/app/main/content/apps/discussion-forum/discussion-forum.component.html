@@ -1,0 +1,191 @@
+<div class="franshisee-main container-fluid">
+  <section>
+    <h1 class="franchisee-title lib-title top-title-component">
+        Discussion Wall
+    </h1>
+    <div class="main-library-list franchisee-list-second-component">
+      <mat-tab-group>
+        <mat-tab label="Question Wall">
+          <div class="spacer-sm"></div>
+          <div class="question-wall-main row">
+            <div class="col-md-9">
+
+
+            <div class="qun-wall-top">
+              <div class="bg-with-box-small">
+
+                <div class="col-xs-12 col-md-12">
+                  <form #discussionForm="ngForm" name="discussionForm" (ngSubmit)="create_discussion_question(discussion, discussionForm)" novalidate>
+                    <div class="row">
+                        <div class="col-md-1">
+                          <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user" alt=""> -->
+                        <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!user_profile_pic">
+                                    <img [src]="user_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="user_profile_pic">
+                        </div>
+                        <div class="col-md-10">
+                          <mat-form-field class="about_discussion">
+                            <textarea matInput id="comment-discussion" placeholder="Leave a comment" name="feedback" [(ngModel)]="discussion.discussion_question" required>    
+                            </textarea>
+                          <mat-error *ngIf="discussionForm.hasError('required', 'discussion_question')">
+
+                            Question cannot be empty!                              
+                          </mat-error>
+                          </mat-form-field>
+                          <p class="attach-file-discussion" ><label for="dis-attach-file"><img src="../../../../../assets/images/carz/icons/discussion-attach.svg" class="dis-comment" width="15px" alt=""> Attach<span *ngIf="filetouploadName">ed</span> file<span class="attachedfile" *ngIf="filetouploadName">: {{filetouploadName}}</span> </label>
+
+                            <input id="dis-attach-file" type="file" style="display: none;" (change)="handleFileInputDiscussionQuestion($event.target.files);readUrl($event);"> </p>
+                        </div>
+                        <div class="col-md-1">
+                        <input type="submit" id="img_submit" style="display: none;" value="submit" >
+                        <label for="img_submit">
+                        <img src="../../../../../assets/images/carz/icons/Discussion-Send.svg" class="discussion-send-button" width="80px" alt="" >
+                      </label>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="spacer-sm"></div>
+              <div class="bg-with-box-medium" *ngFor="let approved of approved_questions_list">
+
+                <div class="col-xs-12 col-md-12">
+                  <div class="row" >
+                      <div class="col-md-1">
+                        <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt=""> -->
+                       <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!approved.user_profile_pic">
+                      <img [src]="approved.user_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="approved.user_profile_pic">
+                      </div>
+                      <div class="col-md-11" >
+                          <p class="dis-medium-box-title">{{approved.user_name}}</p>
+                          <p class="dis-medium-box-date">{{approved.created_at|date: 'dd.MM.yyyy'}}</p>
+
+                          <p class="dis-medium-box-image" *ngIf="approved.user_name !== 'Admin'"><img src="../../../../../assets/images/carz/icons/discussion-GlobeLocation.svg" width="15px" alt="">{{approved.franchisee_address}}</p>
+
+                        <p class="dis-medium-box-sub-title" [routerLink]="['/apps/discussion-forum/discussion-forum-single/' + approved._id]">{{approved.discussion_question}}</p>
+                        <ul class="list-inline">
+                            <li><p class="attach-file-discussion big-box"><img src="../../../../../assets/images/carz/icons/Discussion-Comment.svg" class="dis-comment" width="15px" alt=""> {{approved.commentsCount}} Comments </p></li>
+                          <li *ngIf="approved.franchisor_question_file_attachment_file_url">  <p class="attach-file-discussion"  (click)="view_fileUpload(approved)"><img src="../../../../../assets/images/carz/icons/discussion-attach.svg" class="dis-comment" width="15px" alt="" > View Attachment </p></li>
+                        </ul>
+                        <p class="upvoted-right"><span class="numbers">{{approved.votes}}</span> <span class="upvoted" (click)="question_vote(question_data)">upvoted</span> </p>
+
+                      </div>
+
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="right-side-franchisee-members">
+
+              <p class="dis-right-card-title">Franchisee Members</p>
+              <div class="fr-mem-list-main" >
+
+              <mat-list-item >
+                <div class="col-md-12" *ngFor="let franchisee of franchisee_data">
+
+                <div class="row">
+                  <div class="right-fr-mem">
+                    <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt=""> -->
+                    <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!franchisee.franchisee_profile_pic">
+                  <img [src]="franchisee.franchisee_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="franchisee.franchisee_profile_pic">
+
+                  </div>
+                  <div class="fr-meber-title-loc">  <p mat-line class="dis-right-fr-title" title="{{franchisee.franchisee_name}}">{{franchisee.franchisee_name}}</p>
+                    <p class="dis-right-fr-location" mat-line> <img src="../../../../../assets/images/carz/icons/discussion-GlobeLocation.svg" width="12px" style="margin-right: 8px" alt="" title="{{franchisee.franchisee_address}}" > {{franchisee.franchisee_address}} </p></div>
+                </div>
+
+              </div>
+                </mat-list-item>
+
+              </div>
+            </div>
+          </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Moderator Panel" *ngIf="userData.user_role === 'franchisor'">
+            <div class="spacer-sm"></div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="Moderate-Questions-Main">
+                        <div class="Moderate-Questions-Top">
+                            <p class="title-moderator">Moderate Questions</p>
+                          </div>
+                          <div class="Moderate-Questions-Content" *ngFor="let discussionquestion of unapproved_question_list; let i = index">
+                              <div class="row">
+
+                                  <div class="col-md-2">
+                                    <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt=""> -->
+                                    <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!discussionquestion.user_profile_pic">
+                                    <img [src]="discussionquestion.user_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="discussionquestion.user_profile_pic">
+                                  </div>
+                                  <div class="col-md-10"  >
+                                      <p class="dis-medium-box-title">{{discussionquestion.user_name}}</p>
+                                      <p class="dis-medium-box-date moderator">{{discussionquestion.created_at|date: 'dd.MM.yyyy'}}</p>
+                                      <p class="dis-medium-box-image"><img src="../../../../../assets/images/carz/icons/discussion-GlobeLocation.svg" width="13px" alt="" *ngIf="approved.user_name !== 'Admin'">{{discussionquestion.franchisee_address}}</p>
+
+                                    <p class="dis-medium-box-sub-title">{{discussionquestion.discussion_question}}</p>
+                                    <ul class="list-inline">
+                                        <li> <button mat-button class="secondary-btn discussion-moderator-btn" (click)="to_approve_question(discussionquestion, discussionquestion._id )">Approve</button> </li>
+                                      <li><button mat-button class="third-priority-btn discussion-moderator-btn" (click)="to_decline_question(discussionquestion)">Decline</button>  </li>
+                                    </ul>
+                                    <!-- <p class="upvoted-right"><span class="numbers">25</span> <span class="upvoted">upvoted</span> </p> -->
+
+                                  </div>
+                                  <div class="clearfix"></div>
+
+
+                              </div>
+                              <div class="spacer-xs"></div>
+                              <mat-divider></mat-divider>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="Approved-Questions-Main">
+                        <div class="Moderate-Questions-Top">
+                            <p class="title-moderator">Approved Questions</p>
+                          </div>
+                          <div class="Moderate-Questions-Content" *ngFor="let approved of approved_questions_list">
+                              <div class="row">
+                                  <div class="col-md-2">
+                                    <!-- <img src="../../../../../assets/images/logos/fallout.png" class="card_top_img dis-user box-med" alt=""> -->
+                                    <img src="../../assets/images/logos/fallout.png" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="!approved.user_profile_pic">
+                                      <img [src]="approved.user_profile_pic.path" class="card_top_img dis-user box-small fr-users" alt="" *ngIf="approved.user_profile_pic">
+                                  </div>
+                                  <div class="col-md-10" >
+                                      <p class="dis-medium-box-title">{{approved.user_name}}</p>
+                                      <p class="dis-medium-box-date moderator">{{approved.created_at|date: 'dd.MM.yyyy'}}</p>
+                                      <p class="dis-medium-box-image"><img src="../../../../../assets/images/carz/icons/discussion-GlobeLocation.svg" width="13px" alt="" *ngIf="approved.user_name !== 'Admin'">{{approved.franchisee_address}}</p>
+
+                                    <p class="dis-medium-box-sub-title">{{approved.discussion_question}}</p>
+                                    <ul class="list-inline">
+                                        <li> <button mat-button class="empty-btn-secondary discussion-moderator-btn" (click)="delete_discussion_question(approved._id)">Delete</button> </li>
+
+                                    </ul>
+                                    <!-- <p class="upvoted-right"><span class="numbers">25</span> <span class="upvoted">upvoted</span> </p> -->
+
+                                  </div>
+                                  <div class="clearfix"></div>
+
+                              </div>
+                              <div class="spacer-xs"></div>
+                              <mat-divider></mat-divider>
+                            </div>
+                      </div>
+
+
+                  </div>
+            </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+    <div class="clearfix"></div>
+  </section>
+
+</div>
+<toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner>

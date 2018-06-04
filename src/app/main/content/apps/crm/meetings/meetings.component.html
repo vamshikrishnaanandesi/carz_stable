@@ -1,0 +1,147 @@
+
+<mat-tab-group>
+<mat-tab label="NDA UPLOAD">
+  <div class="spacer-sm"></div>
+  <div class="payment_main">
+    <mat-tab-group class="payment_inner_tab">
+      <mat-tab label="Files">
+        <div class="meeting_main">
+        <div class="spacer-sm"></div>
+
+
+        <div class="pdf_view_down">
+
+
+          <table>
+            <tr>
+              <td>
+                <img class="pdf_icon" src="../../../../../../assets/images/carz/icons/pdf.svg" alt="">
+              </td>
+              <td>
+                <ul class="pdf_details">
+                  <li>
+                    <h4>Uploaded File Name </h4>
+                  </li>
+                  <li>320kb</li>
+                </ul>
+
+              </td>
+            </tr>
+          </table>
+          <img src="../../../../../../assets/images/carz/icons/download.svg" class="files_type" class="download_icon pull-right"
+            alt="">
+            <div class="clearfix"></div>
+        </div>
+        <div class="spacer-sm"></div>
+
+        <p class="all_files doc">Documents</p>
+
+        <div class="folder-wise">
+
+
+          <ul class="list-inline">
+            <li>
+              <img class="folder_icon_cd" src="../../../../../assets/images/carz/icons/folder.png" alt="">
+            </li>
+            <li title="" class="documents_folder">Testing Folder</li>
+
+          </ul>
+
+        </div>
+        <div class="spacer-sm"></div>
+      </div>
+      </mat-tab>
+      <mat-tab label="Meetings">
+        <div class="meeting_main">
+          <div class="spacer-sm"></div>
+          <div class="row meetings">
+            <div class="col-sm-8 col-md-8">
+              <label class="input-custom-label" for="master_fran_name">Meeting Title</label>
+              <br>
+              <mat-form-field class="master_fran_name">
+                <input matInput placeholder="" value="Share Trade Secrets - Regular Morning Meeting" id="master_fran_name" [(ngModel)]="obj.meeting_title" name="meeting_title">
+              {{meeting_title}}
+              </mat-form-field>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="input-custom-label" for="master_fran_date">Date</label>
+                  <br>
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" id="master_fran_date" placeholder=""[(ngModel)]="obj.meeting_date" name="meeting_date">
+                    {{meeting_date}}
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <label class="input-custom-label" for="master_fran_time">Time</label>
+                  <br>
+                  <mat-form-field>
+                    <input matInput placeholder="" id="master_fran_time" [(ngModel)]="obj.meeting_time" name="meeting_time">
+                    {{meeting_time}}
+                  </mat-form-field>
+                </div>
+              </div>
+              <label class="input-custom-label" for="master_fran_people">Assign People</label>
+              <br>
+              <mat-form-field class="master_fran_name">
+                <input matInput placeholder="" id="master_fran_people" [(ngModel)]="obj.meeting_assigned_people" name="meeting_assigned_people">
+              {{meeting_assigned_people}}
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-sm-4 col-md-4">
+              <label class="input-custom-label" for="master_fran_time">Location</label>
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="Search location" id="master_fran_time" [(ngModel)]="obj.meeting_location" name="meeting_location">
+                {{meeting_location}}
+                <img src="../../../../../../assets/images/carz/icons/location-in.svg" alt="" class="location_icon_meeting">
+              </mat-form-field>
+              <label class="input-custom-label">Additional Services</label>
+              <br>
+              <table width="100%">
+                <tr *ngFor='let service of services;let i=index;'>
+                  <td >
+                    <mat-checkbox [(ngModel)]="service.flag" name="service.service_type" [id]="service.id" (click)="serviceType(i)">{{service.service_type}}</mat-checkbox>
+                  </td>
+                </tr>
+              </table>
+              <div class="spacer-sm"></div>
+              <div class="assigned_people">
+                <img src="https://eservices.mohre.gov.ae/MOHRE.WebForms/Images/dummyprofile.jpg" alt="">
+                <p>Abhishek Reddy</p>
+              </div>
+              <div class="assigned_people">
+                <img src="https://eservices.mohre.gov.ae/MOHRE.WebForms/Images/dummyprofile.jpg" alt="">
+                <p>Abhishek Reddy</p>
+              </div>
+              <div class="assigned_people">
+                <img src="https://eservices.mohre.gov.ae/MOHRE.WebForms/Images/dummyprofile.jpg" alt="">
+                <p>Abhishek Reddy</p>
+              </div>
+
+              <div class="assigned_people circle">
+                <h3>+2</h3>
+              </div>
+
+            </div>
+            <div class="col-md-12 text-right">
+              <div class="spacer-md"></div>
+              <button class="filled-btn franchisee " *ngIf="!obj._id" type="submit" mat-button (click)="create_meeting()">Schedule</button>
+              <button class="filled-btn franchisee" *ngIf="obj._id" type="submit" mat-button (click)="edit_meeting(obj)" >SAVE</button>
+              <div class="spacer-md"></div>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+
+
+  </div>
+
+</mat-tab>
+</mat-tab-group>

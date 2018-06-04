@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.958 19.725">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: silver;
+      }
+    </style>
+  </defs>
+  <g id="Checklist_move_icon" data-name="Checklist move icon" transform="translate(-440.931 -687.275)">
+    <circle id="Ellipse_421" data-name="Ellipse 421" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(440.931 687.275)"/>
+    <circle id="Ellipse_423" data-name="Ellipse 423" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(440.931 695.311)"/>
+    <circle id="Ellipse_425" data-name="Ellipse 425" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(440.931 703.347)"/>
+    <circle id="Ellipse_422" data-name="Ellipse 422" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(448.236 687.275)"/>
+    <circle id="Ellipse_424" data-name="Ellipse 424" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(448.236 695.311)"/>
+    <circle id="Ellipse_426" data-name="Ellipse 426" class="cls-1" cx="1.826" cy="1.826" r="1.826" transform="translate(448.236 703.347)"/>
+  </g>
+</svg>

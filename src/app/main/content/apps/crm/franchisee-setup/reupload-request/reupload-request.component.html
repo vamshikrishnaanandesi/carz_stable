@@ -1,0 +1,36 @@
+
+<div class="reupload_req_main">
+
+<p class="reupload_req">Reupload Request <button  mat-dialog-close class="pull-right"> <img  src="../../../../../../../assets/images/carz/icons/close_gray.svg" style="cursor: pointer; "  width="23px" alt=""></button> </p>
+<div class="spacer-xs"></div>
+<ul class="list-inline ">
+  <!-- <li>
+    <img src="../../../../../../../assets/images/carz/icons/doc_kyc.svg" alt="">
+  </li> -->
+  <li class="businessPlan">
+      {{data.file.doc_name}}</li>
+</ul>
+<div class="spacer-xs"></div>
+<div class="kyc_popoup">
+    <mat-form-field placeholder="Other">
+        <mat-select placeholder="Select Reason">
+          <mat-option *ngFor="let list of reasons" [value]="list.reason" (click)="reason_select(list.reason)">{{list.reason}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="app_form_body remarks2">
+
+          <textarea matInput placeholder="Type your reason here" rows="7" id="app_form_body" [(ngModel)]="reason_text"></textarea>
+        </mat-form-field>
+        <div>
+            <div class="spacer-xs"></div>
+            <!-- <div class="spacer-xs"></div> -->
+          <button class="empty-btn franchisee pull-left" mat-dialog-close mat-button >CANCEL</button>
+
+          <button class="filled-btn franchisee pull-right"  mat-button (click)="reject(reason_text)">DONE</button>
+          </div>
+
+</div>
+
+
+
+</div>

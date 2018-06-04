@@ -1,0 +1,161 @@
+<div class="franshisee-main row">
+  <!-- top title component -->
+  <div class="">
+  <div class="row top-title-component">
+<!-- <span>sdf</span> -->
+  </div>
+  <div class="dashboard-library">
+      <mat-tab-group [disableRipple]="false">
+          <mat-tab label="{{tab}}" *ngFor="let tab of tabs">
+           <div *ngIf="tab =='Dashboard' " >
+              <div class="main-CRM-setup ">
+
+                  <div class="row settings-main-row">
+
+                    <div class="franchisee-profile settings">
+
+
+
+    <h1 class="body-txt-title" title="Abhishek Reddy">Abhishek Reddy</h1>
+    <p class="city-name body-subtitle margin-bottom-0" ><span class="position_fr">Developer, </span> <span class="age_fr">25</span></p>
+
+    <div class="spacer-xs"> </div>
+
+
+    <div class="profilesubsections">
+      <p class="profile-left-sub-head">PERSONAL INFO</p>
+      <p class="city-name body-subtitle" title="abhishek@wtastudios.com"> <img src="../../../../../../assets/images/carz/icons/mail_fr.svg" class="svg-icons" alt="">  <span class="body-sub-title-text"> abhishek@wtastudios.com </span></p>
+      <p class="city-name body-subtitle" title="9666119079">  <img src="../../../../../../assets/images/carz/icons/phone_fr.svg" class="svg-icons" alt="">  <span class="body-sub-title-text">  9666119079 </span> </p>
+      <p class="city-name body-subtitle" > <img src="../../../../../../assets/images/carz/icons/globe.svg" class="svg-icons map" alt=""><span class="body-sub-title-text">  Hyderabad, Yousufguda </span> </p>
+
+    </div>
+
+    <div class="spacer-xs"></div>
+    <div class="profilesubsections">
+        <p class="profile-left-sub-head">RESOURCE INFO</p>
+      <div class="leads_type">
+        <mat-form-field>
+          <mat-select  >
+            <mat-option >Hareesh</mat-option>
+            <mat-option >Hareesh</mat-option>
+            <mat-option >Hareesh</mat-option>
+            <mat-option >Hareesh</mat-option>
+             </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+                    </div>
+
+
+
+                    <!-- To start assesement -->
+                    <div class="profile-right-main start-stage" style="display:none"  #target>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="white-bg" >
+                               <p  class="assesment-title">ASSESSMENT 1</p>
+
+                              <div class="spacer-md"></div>
+                              <div class="text-center">
+                                  <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                                  <p class="text-center no-files-main-head">Start your first assessment</p>
+                                  <p class="text-center no-files-sub-head">Let us assess your skills to get you onboard</p>
+
+                                  <div class="spacer-md"></div>
+
+                                  <button mat-button class="filled-btn">Start Assessment</button>
+
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+
+                              <div class="white-bg" >
+                                 <p class="assesment-title">ASSESSMENT 2</p>
+                                 <div class="spacer-md"></div>
+                              <div class="text-center">
+                                  <img src="../../../../../../assets/images/carz/icons/file_orange.svg" width="100px" style="margin-bottom:15px;" alt="">
+                                  <p class="text-center lock-text">Complete your first level <br> to start this level</p>
+                                </div>
+                                </div>
+                            </div>
+                      </div>
+                    </div>
+                    <!-- /To start assesement -->
+
+                    <!-- read instructions -->
+
+                    <div class="profile-right-main instruction-stage"  #target>
+                        <div class="row">
+
+                          <div class="col-md-12">
+                                <div class="instruction-page-main">
+                                    <p class="assesment-title instructions">Test Instructions</p>
+                                    <mat-divider></mat-divider>
+                                    <div class="instructions-body">
+                                      <p class="instrucntions-text">
+                                          1. The enzymes that make prostaglandins (cyclooxygenase 1 and 2) and thereby reduces the levels to make it.
+                                      </p>
+                                      <p class="instrucntions-text">2. Prostaglandins. As a result, fever, pain and inflammation are reduced. Indomethacin is available easily.</p>
+                                      <p class="instrucntions-text"> 3. Extended release form. The FDA first approved indomethacin in January 1965.</p>
+                                      <p class="instrucntions-text"> 4. The enzymes that make prostaglandins (cyclooxygenase 1 and 2) and thereby reduces the levels can vary.</p>
+                                      <p class="instrucntions-text">5. Prostaglandins. As a result, fever, pain and inflammation are reduced. Indomethacin is available.</p>
+                                      <p class="instrucntions-text"><span class="duration">Test Duration:</span><span class="time"> 1 hour</span></p>
+                                      <p class="instrucntions-text"> <mat-checkbox class="confirmationtext" id="confirmation" ><span class="instrucntions-text red" >Agreeing to the terms that make prostaglandins (cyclooxygenase 1 and 2) and thereby reduces the way.</span> </mat-checkbox></p>
+
+
+                                      <div class="spacer-sm"></div>
+                                    <button class="empty-btn pull-left" style="width: 200px;" mat-button >Cancel</button>
+
+                                    <button class="filled-btn pull-right" style="width: 200px;" mat-button (click)="navigateQuestions();">Begin Assessment</button>
+
+                                    </div>
+
+
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- /read instructions -->
+
+
+
+                  </div>
+
+
+
+                </div>
+           </div>
+           <div *ngIf="tab =='Library' " >
+              <div class="main-CRM-setup ">
+
+                  <div class="row settings-main-row">
+
+                    <div class="franchisee-profile settings">
+                      <p>sdfsfs</p>
+
+                    </div>
+                    <div class="profile-right-main" #target>
+
+                    <p>tesitng hareesh</p>
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+             </div>
+
+          </mat-tab>
+      </mat-tab-group>
+    </div>
+</div>
+  <!-- left side component -->
+
+
+</div>
+<!-- <toaster-container [toasterconfig]="config1"></toaster-container>
+<ngx-spinner [bdColor]="spinnerConfig.bdColor" [type]="spinnerConfig.type" [size]="spinnerConfig.size" [color]="spinnerConfig.color"></ngx-spinner> -->

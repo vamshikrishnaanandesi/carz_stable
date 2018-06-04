@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-12295 -879 78 58">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #c5c2c2;
+        stroke-width: 2px;
+        opacity: 0.53;
+      }
+
+      .cls-2 {
+        fill: url(#pattern);
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+    <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 32 32">
+      <image width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAR4VLx+fB002AAABwUlEQVRIx93VP2hTURQG8F/jUxttaVCxRVFUHCIoxVGwQwcddEhHHUQRQaggdpF2ENxUbHEQXZRCDQVBhQ4OxcWhDdTNP0gF/yCCLlZpkJZKqXGJ5CYvNqGZ9DvT/b5zv/fuPeedx3+G9TFmleY6soroNh7jLrgW48Z1lxaJQGiTiiWntC3PJTSIqIY+K9mYwU2rV2aw11nbgvWMO57Vb9BnwIinAbPJQ6P6l3+bHlMg4aMDMXWHb8UOmNJToqtVIaXd2xj7RcGWeHI1g+/GDNpaxm10xaui7WRoX70P+i14oxDEZ5v12i4t7a4laWktldv2uRGskjqCaHFUzqKFIPJu2aAGThkAzWactqZM2+WJSxG69NoTCHPuuydfvPsOkPHOcIX5B5eNRo67bshIIKxzwhmdZckv7bbWzwqLTi8i5/R5UCGMee+gyYCZlvPaI/MBl3ZEJtLqR+zkv8xpreAyuhzTHjDPnfc1ctuQpOmyI5yUrDJcJkyAnT5Z+kNGhs27GLvEwwp/rUzWVY9LBouyssUn75erVVdE4ScYduIhg3Vsr0Bo0KSpMYMVIRwoebMxvdpMnC12aRU0+GP5R/Eb8tNoEACIwjEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDEtMzBUMjE6NDc6MzErMDE6MDC5+7zyAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTAxLTMwVDIxOjQ3OjMxKzAxOjAwyKYETgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="/>
+    </pattern>
+  </defs>
+  <g id="Group_295" data-name="Group 295" transform="translate(-13804 -1639)">
+    <g id="Rectangle_1355" data-name="Rectangle 1355" class="cls-1" transform="translate(1509 760)">
+      <rect class="cls-3" width="78" height="58" rx="7"/>
+      <rect class="cls-4" x="1" y="1" width="76" height="56" rx="6"/>
+    </g>
+    <g id="levels-controls" transform="translate(-200 530)">
+      <rect id="levels-controls-2" data-name="levels-controls" class="cls-2" width="24" height="29" transform="translate(1765 247) rotate(90)"/>
+    </g>
+  </g>
+</svg>
